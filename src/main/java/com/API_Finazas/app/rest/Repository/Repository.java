@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface Repository extends JpaRepository<Model, Long> {
+public interface Repository extends JpaRepository<Model, Integer> {
 
     @Query("SELECT COALESCE(SUM(m.valor), 0) FROM Model m WHERE m.categoria = ?1 AND m.user_id = ?2")
     Double sumarValoresPorCategoriaAndUserId(String categoria, int user_id);

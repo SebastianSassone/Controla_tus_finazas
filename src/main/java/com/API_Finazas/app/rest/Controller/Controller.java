@@ -2,8 +2,10 @@ package com.API_Finazas.app.rest.Controller;
 
 import com.API_Finazas.app.rest.Model.Model;
 import com.API_Finazas.app.rest.Model.Model_user;
+import com.API_Finazas.app.rest.Model.Model_mont_ini;
 import com.API_Finazas.app.rest.Repository.Repository;
 import com.API_Finazas.app.rest.Repository.Repository_user;
+import com.API_Finazas.app.rest.Repository.Repository_mont_ini;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +20,17 @@ public class Controller {
     private Repository repository;
     private Repository_user repository_user;
 
+    private Repository_mont_ini repository_mont_ini;
+
     @Autowired
     public Controller(Repository repository, Repository_user repository_user) {
         this.repository = repository;
         this.repository_user = repository_user;
+        this.repository_mont_ini = repository_mont_ini;
     }
+
+    //Cuenta
+
     private Integer id_user = 0;
 
     @PostMapping(value = "/registrar_user")
@@ -92,6 +100,19 @@ public class Controller {
             return ResponseEntity.ok("Cuenta eliminada");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
+        }
+    }
+
+    //Monto inicial y meta de ahorro
+
+    @PostMapping(value = "/guardar_valor_meta")
+    public Model_mont_ini guardarValorMeta(@RequestBody Model_mont_ini model_mont_ini) {
+        if (id_user != 0) {
+            model_mont_ini.setUser_id(id_user);
+            return repository_mont_ini.save(repository_mont_ini);
+            return ResponseEntity.ok("Guardado");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
         }
     }
 
