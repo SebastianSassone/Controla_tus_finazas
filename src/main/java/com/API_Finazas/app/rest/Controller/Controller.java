@@ -103,6 +103,8 @@ public class Controller {
         }
     }
 
+    //Agregar al eleiminar cuenta uqese borre toda la informacion asoscida
+
     //Monto inicial y meta de ahorro
 
     @PostMapping(value = "/guardar_valor_meta")
@@ -116,6 +118,31 @@ public class Controller {
         }
     }
 
+@PutMapping(value="/actualizar_valor_meta/{id}")
+    public ResponseEntity<Object> actualizarValorMeta(@PathVariable long id, @RequestBody Model model){
+        Model updatedModel = repository.findById(id).orElse(null);
+        if (updatedModel != null) {
+            updatedModel.setProducto(model.getProducto());
+            updatedModel.setCategoria(model.getCategoria());
+            updatedModel.setSubcategoria(model.getSubcategoria());
+            repository.save(updatedModel);
+            return ResponseEntity.ok(updatedModel);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No actualizado");
+        }
+    }
+
+    @DeleteMapping(value="/borrar_valor_meta/{id}")
+    public ResponseEntity<Object> borrarIngre(@PathVariable long id){
+        Model deletedModel = repository.findById(id).orElse(null);
+        if (deletedModel != null) {
+            repository.delete(deletedModel);
+            return ResponseEntity.ok("Borrado");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
+        }
+    }
+    
     @GetMapping(value = "/traer_valor_meta") 
     public List<Model_mont_ini> traerValorMeta(){
         if (id_user != 0) {
@@ -127,20 +154,8 @@ public class Controller {
     
     //Cargar detalle
 
-    @GetMapping(value= "/valances")
-    public List<Model> traerValan(){
-        if (id_user != 0) {
-            System.out.println("Ide: " + id_user);
-          return repository.findModelsByUserId(id_user); // Reemplaza con el método adecuado de tu repositorio
-        } else {
-            // Manejo de usuario no autenticado
-           // Puedes lanzar una excepción, devolver un mensaje de error o cualquier otra acción apropiada
-           return Collections.emptyList();
-      }
-    }
-
     @PostMapping(value="/guardar")
-    public ResponseEntity<Object> guardarEntra(@RequestBody Model model) {
+    public ResponseEntity<Object> guardarIngre(@RequestBody Model model) {
         // Realizar el casting y transformación a String
 
         if (id_user != 0) {
@@ -162,7 +177,7 @@ public class Controller {
     }
 
     @PutMapping(value="/actualizar/{id}")
-    public ResponseEntity<Object> actualizarNota(@PathVariable long id, @RequestBody Model model){
+    public ResponseEntity<Object> actualizarIngre(@PathVariable long id, @RequestBody Model model){
         Model updatedModel = repository.findById(id).orElse(null);
         if (updatedModel != null) {
             updatedModel.setProducto(model.getProducto());
@@ -179,7 +194,7 @@ public class Controller {
     }
 
     @DeleteMapping(value="/borrar/{id}")
-    public ResponseEntity<Object> borrarNota(@PathVariable long id){
+    public ResponseEntity<Object> borrarIngre(@PathVariable long id){
         Model deletedModel = repository.findById(id).orElse(null);
         if (deletedModel != null) {
             repository.delete(deletedModel);
@@ -189,6 +204,19 @@ public class Controller {
         }
     }
 
+
+    @GetMapping(value= "/valances")
+    public List<Model> traerValan(){
+        if (id_user != 0) {
+            System.out.println("Ide: " + id_user);
+          return repository.findModelsByUserId(id_user); // Reemplaza con el método adecuado de tu repositorio
+        } else {
+            // Manejo de usuario no autenticado
+           // Puedes lanzar una excepción, devolver un mensaje de error o cualquier otra acción apropiada
+           return Collections.emptyList();
+      }
+    }
+    
     @GetMapping("/total-valor-alimentos")
     public Double obtenerTotalValorAlimen() {
         if (id_user != 0) {
