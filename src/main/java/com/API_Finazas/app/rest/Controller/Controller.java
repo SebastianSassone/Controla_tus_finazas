@@ -116,6 +116,15 @@ public class Controller {
         }
     }
 
+    @GetMapping(value = "/traer_valor_meta") 
+    public List<Model_mont_ini> traerValorMeta(){
+        if (id_user != 0) {
+            return repository.findModelsbyUserId(id_user);
+        } else {
+            return Collections.emptyList();
+        }   
+    }
+    
     //Cargar detalle
 
     @GetMapping(value= "/valances")
