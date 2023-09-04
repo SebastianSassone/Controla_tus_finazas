@@ -19,11 +19,10 @@ import java.util.List;
 public class Controller {
     private Repository repository;
     private Repository_user repository_user;
-
     private Repository_mont_ini repository_mont_ini;
 
     @Autowired
-    public Controller(Repository repository, Repository_user repository_user) {
+    public Controller(Repository repository, Repository_user repository_user, Repository_mont_ini repository_mont_ini) {
         this.repository = repository;
         this.repository_user = repository_user;
         this.repository_mont_ini = repository_mont_ini;
@@ -79,7 +78,7 @@ public class Controller {
 
     @PutMapping(value = "/actualizar_user/{id}")
     public ResponseEntity<Object> actualizar_user(@PathVariable long id, @RequestBody com.API_Finazas.app.rest.Model.Model_user modelUser) {
-        com.API_Finazas.app.rest.Model.Model_user updatedModelUser = repository_user.findById(id).orElse(null);
+        com.API_Finazas.app.rest.Model.Model_user updatedModelUser = repository_user.findById((int) id).orElse(null);
         if (updatedModelUser != null) {
             updatedModelUser.setName(modelUser.getName());
             updatedModelUser.setLastname(modelUser.getLastname());
@@ -94,7 +93,7 @@ public class Controller {
 
     @DeleteMapping(value = "/eliminar_cuenta/{id}")
     public ResponseEntity<Object> eliminar_cuenta(@PathVariable long id) {
-        com.API_Finazas.app.rest.Model.Model_user deletedModelUser = repository_user.findById(id).orElse(null);
+        com.API_Finazas.app.rest.Model.Model_user deletedModelUser = repository_user.findById((int) id).orElse(null);
         if (deletedModelUser != null) {
             repository_user.delete(deletedModelUser);
             return ResponseEntity.ok("Cuenta eliminada");
@@ -108,10 +107,10 @@ public class Controller {
     //Monto inicial y meta de ahorro
 
     @PostMapping(value = "/guardar_valor_meta")
-    public Model_mont_ini guardarValorMeta(@RequestBody Model_mont_ini model_mont_ini) {
+    public ResponseEntity<String> guardarValorMeta(@RequestBody Model_mont_ini model_mont_ini) {
         if (id_user != 0) {
             model_mont_ini.setUser_id(id_user);
-            return repository_mont_ini.save(repository_mont_ini);
+            repository_mont_ini.save(model_mont_ini);
             return ResponseEntity.ok("Guardado");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
@@ -120,7 +119,7 @@ public class Controller {
 
 @PutMapping(value="/actualizar_valor_meta/{id}")
     public ResponseEntity<Object> actualizarValorMeta(@PathVariable long id, @RequestBody Model model){
-        Model updatedModel = repository.findById(id).orElse(null);
+        Model updatedModel = repository.findById((int) id).orElse(null);
         if (updatedModel != null) {
             updatedModel.setProducto(model.getProducto());
             updatedModel.setCategoria(model.getCategoria());
@@ -133,8 +132,8 @@ public class Controller {
     }
 
     @DeleteMapping(value="/borrar_valor_meta/{id}")
-    public ResponseEntity<Object> borrarIngre(@PathVariable long id){
-        Model deletedModel = repository.findById(id).orElse(null);
+    public ResponseEntity<Object> borrarValorMeta(@PathVariable long id){
+        Model deletedModel = repository.findById((int) id).orElse(null);
         if (deletedModel != null) {
             repository.delete(deletedModel);
             return ResponseEntity.ok("Borrado");
@@ -144,9 +143,9 @@ public class Controller {
     }
     
     @GetMapping(value = "/traer_valor_meta") 
-    public List<Model_mont_ini> traerValorMeta(){
+    public List<Model> traerValorMeta(){
         if (id_user != 0) {
-            return repository.findModelsbyUserId(id_user);
+            return repository_mont_ini.findModelsMetaByUserId(id_user);
         } else {
             return Collections.emptyList();
         }   
@@ -178,7 +177,7 @@ public class Controller {
 
     @PutMapping(value="/actualizar/{id}")
     public ResponseEntity<Object> actualizarIngre(@PathVariable long id, @RequestBody Model model){
-        Model updatedModel = repository.findById(id).orElse(null);
+        Model updatedModel = repository.findById((int) id).orElse(null);
         if (updatedModel != null) {
             updatedModel.setProducto(model.getProducto());
             updatedModel.setCategoria(model.getCategoria());
@@ -195,7 +194,7 @@ public class Controller {
 
     @DeleteMapping(value="/borrar/{id}")
     public ResponseEntity<Object> borrarIngre(@PathVariable long id){
-        Model deletedModel = repository.findById(id).orElse(null);
+        Model deletedModel = repository.findById((int) id).orElse(null);
         if (deletedModel != null) {
             repository.delete(deletedModel);
             return ResponseEntity.ok("Borrado");
