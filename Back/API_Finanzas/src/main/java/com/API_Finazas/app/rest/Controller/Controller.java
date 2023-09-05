@@ -75,6 +75,14 @@ public class Controller {
         }
     }
 
+    @GetMapping(value = "/datos_cuenta")
+    public List<Model> traerDatosCuenta(){
+        if (id_user != 0) {
+            return repository_user.findDatosCuentaByUserId(id_user);
+        } else {
+            return Collections.emptyList();
+        }
+    }
 
     @PutMapping(value = "/actualizar_user/{id}")
     public ResponseEntity<Object> actualizar_user(@PathVariable long id, @RequestBody com.API_Finazas.app.rest.Model.Model_user modelUser) {

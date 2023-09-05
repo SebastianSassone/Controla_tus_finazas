@@ -68,23 +68,37 @@
 <body>
     <section class="section_cuenta">
 		<div class="div_datos_cuenta">
-          <p id="nombre">nombre</p>
-          <p id="apellido">apellido</p>
-          <p id="email">email</p>
-          <!-- <p>password</p> cuando pones editar ai te sale lo del password -->
+            <p id="nombre">Nombre</p>
+            <p id="apellido">Apellido</p>
+            <p id="email">Email</p>
+            <button id="editarBtn" class="edit-btn">Editar</button>
+            <button id="guardarBtn" style="display: none;" class="save-btn">Guardar</button>
+            <button id="cancelarBtn" style="display: none;">Cancelar</button>
+            <button id="eliminarBtn" class="delete-btn">Eliminar</button>
         </div>
 
         <form id="form_ingreso_valores" action="/ingreso" method="POST" class="form_ingreso_valores">
-        <label for="number">Valor Inicial</label>
-           <input type="number">    
-        <label for="number">Meta de ahorro</label>
-           <input type="number" name="meta_ahorro">
-           <button type="submit">Guardar</button>
-    </form>
-
-<button>Eliminar cuenta</button>
-<button>Editar datos</button>
-<button>Cerrar sesion</button>
+            <label for="valorInicial">Valor Inicial</label>
+            <input type="number" id="valorInicial" name="valor_inicial">
+            <label for="metaAhorro">Meta de Ahorro</label>
+            <input type="number" id="metaAhorro" name="meta_ahorro">
+            <button type="submit" id="guardarBtn">Guardar</button>
+        </form>
+    
+        <!-- Contenedor para mostrar valores y botones -->
+        <div class="div_valores">
+            <p id="valorInicialMostrado">Valor Inicial:</p>
+            <p id="metaAhorroMostrada">Meta de Ahorro:</p>
+            <button id="editarBtn" class="edit-btn">Editar</button>
+            <button id="eliminarBtn" class="delete-btn">Eliminar</button>
+            <button id="guardarCambiosBtn" style="display: none;" class="save-btn">Guardar Cambios</button>
+            <button id="cancelarEdicionBtn" style="display: none;">Cancelar Edición</button>
+        </div>
+    
+<div class="container_btns">
+<button class="btn_cuenta">Eliminar cuenta</button>
+<button class="btn_cuenta">Cerrar sesion</button>
+</div>
 
     </section>    
     <footer class="footer-distributed">
