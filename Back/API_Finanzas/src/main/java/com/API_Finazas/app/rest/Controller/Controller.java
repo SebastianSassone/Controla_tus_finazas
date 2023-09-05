@@ -63,8 +63,8 @@ public class Controller {
         }
     }
 
-    @PostMapping("/cerrar_sesion")
-    public ResponseEntity<String> unlogin() {
+    @GetMapping("/cerrar_sesion")
+    public ResponseEntity<String> cerrarSesion() {
         if (id_user != 0) {
             id_user = 0; // Cierra la sesión
             System.out.println("Ide: " + id_user);
