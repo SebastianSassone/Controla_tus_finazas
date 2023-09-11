@@ -32,11 +32,14 @@ public class Controller {
 
     private Integer id_user = 0;
 
+    private String email_user;
+
     @PostMapping(value = "/registrar_user")
     public ResponseEntity<Object> registrar_user(@RequestBody com.API_Finazas.app.rest.Model.Model_user modelUser) {
         if (modelUser.getPassword().equals(modelUser.getConfirmPassword())) {
             repository_user.save(modelUser);
             id_user = modelUser.getId();
+            email_user = modelUser.getEmail();
             System.out.println("Ide: " + id_user);
             return ResponseEntity.ok("Usuario registrado");
         } else {
@@ -54,6 +57,7 @@ public class Controller {
 
         if (user != null && user.getPassword().equals(password) && id_user == 0) {
             id_user = user.getId(); // Establecer el id_user con el ID del usuario autenticado
+            email_user = user.getEmail();
             System.out.println("Ide: " + id_user);
 
             return ResponseEntity.ok("Inicio de sesión exitoso");
@@ -76,13 +80,21 @@ public class Controller {
     }
 
     @GetMapping(value = "/datos_cuenta")
-    public List<Model> traerDatosCuenta(){
+    public List<Model_user> traerDatosCuenta() {
         if (id_user != 0) {
-            return repository_user.findDatosCuentaByUserId(id_user);
+            Model_user user = repository_user.findByEmail(email_user);
+            if (user != null) {
+                // Devuelve una lista que contiene un solo elemento (el usuario encontrado)
+                return Collections.singletonList(user);
+            } else {
+                // Devuelve una lista vacía si no se encuentra ningún usuario
+                return Collections.emptyList();
+            }
         } else {
             return Collections.emptyList();
         }
     }
+
 
     @PutMapping(value = "/actualizar_user/{id}")
     public ResponseEntity<Object> actualizar_user(@PathVariable long id, @RequestBody com.API_Finazas.app.rest.Model.Model_user modelUser) {
