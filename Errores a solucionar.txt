@@ -1,0 +1,17 @@
+Cuenta:
+No registra el usuario por que toma como null la contraseña
+ 
+No muestra los datos en la cuenta por un problema de corns
+
+Ingreso:
+
+No registra el ingreso por que muestra como null la categoria enviada desde un select
+y tambien toma como null la fecha y la hora que es aplicada mediante java script en el front.
+
+Listado:
+
+No muestra los datos del grafico
+
+En listado muestra los  datos pero no permite editar ni borrar los datos devido a un problema 
+en la api el cierre de la coneccion a la base de datos 
+

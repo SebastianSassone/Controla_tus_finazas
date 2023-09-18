@@ -223,7 +223,6 @@ public class Controller {
         }
     }
 
-
     @GetMapping(value= "/valances")
     public List<Model> traerValan(){
         if (id_user != 0) {
