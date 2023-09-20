@@ -3,7 +3,7 @@ package com.API_Finazas.app.rest.Model;
 import javax.persistence.*;
 
 @Entity
-@Table(schema = "montoIniTable")
+@Table(schema = "montoinicialtable")
 public class Model_mont_ini {
 
     @Id

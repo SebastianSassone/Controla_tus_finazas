@@ -1,7 +1,8 @@
 Cuenta:
 No registra el usuario por que toma como null la contraseña
- 
-No muestra los datos en la cuenta por un problema de corns
+
+Meta de ahorro:
+Por ahora no hace nada
 
 Ingreso:
 
