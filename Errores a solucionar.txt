@@ -2,7 +2,7 @@ Cuenta:
 No registra el usuario por que toma como null la contraseña
 
 Meta de ahorro:
-Por ahora no hace nada
+Toma como null los valores pasados desde el front
 
 Ingreso:
 

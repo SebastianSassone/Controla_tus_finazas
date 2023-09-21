@@ -131,6 +131,7 @@ public class Controller {
         if (id_user != 0) {
             model_mont_ini.setUser_id(id_user);
             repository_mont_ini.save(model_mont_ini);
+            System.out.print(model_mont_ini.getMonto_inicial());
             return ResponseEntity.ok("Guardado");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
@@ -246,7 +247,6 @@ public class Controller {
             return 0.0;
         }
     }
-
 
     @GetMapping("/total-valor-servicios")
     public Double obtenerTotalValorServi() {

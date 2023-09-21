@@ -50,13 +50,8 @@ document.getElementById('cerrarSesionBtn').addEventListener('click', function() 
                     nombreElement.textContent = data[i].name;
                     apellidoElement.textContent = data[i].lastname;
                     emailElement.textContent = data[i].email}
-
                     console.log(data)
 
-
-                
-
-            
             } catch (error) {
                 console.error('Error al cargar los datos:', error);
             }
@@ -175,15 +170,15 @@ document.getElementById('cerrarSesionBtn').addEventListener('click', function() 
         // Función para habilitar el modo de edición
         function habilitarEdicion() {
             modoEdit = true;
-            editarBt.style.display = 'none';
-            eliminarBt.style.display = 'none';
+            // editarBt.style.display = 'none';
+            // eliminarBt.style.display = 'none';
             guardarCambiosBtn.style.display = 'inline-block';
             cancelarEdicionBtn.style.display = 'inline-block';
             // Habilitar la edición de los campos
             valorInicialInput.removeAttribute('readonly');
             metaAhorroInput.removeAttribute('readonly');
             // Mostrar el formulario para editar
-            document.getElementById('form_valores').style.display = 'block';
+            // document.getElementById('form_valores').style.display = 'block';
         }
 
         // Función para guardar los cambios y deshabilitar el modo de edición
@@ -253,12 +248,14 @@ formIngresoValores.addEventListener('submit', async (event) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ valor_inicial: nuevoValorInicial, meta_ahorro: nuevaMetaAhorro }),
+            body: JSON.stringify({ valor_inicial: nuevoValorInicial, meta_ahorro: nuevaMetaAhorro }
+                
+                ),
         });
 
         // Recargar y mostrar los valores actualizados desde la API
         cargarYMostrarValoresDesdeAPI();
-
+        console.log(123)
         // Ocultar el formulario de edición
         // document.getElementById('form_valores').style.display = 'none';
     } catch (error) {
