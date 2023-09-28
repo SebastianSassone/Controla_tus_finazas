@@ -167,4 +167,8 @@ async function eliminarcuenta() {
     }
   }
 
+   // suma todo TODO despues loresta al total y compara si el resultado es mayor o igual a la meta da que se esta 
+   // cuempliendo si el resultado es menor da que la meta esta incunprida Quien establece el plazo de la meta? 
+   // es automatico a  un mes es por mes automatico se va sumando en unregistro al finalizar el mes se muestran 
+   // los datos de cada categotia, abajo de todo se muestra historico
        
