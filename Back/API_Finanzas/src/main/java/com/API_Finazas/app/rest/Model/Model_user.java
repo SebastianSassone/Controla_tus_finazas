@@ -22,7 +22,6 @@ public class Model_user {
 
     @Column
     private String password;
-
     @Transient
     private String confirmPassword;
 

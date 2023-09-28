@@ -106,4 +106,38 @@ formIngresoValores.addEventListener('submit', async (event) => {
     } catch (error) {
         console.error('Error al guardar los datos:', error);
     }
-});
+}); 
+
+//Faltan moficaciones ne la parte de editar
+
+ // suma todo TODO despues loresta al total y compara si el resultado es mayor o igual a la meta da que se esta 
+   // cuempliendo si el resultado es menor da que la meta esta incunprida Quien establece el plazo de la meta? 
+   // es automatico a  un mes es por mes automatico se va sumando en unregistro al finalizar el mes se muestran 
+   // los datos de cada categotia, abajo de todo se muestra historico
+   //   El cierre se hace automaticamente a fin de mes y se agrega al listado
+// Hacer una qry que sume todo que la fecha se registre con java y el cierre se haga desde ai
+
+async function sumar_total_gastos(){
+    try { fetch('localhost4000/suma_total', {
+    method : 'get',
+    headers: {'Content-Type', 'application/json'}
+    })
+                      
+}catch{
+
+    }
+    
+}
+
+async function sumar_total_gastos() {
+    try {
+        const response = await fetch('http://localhost:4000/traer_valor_meta'); // Ruta de lectura de montos
+        const data = await response.json();
+        // Mostrar los valores
+        valorInicialMostrado.textContent = `Valor Inicial: ${data.valor total}`;
+        metaAhorroMostrada.textContent = `Meta de Ahorro: ${data.meta_ahorro}`;
+    } catch (error) {
+        console.error('Error al cargar los valores:', error);
+    }
+}
+

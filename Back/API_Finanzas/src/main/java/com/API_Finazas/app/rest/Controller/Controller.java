@@ -171,7 +171,18 @@ public class Controller {
             return Collections.emptyList();
         }   
     }
-    
+
+    //Suma total
+
+    @GetMapping("/suma_total")
+    public Double sumaTotal(){
+        if(id_user != 0) {
+            return repository.sumarTotalValoresPorCategoriaAndUserId(id_user);
+        }else{
+            return 0.0;
+        }
+    }
+
     //Cargar detalle
 
     @PostMapping(value="/guardar")
