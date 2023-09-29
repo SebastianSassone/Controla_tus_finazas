@@ -15,11 +15,20 @@ const metaAhorroInput = document.getElementById('metaAhorro');
 // Variable para controlar el modo de edición
 let modoEdit = false;
 
+//Variables para calcular meta de ahorro cumplida
+
+let val_inicial = 0;
+
+let met_ahorro = 0;
+
 // Función para cargar y mostrar los valores desde la API
 async function cargarYMostrarValoresDesdeAPI() {
     try {
         const response = await fetch('http://localhost:4000/traer_valor_meta'); // Ruta de lectura de montos
         const data = await response.json();
+        //Cargar variables
+        let met_ahorro = data.valor_inicial;
+        let val_inicial = data.meta_ahorro;
         // Mostrar los valores
         valorInicialMostrado.textContent = `Valor Inicial: ${data.valor_inicial}`;
         metaAhorroMostrada.textContent = `Meta de Ahorro: ${data.meta_ahorro}`;
@@ -118,20 +127,27 @@ formIngresoValores.addEventListener('submit', async (event) => {
 // Hacer una qry que sume todo que la fecha se registre con java y el cierre se haga desde ai
 
 async function sumar_total_gastos(){
-    try { fetch('localhost4000/suma_total', {
-    method : 'get',
-    headers: {'Content-Type', 'application/json'}
+    try { 
+       const response = await fetch('http://localhost:4000/traer_valor_meta');
+       const data = await response.json() 
+
+       let total_gastos = data; 
+
+       if(total_gastos >= met_ahorro ){meta de ahorro cumplidas color verde o algo asi}else{meta de ahorro imcumplida color rojo}  
+        met_ahorro 
+        let val_inicia 
+       
     })
                       
 }catch{
-
+       console.error('Error al cargar los valores: ' error);
     }
     
 }
 
 async function sumar_total_gastos() {
     try {
-        const response = await fetch('http://localhost:4000/traer_valor_meta'); // Ruta de lectura de montos
+        const response = await fetch(''); // Ruta de lectura de montos
         const data = await response.json();
         // Mostrar los valores
         valorInicialMostrado.textContent = `Valor Inicial: ${data.valor total}`;
