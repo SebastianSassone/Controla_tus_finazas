@@ -27,8 +27,8 @@ async function cargarYMostrarValoresDesdeAPI() {
         const response = await fetch('http://localhost:4000/traer_valor_meta'); // Ruta de lectura de montos
         const data = await response.json();
         //Cargar variables
-        let met_ahorro = data.valor_inicial;
-        let val_inicial = data.meta_ahorro;
+        met_ahorro = data.valor_inicial;
+        val_inicial = data.meta_ahorro;
         // Mostrar los valores
         valorInicialMostrado.textContent = `Valor Inicial: ${data.valor_inicial}`;
         metaAhorroMostrada.textContent = `Meta de Ahorro: ${data.meta_ahorro}`;
@@ -126,6 +126,7 @@ formIngresoValores.addEventListener('submit', async (event) => {
    //   El cierre se hace automaticamente a fin de mes y se agrega al listado
 // Hacer una qry que sume todo que la fecha se registre con java y el cierre se haga desde ai
 
+function mostrarTotalGastosYmeta(){
 async function sumar_total_gastos(){
     try { 
        const response = await fetch('http://localhost:4000/traer_valor_meta');
@@ -133,27 +134,20 @@ async function sumar_total_gastos(){
 
        let total_gastos = data; 
 
-       if(total_gastos >= met_ahorro ){meta de ahorro cumplidas color verde o algo asi}else{meta de ahorro imcumplida color rojo}  
-        met_ahorro 
-        let val_inicia 
-       
-    })
-                      
-}catch{
-       console.error('Error al cargar los valores: ' error);
-    }
-    
+       if(total_gastos <= met_ahorro ){console.log('Meta de ahorro cumplida')
+          }else{
+          console.log('Meta de ahorro no cumplida')};  
+       }catch (error) {
+       console.error('Error al cargar los valores: ', error);
+    };
+};
+
+sumar_total_gastos()
+
+let gastos_acumulados = val_inicial - total_gastos;
+
+console.log('El total de los gasto asta la actuidad es de ', gastos_acumulados);
 }
 
-async function sumar_total_gastos() {
-    try {
-        const response = await fetch(''); // Ruta de lectura de montos
-        const data = await response.json();
-        // Mostrar los valores
-        valorInicialMostrado.textContent = `Valor Inicial: ${data.valor total}`;
-        metaAhorroMostrada.textContent = `Meta de Ahorro: ${data.meta_ahorro}`;
-    } catch (error) {
-        console.error('Error al cargar los valores:', error);
-    }
-}
+
 
