@@ -71,7 +71,7 @@ async function cargarDatosDesdeAPI() {
             apellidoElement.textContent = data[i].lastname;
             emailElement.textContent = data[i].email;
             id = data[i].id;
-            console.log(id);
+            console.log(data);
         }
        
     } catch (error) {
@@ -98,11 +98,6 @@ function crearInputsDinamicos() {
     nombreElement.replaceWith(nuevoNombreInput);
     apellidoElement.replaceWith(nuevoApellidoInput);
     emailElement.replaceWith(nuevoEmailInput);
-
-    // Actualiza las variables de elementos para los nuevos inputs
-    // nombreElement = nuevoNombreInput;
-    // apellidoElement = nuevoApellidoInput;
-    // emailElement = nuevoEmailInput;
 }
 
 // Función para habilitar el modo de edición
@@ -112,7 +107,6 @@ function habilitarEdicion() {
     document.getElementById('editarBtn').style.display = 'none';
     // Muestra el botón de guardar y cancelar
     document.getElementById('guardarBtn').style.display = 'inline-block';
-    document.getElementById('cancelarBtn').style.display = 'inline-block';
     // Llama a la función para crear los inputs dinámicos
     crearInputsDinamicos();
 }

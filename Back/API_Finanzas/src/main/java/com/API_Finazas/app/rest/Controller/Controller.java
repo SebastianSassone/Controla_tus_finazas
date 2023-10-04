@@ -36,7 +36,8 @@ public class Controller {
 
     @PostMapping(value = "/registrar_user")
     public ResponseEntity<Object> registrar_user(@RequestBody com.API_Finazas.app.rest.Model.Model_user modelUser) {
-        if (modelUser.getPassword().equals(modelUser.getConfirmPassword())) {
+
+        if (modelUser.getPassword() == modelUser.getConfirmPassword()) {
             repository_user.save(modelUser);
             id_user = modelUser.getId();
             email_user = modelUser.getEmail();
@@ -55,7 +56,7 @@ public class Controller {
         // Buscar el usuario por su dirección de correo electrónico en la base de datos
         Model_user user = repository_user.findByEmail(email);
 
-        if (user != null && user.getPassword().equals(password) && id_user == 0) {
+        if (user != null && user.getPassword() == user.getConfirmPassword() && id_user == 0) {
             id_user = user.getId(); // Establecer el id_user con el ID del usuario autenticado
             email_user = user.getEmail();
             System.out.println("Ide: " + id_user);
@@ -174,14 +175,14 @@ public class Controller {
 
     //Suma total
 
-    @GetMapping("/suma_total")
+    /*@GetMapping("/suma_total")
     public Double sumaTotal(){
         if(id_user != 0) {
             return repository.sumarTotalValoresPorCategoriaAndUserId(id_user);
         }else{
             return 0.0;
         }
-    }
+    }*/
 
     //Cargar detalle
 

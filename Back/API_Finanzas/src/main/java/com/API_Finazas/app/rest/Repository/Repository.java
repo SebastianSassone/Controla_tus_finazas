@@ -15,12 +15,12 @@ public interface Repository extends JpaRepository<Model, Integer> {
     @Query(value = "SELECT * FROM ingresotabla m WHERE m.user_id = :userId", nativeQuery = true)
     List<Model> findModelsByUserId(@Param("userId") int userId);
 
-    @Query("SELECT COALESCE(SUM(subquery.suma_categoria), 0) as suma_total " +
+    /*@Query("SELECT COALESCE(SUM(subquery.suma_categoria), 0) as suma_total " +
             "FROM (SELECT COALESCE(SUM(m.valor), 0) as suma_categoria " +
             "      FROM Model m " +
             "      WHERE m.user_id = :userId " +
             "      GROUP BY m.categoria) as subquery")
-    Double sumarTotalValoresPorCategoriaAndUserId(@Param("userId") Integer userId);
+    Double sumarTotalValoresPorCategoriaAndUserId(@Param("userId") Integer userId);*/
 }
 
 
