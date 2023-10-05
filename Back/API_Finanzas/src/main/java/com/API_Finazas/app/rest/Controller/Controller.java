@@ -29,10 +29,11 @@ public class Controller {
     }
 
     //Cuenta
-
     private Integer id_user = 0;
 
     private String email_user;
+
+    private String user_name;
 
     @PostMapping(value = "/registrar_user")
     public ResponseEntity<Object> registrar_user(@RequestBody com.API_Finazas.app.rest.Model.Model_user modelUser) {
@@ -41,7 +42,13 @@ public class Controller {
             repository_user.save(modelUser);
             id_user = modelUser.getId();
             email_user = modelUser.getEmail();
+            user_name = modelUser.getName();
             System.out.println("Ide: " + id_user);
+            System.out.println(modelUser.getName());
+            System.out.println(modelUser.getLastname());
+            System.out.println(modelUser.getEmail());
+            System.out.println(modelUser.getPassword());
+            System.out.println(modelUser.getConfirmPassword());
             return ResponseEntity.ok("Usuario registrado");
         } else {
             return ResponseEntity.badRequest().body("Las contraseñas no coinciden");

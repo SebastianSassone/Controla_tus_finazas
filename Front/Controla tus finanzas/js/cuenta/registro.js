@@ -10,6 +10,12 @@ form_registro.addEventListener('submit', async (event) => {
      let contraseña1 = document.getElementById('contraseña1').value;
      let contraseña2 = document.getElementById('contraseña2').value;
 
+     console.log(nombre);
+     console.log(apellido);
+     console.log(email);
+     console.log(contraseña1);
+     console.log(contraseña2);
+
     if (nombre.trim() === '' || apellido.trim() === '' || 
         email.trim() === '' || contraseña1.trim() === '' || 
         contraseña2.trim() === '') {
