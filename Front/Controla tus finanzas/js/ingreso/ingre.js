@@ -25,21 +25,21 @@ const section_detalle = document.getElementById('section_detalle');
      const hor = document.getElementById('hor');
 
      const producto = document.getElementById('producto').value;
-     const select_categori = document.getElementById('select_categori').value;
+     const categoria = document.getElementById('categoria').value;
      const subcategoria = document.getElementById('subcategoria').value;
      const valor = document.getElementById('valor').value;
-     const date = document.getElementById('date').value;
-     const time = document.getElementById('time').value;
+     const fecha = document.getElementById('fecha').value;
+     const hora = document.getElementById('hora').value;
     
-     if (producto.trim() === '' || select_categori.trim() === '' || 
+     if (producto.trim() === '' || categoria.trim() === '' || 
          subcategoria.trim() === '' || valor.trim() === '' || 
-         date.trim() === '' || time.trim() === '' ) {
+         fecha.trim() === '' || hora.trim() === '' ) {
        alert('Campos sin completar');
        return;
      }
    
      try {
-       const noteData = {producto, select_categori, subcategoria, valor, date, time};
+       const noteData = {producto, categoria, subcategoria, valor, fecha, hora};
        const response = await fetch('http://localhost:4000/guardar', {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
