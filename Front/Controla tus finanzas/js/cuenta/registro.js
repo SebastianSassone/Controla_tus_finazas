@@ -22,6 +22,13 @@ form_registro.addEventListener('submit', async (event) => {
        const response = await fetch('http://localhost:4000/registrar_user', {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
+            const noteData = {
+            name: nombre,
+            lastname: apellido,
+            email: email,
+            password: contraseña1,
+            confirmPassword: contraseña2
+           },
          body: JSON.stringify(noteData),
        });
    
