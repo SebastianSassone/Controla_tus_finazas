@@ -2,7 +2,7 @@ package com.API_Finazas.app.rest.Controller;
 
 import com.API_Finazas.app.rest.Model.Model;
 import com.API_Finazas.app.rest.Model.Model_user;
-import com.API_Finazas.app.rest.Model.Model_mont_ini;
+import com.API_Finazas.app.rest.Model.Model_mont_in;
 import com.API_Finazas.app.rest.Repository.Repository;
 import com.API_Finazas.app.rest.Repository.Repository_user;
 import com.API_Finazas.app.rest.Repository.Repository_mont_ini;
@@ -46,7 +46,7 @@ public class Controller {
             System.out.println("Ide: " + id_user);
             System.out.println(modelUser.getName());
             System.out.println(modelUser.getLastname());
-            System.out.println(modelUser.getEmail());
+            System.out.println(email_user);
             System.out.println(modelUser.getPassword());
             System.out.println(modelUser.getConfirmPassword());
             return ResponseEntity.ok("Usuario registrado");
@@ -135,11 +135,11 @@ public class Controller {
     //Monto inicial y meta de ahorro
 
     @PostMapping(value = "/guardar_valor_meta")
-    public ResponseEntity<String> guardarValorMeta(@RequestBody Model_mont_ini model_mont_ini) {
+    public ResponseEntity<String> guardarValorMeta(@RequestBody Model_mont_in model_mont_in) {
         if (id_user != 0) {
-            model_mont_ini.setUser_id(id_user);
-            repository_mont_ini.save(model_mont_ini);
-            System.out.print(model_mont_ini.getMonto_inicial());
+            model_mont_in.setUser_id(id_user);
+            repository_mont_ini.save(model_mont_in);
+            System.out.print(model_mont_in.getMonto_inicial());
             return ResponseEntity.ok("Guardado");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
@@ -307,5 +307,4 @@ public class Controller {
          return totalValorHigiene != null ? totalValorHigiene : 0.0;
         } else { return 0.0; }
     }
-
 }

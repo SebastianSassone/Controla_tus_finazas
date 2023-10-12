@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(schema = "montoinicialtable")
-public class Model_mont_ini {
+public class Model_mont_in {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
