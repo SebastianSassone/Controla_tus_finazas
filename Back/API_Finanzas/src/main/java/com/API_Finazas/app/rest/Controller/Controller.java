@@ -120,7 +120,7 @@ public class Controller {
     }
 
     @DeleteMapping(value = "/eliminar_cuenta/{id}")
-    public ResponseEntity<Object> eliminar_cuenta(@PathVariable long id) {
+    public ResponseEntity<Object> eliminar_cuenta(@PathVariable Integer id) {
         com.API_Finazas.app.rest.Model.Model_user deletedModelUser = repository_user.findById((int) id).orElse(null);
         if (deletedModelUser != null) {
             repository_user.delete(deletedModelUser);
