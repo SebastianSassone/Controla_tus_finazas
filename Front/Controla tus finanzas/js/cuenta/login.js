@@ -6,15 +6,15 @@ form_in_sec.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   let email = document.getElementById('email').value;
-  let contraseña = document.getElementById('contraseña').value;
+  let password = document.getElementById('password').value;
 
- if (email.trim() === '' || contraseña.trim() === '') {
+ if (email.trim() === '' || password.trim() === '') {
     alert('Campos sin completar');
     return;
   }
 
   try {
-    const noteData = {email, contraseña};
+    const noteData = {email, password};
     const response = await fetch('http://localhost:4000/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
