@@ -53,11 +53,10 @@ guardarBtn.addEventListener('click', () => {
 } )
 
 eliminarBtn.addEventListener('click', () => {
-    confirm('Esta seguro de eliminar su cuenta?')
-    if(confirm.response = 'true'){
-        console.log('Eliminada');
-    }
-})
+    if (window.confirm("Esta seguro de eliminar su cuenta?")) {
+        eliminarcuenta();
+      }}
+)
 
 let id = 0;
 // Función para cargar los datos desde la API usando Fetch
@@ -66,15 +65,25 @@ async function cargarDatosDesdeAPI() {
         const response = await fetch('http://localhost:4000/datos_cuenta'); // Ruta de lectura de cuenta
         const data = await response.json();
         // Actualiza los elementos HTML con los datos de la cuenta
+
+            // Actualiza los elementos HTML con los datos de la cuenta
         for (let i = 0; i < data.length; i++) {
-            nombreElement.textContent = data[i].name;
-            apellidoElement.textContent = data[i].lastname;
-            emailElement.textContent = data[i].email;
-            id = data[i].id;
+            const nombre = data[i].name;
+            const apellido = data[i].lastname;
+            const email = data[i].email;
+                   
+            // id = data[i].id;
+
+            // Actualiza los elementos HTML con los datos correspondientes
+            nombreElement.textContent = nombre;
+            apellidoElement.textContent = apellido;
+            emailElement.textContent = email;
+            
             console.log(data);
-        }
-       
-    } catch (error) {
+            console.log(nombre);}
+        
+        } catch (error) {
+
         console.error('Error al cargar los datos:', error);
     }
 }
