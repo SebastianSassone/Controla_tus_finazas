@@ -3,11 +3,11 @@ setInterval(updateDateTime, 1000);
 function updateDateTime() {
     const now = new Date();
 
-    const dateField = document.getElementById('fecha');
-    dateField.value = now.toLocaleDateString();
+    const campoFecha = document.getElementById('fecha');
+    campoFecha.value = now.toLocaleDateString();
 
-    const timeField = document.getElementById('hora');
-    timeField.value = now.toLocaleTimeString();
+    const campoHora = document.getElementById('hora');
+    campoHora.value = now.toLocaleTimeString();
 }        
 
 const form = document.getElementById('form_ingreso');
