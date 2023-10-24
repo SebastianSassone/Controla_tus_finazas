@@ -17,13 +17,6 @@ const section_detalle = document.getElementById('section_detalle');
    form.addEventListener('submit', async (event) => {
      event.preventDefault();
      
-     const product = document.getElementById('product');
-     const valo = document.getElementById('valo');
-     const categori = document.getElementById('categori');
-     const subcategori = document.getElementById('subcategori');
-     const fech = document.getElementById('fech');
-     const hor = document.getElementById('hor');
-
      const producto = document.getElementById('producto').value;
      const categoria = document.getElementById('categoria').value;
      const subcategoria = document.getElementById('subcategoria').value;
@@ -51,11 +44,18 @@ const section_detalle = document.getElementById('section_detalle');
        }
        section_form_ingreso.style.display = 'none';
 
-       product.innerHTML = producto;
-       valo.innerHTML = select_categori;
-       categori.innerHTML = subcategoria;
-       subcategori.innerHTML = valor;
-       fech.innerHTML = date;
+     const produc = document.getElementById('produc');
+     const val = document.getElementById('val');
+     const catego = document.getElementById('catego');
+     const subcatego = document.getElementById('subcatego');
+     const fec = document.getElementById('fec');
+     const hor = document.getElementById('hor');
+         
+       produc.innerHTML = producto;
+       val.innerHTML = select_categori;
+       catego.innerHTML = subcategoria;
+       subcatego.innerHTML = valor;
+       fec.innerHTML = date;
        hor.innerHTML = time;
 
        section_detalle.style.display = 'flex';
