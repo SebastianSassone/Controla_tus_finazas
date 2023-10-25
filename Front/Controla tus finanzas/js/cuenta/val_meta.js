@@ -1,3 +1,14 @@
+//Faltan moficaciones ne la parte de editar
+
+   // suma todo TODO despues loresta al total y compara si el resultado es mayor o igual a la meta da que se esta 
+   // cuempliendo si el resultado es menor da que la meta esta incunprida Quien establece el plazo de la meta? 
+   // es automatico a  un mes es por mes automatico se va sumando en unregistro al finalizar el mes se muestran 
+   // los datos de cada categotia, abajo de todo se muestra historico
+   //   El cierre se hace automaticamente a fin de mes y se agrega al listado
+   // Hacer una qry que sume todo que la fecha se registre con java y el cierre se haga desde ai
+   //Agregar el guardar directamente y no solo desde editar y que antes de pedir que se ingrse el valor deve consulta 
+   //si esta o no ya cargado en caso de estarlo no deve mostrar el formulario podria ser un boolean
+
 //Ingresar valor inicial y meta de ahorro
 // Variables para los elementos HTML
 const valorInicialMostrado = document.getElementById('valorInicialMostrado');
@@ -9,8 +20,8 @@ const cancelarEdicionBt = document.getElementById('cancelarEdicionBtn');
 const guardarDatosBtn = document.getElementById('guardarDatosBtn');
 
 // Variables para los campos de entrada del formulario
-const valorInicialInput = document.getElementById('valorInicial');
-const metaAhorroInput = document.getElementById('metaAhorro');
+const monto_inicial = document.getElementById('monto_inicial');
+const meta_ahorro = document.getElementById('meta_ahorro');
 
 // Variable para controlar el modo de edición
 let modoEdit = false;
@@ -20,6 +31,41 @@ let modoEdit = false;
 let val_inicial = 0;
 
 let met_ahorro = 0;
+
+// Obtener referencias a los elementos del formulario
+const formIngresoValores = document.getElementById('form_ingreso_valores');
+const valorInicial = document.getElementById('valorInicial');
+const metaAhorro = document.getElementById('metaAhorro');
+
+// Agregar un evento de escucha al formulario
+formIngresoValores.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Evitar la acción de envío predeterminada
+
+    // Obtener los valores del formulario
+    const nuevoValorInicial = valorInicial.value;
+    const nuevaMetaAhorro = metaAhorro.value;
+
+    try {
+        // Realizar una solicitud para guardar los datos en la API
+        await fetch('http://localhost:4000/guardar_valor_meta', {
+            method: 'POST', // Usar el método POST para crear nuevos datos
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ valor_inicial, meta_ahorro}
+                
+                ),
+        });
+
+        // Recargar y mostrar los valores actualizados desde la API
+        cargarYMostrarValoresDesdeAPI();
+        console.log(123)
+        // Ocultar el formulario de edición
+        // document.getElementById('form_valores').style.display = 'none';
+    } catch (error) {
+        console.error('Error al guardar los datos:', error);
+    }
+}); 
 
 // Función para cargar y mostrar los valores desde la API
 async function cargarYMostrarValoresDesdeAPI() {
@@ -81,50 +127,6 @@ async function guardarCambios() {
         console.error('Error al guardar los cambios:', error);
     }
 }        
-
-// Obtener referencias a los elementos del formulario
-const formIngresoValores = document.getElementById('form_ingreso_valores');
-const valorInicial = document.getElementById('valorInicial');
-const metaAhorro = document.getElementById('metaAhorro');
-
-// Agregar un evento de escucha al formulario
-formIngresoValores.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Evitar la acción de envío predeterminada
-
-    // Obtener los valores del formulario
-    const nuevoValorInicial = valorInicial.value;
-    const nuevaMetaAhorro = metaAhorro.value;
-
-    try {
-        // Realizar una solicitud para guardar los datos en la API
-        await fetch('http://localhost:4000/guardar_valor_meta', {
-            method: 'POST', // Usar el método POST para crear nuevos datos
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ valor_inicial: nuevoValorInicial, meta_ahorro: nuevaMetaAhorro }
-                
-                ),
-        });
-
-        // Recargar y mostrar los valores actualizados desde la API
-        cargarYMostrarValoresDesdeAPI();
-        console.log(123)
-        // Ocultar el formulario de edición
-        // document.getElementById('form_valores').style.display = 'none';
-    } catch (error) {
-        console.error('Error al guardar los datos:', error);
-    }
-}); 
-
-//Faltan moficaciones ne la parte de editar
-
- // suma todo TODO despues loresta al total y compara si el resultado es mayor o igual a la meta da que se esta 
-   // cuempliendo si el resultado es menor da que la meta esta incunprida Quien establece el plazo de la meta? 
-   // es automatico a  un mes es por mes automatico se va sumando en unregistro al finalizar el mes se muestran 
-   // los datos de cada categotia, abajo de todo se muestra historico
-   //   El cierre se hace automaticamente a fin de mes y se agrega al listado
-// Hacer una qry que sume todo que la fecha se registre con java y el cierre se haga desde ai
 
 function mostrarTotalGastosYmeta(){
 async function sumar_total_gastos(){
