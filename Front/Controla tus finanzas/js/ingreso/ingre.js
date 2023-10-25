@@ -5,7 +5,7 @@ function updateDateTime() {
 
     const campoFecha = document.getElementById('fecha');
     campoFecha.value = now.toLocaleDateString();
-
+    //no toma value
     const campoHora = document.getElementById('hora');
     campoHora.value = now.toLocaleTimeString();
 }        
