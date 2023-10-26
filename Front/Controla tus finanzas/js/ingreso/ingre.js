@@ -52,9 +52,9 @@ const section_detalle = document.getElementById('section_detalle');
      const hor = document.getElementById('hor');
          
        produc.innerHTML = producto;
-       val.innerHTML = select_categori;
-       catego.innerHTML = subcategoria;
-       subcatego.innerHTML = valor;
+       val.innerHTML = valor;
+       catego.innerHTML = categoria;
+       subcatego.innerHTML = subcategoria;
        fec.innerHTML = date;
        hor.innerHTML = time;
 
@@ -69,7 +69,7 @@ const section_detalle = document.getElementById('section_detalle');
 
        product.innerHTML = producto;
        valo.innerHTML = valor;
-       categori.innerHTML = select_categori;
+       categori.innerHTML = categoria;
        subcategori.innerHTML = subcategoria;
        fech.innerHTML = date;
        hor.innerHTML = time;
