@@ -83,9 +83,9 @@ async function cargarYMostrarValoresDesdeAPI() {
         const response = await fetch('http://localhost:4000/traer_valor_meta'); // Ruta de lectura de montos
         const data = await response.json();
 
-       if(response <> null){
-          mostrarForm = false;
-       }
+        if (response != null) {
+            mostrarForm = false;
+        }
        
        //Cargar variables
         met_ahorro = data.valor_inicial;

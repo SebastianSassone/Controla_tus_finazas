@@ -52,11 +52,11 @@ const section_detalle = document.getElementById('section_detalle');
      const hor = document.getElementById('hor');
          
        produc.innerHTML = producto;
-       val.innerHTML = valor;
-       catego.innerHTML = categoria;
-       subcatego.innerHTML = subcategoria;
-       fec.innerHTML = date;
-       hor.innerHTML = time;
+       val.innerHTML = categoria;
+       catego.innerHTML = subcategoria;
+       subcatego.innerHTML = valor;
+       fec.innerHTML = fecha;
+       hor.innerHTML = hora;
 
        section_detalle.style.display = 'flex';
          
@@ -68,11 +68,11 @@ const section_detalle = document.getElementById('section_detalle');
        section_form_ingreso.style.display = 'none';
 
        product.innerHTML = producto;
-       valo.innerHTML = valor;
-       categori.innerHTML = categoria;
-       subcategori.innerHTML = subcategoria;
-       fech.innerHTML = date;
-       hor.innerHTML = time;
+       valo.innerHTML = categoria;
+       categori.innerHTML = subcategoria;
+       subcategori.innerHTML = valor;
+       fech.innerHTML = fecha;
+       hor.innerHTML = hora;
        
        section_detalle.style.display = 'flex';
      }

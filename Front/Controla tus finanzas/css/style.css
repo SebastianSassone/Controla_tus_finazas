@@ -835,14 +835,13 @@ background-image: url('../img/fondo_cuenta.png');
   cursor: pointer;
 }
 
-  ::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 0 !important
 }
 
 .nav-toggle {
   display: none;
 }
-
 
 /* Footer */
 
