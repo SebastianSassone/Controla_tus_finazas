@@ -23,6 +23,16 @@ const guardarDatosBtn = document.getElementById('guardarDatosBtn');
 const monto_inicial = document.getElementById('monto_inicial');
 const meta_ahorro = document.getElementById('meta_ahorro');
 
+//Control de val meta
+
+let mostrarForm = true;
+
+if(mostrarForm){
+   form_ingreso_valores.style.display = 'flex'
+}else{
+   form_ingreso_valores.style.display = 'none'
+} 
+
 // Variable para controlar el modo de edición
 let modoEdit = false;
 
@@ -72,7 +82,12 @@ async function cargarYMostrarValoresDesdeAPI() {
     try {
         const response = await fetch('http://localhost:4000/traer_valor_meta'); // Ruta de lectura de montos
         const data = await response.json();
-        //Cargar variables
+
+       if(response <> null){
+          mostrarForm = false;
+       }
+       
+       //Cargar variables
         met_ahorro = data.valor_inicial;
         val_inicial = data.meta_ahorro;
         // Mostrar los valores
