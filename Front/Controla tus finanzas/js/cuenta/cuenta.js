@@ -68,16 +68,15 @@ async function cargarDatosDesdeAPI() {
 
             // Actualiza los elementos HTML con los datos de la cuenta
         for (let i = 0; i < data.length; i++) {
-            const nombre = data[i][0];
-            const apellido = data[i][1];
-            const email = data[i][2];
-                   
-            // id = data[i].id;
+           const nombre = data[i].nombre;
+           const apellido = data[i].apellido;
+           const email = data[i].email;
 
-            // Actualiza los elementos HTML con los datos correspondientes
-            nombreElement.textContent = nombre;
-            apellidoElement.textContent = apellido;
-            emailElement.textContent = email;
+          // Utiliza innerHTML para permitir contenido HTML
+            nombreElement.innerHTML = nombre;
+            apellidoElement.innerHTML = apellido;
+            emailElement.innerHTML = email;
+}
             
             console.log(data);
             console.log(nombre);}
