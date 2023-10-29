@@ -267,7 +267,7 @@ public class Controller {
     public List<Model> traerValan(){
         if (id_user != 0) {
             System.out.println("Ide: " + id_user);
-         return repository.findModelsByUserId(id_user); // Reemplaza con el método adecuado de tu repositorio
+            return repository.findModelsByUserId(id_user); // Reemplaza con el método adecuado de tu repositorio
             //return repository.findAll();
         } else {
             // Manejo de usuario no autenticado

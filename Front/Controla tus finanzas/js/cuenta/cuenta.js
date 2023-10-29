@@ -79,7 +79,7 @@ async function cargarDatosDesdeAPI() {
 }
             
             console.log(data);
-            console.log(nombre);}
+            console.log(nombre);
         
         } catch (error) {
 

@@ -19,10 +19,6 @@ const guardarCambiosBt = document.getElementById('guardarCambiosBtn');
 const cancelarEdicionBt = document.getElementById('cancelarEdicionBtn');
 const guardarDatosBtn = document.getElementById('guardarDatosBtn');
 
-// Variables para los campos de entrada del formulario
-const monto_inicial = document.getElementById('monto_inicial');
-const meta_ahorro = document.getElementById('meta_ahorro');
-
 //Control de val meta
 
 let mostrarForm = true;
@@ -44,16 +40,17 @@ let met_ahorro = 0;
 
 // Obtener referencias a los elementos del formulario
 const formIngresoValores = document.getElementById('form_ingreso_valores');
-const valorInicial = document.getElementById('valorInicial');
-const metaAhorro = document.getElementById('metaAhorro');
+// Variables para los campos de entrada del formulario
+const monto_inicial = document.getElementById('monto_inicial');
+const meta_ahorro = document.getElementById('meta_ahorro');
 
 // Agregar un evento de escucha al formulario
 formIngresoValores.addEventListener('submit', async (event) => {
     event.preventDefault(); // Evitar la acción de envío predeterminada
 
     // Obtener los valores del formulario
-    const nuevoValorInicial = valorInicial.value;
-    const nuevaMetaAhorro = metaAhorro.value;
+    //const nuevoValorInicial = valorInicial.value;
+    //const nuevaMetaAhorro = metaAhorro.value;
 
     try {
         // Realizar una solicitud para guardar los datos en la API
@@ -62,7 +59,9 @@ formIngresoValores.addEventListener('submit', async (event) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ valor_inicial, meta_ahorro}
+            body: JSON.stringify({ 
+                monto_inicial, meta_ahorro
+            }
                 
                 ),
         });
