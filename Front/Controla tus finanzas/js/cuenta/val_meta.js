@@ -24,20 +24,12 @@ window.addEventListener('load', () => {
 });
 //Control de val meta
 
-let mostrarForm = true;
-
-if(mostrarForm){
-   form_ingreso_valores.style.display = 'flex'
-}else{
-   form_ingreso_valores.style.display = 'none'
-} 
-
 // Variable para controlar el modo de edición
 let modoEdit = false;
 
 //Variables para calcular meta de ahorro cumplida
 
-let val_inicial = 0;
+let mont_inicial = 0;
 
 let met_ahorro = 0;
 
@@ -46,6 +38,10 @@ const formIngresoValores = document.getElementById('form_ingreso_valores');
 // Variables para los campos de entrada del formulario
 const monto_inicial = document.getElementById('monto_inicial').value;
 const meta_ahorro = document.getElementById('meta_ahorro').value;
+
+if(mont_inicial > 0){
+   formIngresoValores.style.display = 'none';
+}
 
 // Agregar un evento de escucha al formulario
 formIngresoValores.addEventListener('submit', async (event) => {
@@ -84,13 +80,11 @@ async function cargarYMostrarValoresDesdeAPI() {
         const response = await fetch('http://localhost:4000/traer_valor_meta'); // Ruta de lectura de montos
         const data = await response.json();
 
-        if (response != null) {
-            mostrarForm = false;
-        }
+        console.log(data);
        
         data.forEach((entry) => {
-        met_ahorro = data.valor_inicial;
-        val_inicial = data.meta_ahorro;
+        mont_inicial = entry.meta_ahorro;
+        met_ahorro = entry.valor_inicial;
         // Mostrar los valores
         valorInicialMostrado.textContent = `Valor Inicial:` + entry.valor_inicial;
         metaAhorroMostrada.textContent = `Meta de Ahorro:` + entry.meta_ahorro; 
