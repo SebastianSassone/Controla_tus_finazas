@@ -19,6 +19,9 @@ const guardarCambiosBt = document.getElementById('guardarCambiosBtn');
 const cancelarEdicionBt = document.getElementById('cancelarEdicionBtn');
 const guardarDatosBtn = document.getElementById('guardarDatosBtn');
 
+window.addEventListener('load', () => {
+    cargarYMostrarValoresDesdeAPI();
+});
 //Control de val meta
 
 let mostrarForm = true;
@@ -41,8 +44,8 @@ let met_ahorro = 0;
 // Obtener referencias a los elementos del formulario
 const formIngresoValores = document.getElementById('form_ingreso_valores');
 // Variables para los campos de entrada del formulario
-const monto_inicial = document.getElementById('monto_inicial');
-const meta_ahorro = document.getElementById('meta_ahorro');
+const monto_inicial = document.getElementById('monto_inicial').value;
+const meta_ahorro = document.getElementById('meta_ahorro').value;
 
 // Agregar un evento de escucha al formulario
 formIngresoValores.addEventListener('submit', async (event) => {
@@ -68,7 +71,6 @@ formIngresoValores.addEventListener('submit', async (event) => {
 
         // Recargar y mostrar los valores actualizados desde la API
         cargarYMostrarValoresDesdeAPI();
-        console.log(123)
         // Ocultar el formulario de edición
         // document.getElementById('form_valores').style.display = 'none';
     } catch (error) {
@@ -86,12 +88,13 @@ async function cargarYMostrarValoresDesdeAPI() {
             mostrarForm = false;
         }
        
-       //Cargar variables
+        data.forEach((entry) => {
         met_ahorro = data.valor_inicial;
         val_inicial = data.meta_ahorro;
         // Mostrar los valores
-        valorInicialMostrado.textContent = `Valor Inicial: ${data.valor_inicial}`;
-        metaAhorroMostrada.textContent = `Meta de Ahorro: ${data.meta_ahorro}`;
+        valorInicialMostrado.textContent = `Valor Inicial:` + entry.valor_inicial;
+        metaAhorroMostrada.textContent = `Meta de Ahorro:` + entry.meta_ahorro; 
+        });
     } catch (error) {
         console.error('Error al cargar los valores:', error);
     }
