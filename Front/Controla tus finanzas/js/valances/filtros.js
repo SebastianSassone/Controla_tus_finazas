@@ -3,6 +3,15 @@ const meses = [enero :1 , febrero :2, marzo :3, abril : 4, mayo: 5, junio : 6 , 
 
 const enero = [producto : , categoria: , subcategoria: , valor: , fecha: , hora:];
 
+function pushArray(mes, datos){
+        mes.push[0] =  datos.producto 
+        mes.push[1] =  entry.categoria 
+        enero.push[2] =  entry.subcategoria 
+        enero.push[3] =  entry.valor 
+        enero.push[4] =  entry.fecha 
+        enero.push[5] =  entry.hora
+}
+
 async function agregarDetalle() {
   try {
     const response = await fetch('http://localhost:4000/valances');
