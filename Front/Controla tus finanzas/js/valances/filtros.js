@@ -44,6 +44,11 @@ async function agregarDetalle() {
   }
 }
 
-/*nuevo preoblema cuando se hace el cierre en la base de datos queda la meat de ahoroo registrada por lo cual ademas
+/*
+en filtros un array para cada mes se le hace push de los datos segunla fecha, se deve multiplicar asi mismo para 
+cargar la informacion o que simplemente mejor muestre en base a la haray de los eses en pantalla para ahoarra memoria
+asique eso no ademas considerar crea rufncion que haga el proseso mediante parametros para eitar la recursion
+
+nuevo preoblema cuando se hace el cierre en la base de datos queda la meat de ahoroo registrada por lo cual ademas
 el listado global debe ser en una panatalla nueva por que tambien de debe agregar un nuevo listado y grafico , r
   ,  el nuevo litado deve incluir el monto inicial la meta de ahorro y el total de lo que se ahorro y gasto ese mes*/
