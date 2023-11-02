@@ -58,6 +58,8 @@ formIngresoValores.addEventListener('submit', async (event) => {
             headers: {
                 'Content-Type': 'application/json',
             },
+            //Toma los valores pasados desde el front como null se guardan en la base d atos desde
+            //post man no
             body: JSON.stringify({ 
                 monto_inicial, meta_ahorro
             }

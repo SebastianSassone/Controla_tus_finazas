@@ -192,9 +192,11 @@ public class Controller {
     }
     
     @GetMapping(value = "/traer_valor_meta") 
-    public List<Model> traerValorMeta(){
+    public List<Model_mont_in> traerValorMeta(){
         if (id_user != 0) {
-            return repository_mont_ini.findModelsMetaByUserId(id_user);
+            //return repository_mont_ini.findModelsMetaByUserId(id_user);
+            return repository_mont_ini.findAll();
+
         } else {
             return Collections.emptyList();
         }   
