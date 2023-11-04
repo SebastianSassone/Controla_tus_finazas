@@ -1,25 +1,10 @@
 const tbody = document.querySelector("#category-list tbody");
 let isGrayRow = false;
 
-const meses = {
-  enero: 1,
-  febrero: 2,
-  marzo: 3,
-  abril: 4,
-  mayo: 5,
-  junio: 6,
-  julio: 7,
-  agosto: 8,
-  septiembre: 9,
-  octubre: 10,
-  noviembre: 11,
-  diciembre: 12
-};
-
 function filtrarMes(data, mesSeleccionado) {
-  const mesNumero = meses[mesSeleccionado];
+  const mesNumero = parseInt(mesSeleccionado, 10);
 
-  if (!mesNumero) {
+  if (mesNumero < 1 || mesNumero > 12) {
     console.error('Mes no válido');
     return;
   }
@@ -51,7 +36,7 @@ function filtrarMes(data, mesSeleccionado) {
       "<td class='actions'>" +
       "<div class='edit-btn' onclick='editarDetalle(this)'><div class='popup-text'>Editar</div></div>" +
       "<div class='delete-btn' onclick='eliminarDetalle(this)'><div class 'popup-text'>Borrar</div></div>" +
-      "<div class='save-btn' onclick='guardarEdicion(this)'><div class='popup-text'>Guardar</div></div>" +
+      "<div class='save-btn' onclick 'guardarEdicion(this)'><div class='popup-text'>Guardar</div></div>" +
       "</td>";
 
     let saveBtn = row.querySelector(".save-btn");
@@ -84,11 +69,20 @@ async function agregarDetalle() {
   }
 }
 
-agregarDetalle();
+// Agregar un event listener para el cambio en el select.
+const select = document.getElementById('select_mes');
+select.addEventListener('change', () => {
+  agregarDetalle();
+});
 
-/* val_meta.js:104 Uncaught ReferenceError: guardarCambiosBtn is not defined
-    at habilitarEdicion (val_meta.js:104:5)
-    at HTMLButtonElement.<anonymous> (cuenta.js:48:5)
+// También puedes llamar a agregarDetalle() cuando se carga la página.
+window.addEventListener('load', () => {
+  agregarDetalle();
+});
+
+
+
+/* mes equvocado
 
 // Declaraciones de las variables que faltan.
 /*const met_ahorr = document.getElementById('met_ahorr');
