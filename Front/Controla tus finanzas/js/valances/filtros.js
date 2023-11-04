@@ -75,7 +75,7 @@ async function agregarDetalle() {
 
     const data = await response.json();
 
-    const select = document.getElementById('categoria');
+    const select = document.getElementById('select_mes');
     const mesSeleccionado = select.value;
 
     filtrarMes(data, mesSeleccionado);
@@ -84,8 +84,14 @@ async function agregarDetalle() {
   }
 }
 
+agregarDetalle();
+
+/* val_meta.js:104 Uncaught ReferenceError: guardarCambiosBtn is not defined
+    at habilitarEdicion (val_meta.js:104:5)
+    at HTMLButtonElement.<anonymous> (cuenta.js:48:5)
+
 // Declaraciones de las variables que faltan.
-const met_ahorr = document.getElementById('met_ahorr');
+/*const met_ahorr = document.getElementById('met_ahorr');
 const tot_gas = document.getElementById('tot_gas');
 const tot_ahorr = document.getElementById('tot_ahorr');
 
@@ -110,7 +116,7 @@ select.addEventListener('change', agregarDetalle);
 window.addEventListener('load', () => {
   agregarDetalle();
   sumar_total_gastos();
-});
+});*/
 
 
 /*

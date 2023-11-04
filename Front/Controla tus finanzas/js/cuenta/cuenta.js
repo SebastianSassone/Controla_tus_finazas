@@ -1,5 +1,8 @@
 // Cerrar sesion
-
+/*error : val_meta.js:104 Uncaught ReferenceError: guardarCambiosBtn is not defined
+    at habilitarEdicion (val_meta.js:104:5)
+    at HTMLButtonElement.<anonymous> (cuenta.js:48:5) */
+    
 document.getElementById('cerrarSesionBtn').addEventListener('click', function() {
     // Realizar una solicitud Fetch para cerrar la sesión
     fetch('http://localhost:4000/cerrar_sesion', {
