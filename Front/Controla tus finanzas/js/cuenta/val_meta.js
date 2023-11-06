@@ -14,9 +14,8 @@
 const valorInicialMostrado = document.getElementById('valorInicialMostrado');
 const metaAhorroMostrada = document.getElementById('metaAhorroMostrada');
 const editarBt = document.getElementById('editarBt');
-const eliminarBt = document.getElementById('eliminarBtn');
-const guardarCambiosBt = document.getElementById('guardarCambiosBtn');
-const cancelarEdicionBt = document.getElementById('cancelarEdicionBtn');
+const eliminarBt = document.getElementById('eliminarBt');
+const guardarCambiosBt = document.getElementById('guardarCambiosBt');
 const guardarDatosBtn = document.getElementById('guardarDatosBtn');
 
 window.addEventListener('load', () => {
@@ -101,8 +100,7 @@ function habilitarEdicion() {
     modoEdit = true;
     editarBt.style.display = 'none';
     eliminarBt.style.display = 'none';
-    guardarCambiosBtn.style.display = 'inline-block';
-    cancelarEdicionBtn.style.display = 'inline-block';
+    guardarCambiosBt.style.display = 'inline-block';
     // Habilitar la edición de los campos
     valorInicialInput.removeAttribute('readonly');
     metaAhorroInput.removeAttribute('readonly');

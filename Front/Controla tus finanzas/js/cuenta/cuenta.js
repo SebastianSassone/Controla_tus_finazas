@@ -34,6 +34,7 @@ document.getElementById('cerrarSesionBtn').addEventListener('click', function() 
         const editarBtn = document.getElementById('editarBtn');
         const guardarBtn = document.getElementById('guardarBtn');
         const eliminarBtn = document.getElementById('eliminarBtn');
+        const eliminarCuentaBtn = document.getElementById('eliminarCuentaBtn');
 
 // Variable para controlar el modo de edición
 let modoEdicion = false;
@@ -52,7 +53,7 @@ guardarBtn.addEventListener('click', () => {
     guardarCambios();
 } )
 
-eliminarBtn.addEventListener('click', () => {
+eliminarCuentaBtn.addEventListener('click', () => {
     if (window.confirm("Esta seguro de eliminar su cuenta?")) {
         eliminarcuenta();
       }}
