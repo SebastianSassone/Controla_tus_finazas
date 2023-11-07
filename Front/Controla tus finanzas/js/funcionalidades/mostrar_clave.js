@@ -1,8 +1,10 @@
+/*Registro*/
+
 let password = document.getElementById('password');
-let viewPassword = document.getElementById('viewPassword');
+let viewPasswordReg1 = document.getElementById('viewPasswordReg1');
 let click = false;
 
-viewPassword.addEventListener('click', (e)=>{
+viewPasswordReg1.addEventListener('click', (e)=>{
   if(!click){
     password.type = 'text'
     click = true
@@ -11,6 +13,8 @@ viewPassword.addEventListener('click', (e)=>{
     click = false
   }
 })
+
+/*Login*/
 
 let passwordLogin = document.querySelector('.login');
 let viewPasswordLogin = document.getElementById('viewPasswordLogin');
