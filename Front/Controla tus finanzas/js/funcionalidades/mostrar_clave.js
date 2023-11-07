@@ -12,13 +12,13 @@ viewPassword.addEventListener('click', (e)=>{
   }
 })
 
-let password = document.querySelector('.login');
-let viewPassword = document.getElementById('viewPassword');
+let passwordLogin = document.querySelector('.login');
+let viewPasswordLogin = document.getElementById('viewPasswordLogin');
 let click = false;
 
-viewPassword.addEventListener('click', (e)=>{
+viewPasswordLogin.addEventListener('click', (e)=>{
   if(!click){
-    password.type = 'text'
+    passwordLogin.type = 'text'
     click = true
   }else if(click){
     password.type = 'password'
