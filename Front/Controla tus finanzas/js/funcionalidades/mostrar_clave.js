@@ -14,6 +14,20 @@ viewPasswordReg1.addEventListener('click', (e)=>{
   }
 })
 
+let confirmPassword = document.getElementById('confirmPassword');
+let viewPasswordReg1 = document.getElementById('viewPasswordReg2');
+let click = false;
+
+viewPasswordReg2.addEventListener('click', (e)=>{
+  if(!click){
+    confirmPassword.type = 'text'
+    click = true
+  }else if(click){
+    password.type = 'password'
+    click = false
+  }
+})
+
 /*Login*/
 
 let passwordLogin = document.querySelector('.login');
