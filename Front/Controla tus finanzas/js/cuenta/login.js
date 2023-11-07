@@ -31,3 +31,18 @@ form_in_sec.addEventListener('submit', async (event) => {
 });
 
 console.log('hola ah')
+
+//Mostrar contaseña
+let passwordLogin = document.getElementById('password');
+let viewPasswordLogin = document.getElementById('viewPasswordLogin');
+let click = false;
+
+viewPasswordLogin.addEventListener('click', (e)=>{
+  if(!click){
+    passwordLogin.type = 'text'
+    click = true
+  }else if(click){
+    password.type = 'password'
+    click = false
+  }
+})
