@@ -65,7 +65,8 @@ formIngresoValores.addEventListener('submit', async (event) => {
                 
                 ),
         });
-
+         console.log(monto_inicial);
+         console.log(meta_ahorro);
         // Recargar y mostrar los valores actualizados desde la API
         cargarYMostrarValoresDesdeAPI();
         // Ocultar el formulario de edición
