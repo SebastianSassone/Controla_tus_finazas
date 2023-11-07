@@ -37,7 +37,7 @@ let passwordLogin = document.getElementById('password');
 let viewPasswordLogin = document.getElementById('viewPasswordLogin');
 let click = false;
 
-viewPasswordLogin.addEventListener('click', (e)=>{
+viewPasswordLogin.addEventListener('change', (event) => {
   if(!click){
     passwordLogin.type = 'text'
     click = true
