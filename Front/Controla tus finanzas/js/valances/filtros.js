@@ -39,8 +39,6 @@ function filtrarMes(data, mesSeleccionado) {
       "<div class='save-btn' onclick 'guardarEdicion(this)'><div class='popup-text'>Guardar</div></div>" +
       "</td>";
 
-    let saveBtn = row.querySelector(".save-btn");
-    saveBtn.style.display = "none";
     if (isGrayRow) {
       row.classList.add("gray-row");
     }
