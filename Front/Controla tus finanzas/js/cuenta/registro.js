@@ -49,7 +49,7 @@ let password = document.getElementById('password');
 let viewPasswordReg1 = document.getElementById('viewPasswordReg1');
 let click = false;
 
-viewPasswordReg1.addEventListener('click', (e)=>{
+viewPasswordReg1.addEventListener('change', (event)=>{
   if(!click){
     password.type = 'text'
     click = true
@@ -63,7 +63,7 @@ let confirmPassword = document.getElementById('confirmPassword');
 let viewPasswordReg1 = document.getElementById('viewPasswordReg2');
 let click = false;
 
-viewPasswordReg2.addEventListener('click', (e)=>{
+viewPasswordReg2.addEventListener('change', (event)=>{
   if(!click){
     confirmPassword.type = 'text'
     click = true
