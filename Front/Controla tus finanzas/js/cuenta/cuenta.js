@@ -34,7 +34,7 @@ document.getElementById('cerrarSesionBtn').addEventListener('click', function() 
         const editarBtn = document.getElementById('editarBtn');
         const guardarBtn = document.getElementById('guardarBtn');
         const eliminarBtn = document.getElementById('eliminarBtn');
-        const eliminarCuentaBtn = document.getElementById('eliminarCuentaBtn');
+        const eliminarCuentaBtn = document.getElementById('eliminarCuenta');
 
 // Variable para controlar el modo de edición
 let modoEdicion = false;
@@ -72,6 +72,9 @@ async function cargarDatosDesdeAPI() {
            nombreElement.innerHTML = entry.name; 
            apellidoElement.innerHTML = entry.lastname;
            emailElement.innerHTML = entry.email;
+
+           id = entry.id;
+           console.log(id);
 
           });
             
@@ -122,7 +125,6 @@ async function guardarCambios() {
     document.getElementById('editarBtn').style.display = 'inline-block';
     // Oculta el botón de guardar y cancelar
     document.getElementById('guardarBtn').style.display = 'none';
-    document.getElementById('cancelarBtn').style.display = 'none';
     // Deshabilita la edición de los campos
     nombreElement.readOnly = true;
     apellidoElement.readOnly = true;

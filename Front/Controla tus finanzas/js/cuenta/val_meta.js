@@ -1,13 +1,13 @@
-//Faltan moficaciones ne la parte de editar
+//Faltan moficaciones ne la parte de editar agregar crear inputs dinamicos 
 
    // suma todo TODO despues loresta al total y compara si el resultado es mayor o igual a la meta da que se esta 
    // cuempliendo si el resultado es menor da que la meta esta incunprida Quien establece el plazo de la meta? 
    // es automatico a  un mes es por mes automatico se va sumando en unregistro al finalizar el mes se muestran 
    // los datos de cada categotia, abajo de todo se muestra historico
-   //   El cierre se hace automaticamente a fin de mes y se agrega al listado
+   // El cierre se hace automaticamente a fin de mes y se agrega al listado
    // Hacer una qry que sume todo que la fecha se registre con java y el cierre se haga desde ai
-   //Agregar el guardar directamente y no solo desde editar y que antes de pedir que se ingrse el valor deve consulta 
-   //si esta o no ya cargado en caso de estarlo no deve mostrar el formulario podria ser un boolean
+   // Agregar el guardar directamente y no solo desde editar y que antes de pedir que se ingrse el valor deve consulta 
+   // si esta o no ya cargado en caso de estarlo no deve mostrar el formulario podria ser un boolean
 
 //Ingresar valor inicial y meta de ahorro
 // Variables para los elementos HTML
@@ -16,10 +16,17 @@ const metaAhorroMostrada = document.getElementById('metaAhorroMostrada');
 const editarBt = document.getElementById('editarBt');
 const eliminarBt = document.getElementById('eliminarBt');
 const guardarCambiosBt = document.getElementById('guardarCambiosBt');
-const guardarDatosBtn = document.getElementById('guardarDatosBtn');
 
 window.addEventListener('load', () => {
     cargarYMostrarValoresDesdeAPI();
+});
+
+editarBt.addEventListener('click', () => {
+    habilitarEdicionValMeta();
+});
+
+guardarCambiosBt.addEventListener('click', () => {
+    guardarCambiosValMeta();
 });
 //Control de val meta
 
@@ -32,15 +39,13 @@ let mont_inicial = 0;
 
 let met_ahorro = 0;
 
+let id = 0;
+
 // Obtener referencias a los elementos del formulario
 const formIngresoValores = document.getElementById('form_ingreso_valores');
 // Variables para los campos de entrada del formulario
 const monto_inicial = document.getElementById('monto_inicial').value;
 const meta_ahorro = document.getElementById('meta_ahorro').value;
-
-if(mont_inicial > 0){
-   formIngresoValores.style.display = 'none';
-}
 
 // Agregar un evento de escucha al formulario
 formIngresoValores.addEventListener('submit', async (event) => {
@@ -65,6 +70,7 @@ formIngresoValores.addEventListener('submit', async (event) => {
                 
                 ),
         });
+
          console.log(monto_inicial);
          console.log(meta_ahorro);
         // Recargar y mostrar los valores actualizados desde la API
@@ -87,6 +93,15 @@ async function cargarYMostrarValoresDesdeAPI() {
         data.forEach((entry) => {
         mont_inicial = entry.meta_ahorro;
         met_ahorro = entry.valor_inicial;
+        console.log(mont_inicial);
+        console.log(met_ahorro);
+
+        id = entry.user_id;
+        
+        if(mont_inicial || met_ahorro > 0){
+        formIngresoValores.style.display = 'none';
+        }
+
         // Mostrar los valores
         valorInicialMostrado.textContent = `Valor Inicial:` + entry.valor_inicial;
         metaAhorroMostrada.textContent = `Meta de Ahorro:` + entry.meta_ahorro; 
@@ -97,25 +112,20 @@ async function cargarYMostrarValoresDesdeAPI() {
 }
 
 // Función para habilitar el modo de edición
-function habilitarEdicion() {
+function habilitarEdicionValMeta() {
     modoEdit = true;
     editarBt.style.display = 'none';
     eliminarBt.style.display = 'none';
     guardarCambiosBt.style.display = 'inline-block';
     // Habilitar la edición de los campos
-    valorInicialInput.removeAttribute('readonly');
-    metaAhorroInput.removeAttribute('readonly');
-    // Mostrar el formulario para editar
-    // document.getElementById('form_valores').style.display = 'block';
 }
 
 // Función para guardar los cambios y deshabilitar el modo de edición
-async function guardarCambios() {
+async function guardarCambiosValMeta() {
     modoEdit = false;
     editarBt.style.display = 'inline-block';
     eliminarBt.style.display = 'inline-block';
-    guardarCambiosBtn.style.display = 'none';
-    cancelarEdicionBtn.style.display = 'none';
+    guardarCambiosBt.style.display = 'none';
     // Deshabilitar la edición de los campos
     valorInicialInput.setAttribute('readonly', true);
     metaAhorroInput.setAttribute('readonly', true);
