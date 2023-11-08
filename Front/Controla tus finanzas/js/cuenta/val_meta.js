@@ -39,8 +39,6 @@ let mont_inicial = 0;
 
 let met_ahorro = 0;
 
-let id = 0;
-
 // Obtener referencias a los elementos del formulario
 const formIngresoValores = document.getElementById('form_ingreso_valores');
 // Variables para los campos de entrada del formulario
@@ -95,9 +93,7 @@ async function cargarYMostrarValoresDesdeAPI() {
         met_ahorro = entry.valor_inicial;
         console.log(mont_inicial);
         console.log(met_ahorro);
-
-        id = entry.user_id;
-        
+           
         if(mont_inicial || met_ahorro > 0){
         formIngresoValores.style.display = 'none';
         }
