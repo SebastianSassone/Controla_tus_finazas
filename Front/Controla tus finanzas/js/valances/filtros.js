@@ -5,7 +5,7 @@ function filtrarMes(data, mesSeleccionado) {
   const mesNumero = parseInt(mesSeleccionado, 10);
 
   if (mesNumero < 1 || mesNumero > 12) {
-    console.error('Mes no válido');
+    console.log('Mes no seleccionado');
     return;
   }
 
@@ -71,6 +71,7 @@ async function agregarDetalle() {
 const select = document.getElementById('select_mes');
 select.addEventListener('change', () => {
   agregarDetalle();
+  console.log(select.value);
 });
 
 // También puedes llamar a agregarDetalle() cuando se carga la página.
