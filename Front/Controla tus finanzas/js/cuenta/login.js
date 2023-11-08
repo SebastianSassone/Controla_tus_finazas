@@ -30,8 +30,6 @@ form_in_sec.addEventListener('submit', async (event) => {
   } catch (error) {}
 });
 
-console.log('hola ah')
-
 //Mostrar contaseña
 let passwordLogin = document.getElementById('password');
 let viewPasswordLogin = document.getElementById('viewPasswordLogin');
