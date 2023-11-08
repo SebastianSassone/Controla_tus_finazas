@@ -32,12 +32,7 @@ function filtrarMes(data, mesSeleccionado) {
       "<td>" + entry.subcategoria + "</td>" +
       "<td>" + entry.valor + "</td>" +
       "<td>" + entry.fecha + "</td>" +
-      "<td>" + entry.hora + "</td>" +
-      "<td class='actions'>" +
-      "<div class='edit-btn' onclick='editarDetalle(this)'><div class='popup-text'>Editar</div></div>" +
-      "<div class='delete-btn' onclick='eliminarDetalle(this)'><div class 'popup-text'>Borrar</div></div>" +
-      "<div class='save-btn' onclick 'guardarEdicion(this)'><div class='popup-text'>Guardar</div></div>" +
-      "</td>";
+      "<td>" + entry.hora + "</td>";
 
     if (isGrayRow) {
       row.classList.add("gray-row");
