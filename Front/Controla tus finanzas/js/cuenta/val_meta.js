@@ -11,7 +11,7 @@
 
 //Ingresar valor inicial y meta de ahorro
 // Variables para los elementos HTML
-const valorInicialMostrado = document.getElementById('valorInicialMostrado');
+const montoInicialMostrado = document.getElementById('montoInicialMostrado');
 const metaAhorroMostrada = document.getElementById('metaAhorroMostrada');
 const editarBt = document.getElementById('editarBt');
 const eliminarBt = document.getElementById('eliminarBt');
