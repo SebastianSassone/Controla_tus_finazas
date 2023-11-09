@@ -89,8 +89,8 @@ async function cargarYMostrarValoresDesdeAPI() {
         console.log(data);
        
         data.forEach((entry) => {
-        mont_inicial = entry.meta_ahorro;
-        met_ahorro = entry.valor_inicial;
+        mont_inicial = entry.monto_inicial;
+        met_ahorro = entry.meta_ahorro;
         console.log(mont_inicial);
         console.log(met_ahorro);
            
