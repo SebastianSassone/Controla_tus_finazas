@@ -17,6 +17,8 @@ async function waitForCounterToReach(targetCount) {
     await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
   }
 
+  console.log(sumaTotal);
+  
   mosGrafic();
   console.log(`El contador ha alcanzado ${targetCount}.`);
 }
