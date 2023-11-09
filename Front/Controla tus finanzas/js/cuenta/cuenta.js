@@ -68,10 +68,11 @@ async function cargarDatosDesdeAPI() {
         // Actualiza los elementos HTML con los datos de la cuenta
 
             // Actualiza los elementos HTML con los datos de la cuenta
-        data.forEach((entry) => {
-           nombreElement.innerHTML = entry.name; 
-           apellidoElement.innerHTML = entry.lastname;
-           emailElement.innerHTML = entry.email;
+            data.forEach((entry) => {
+                
+                nombreElement.innerHTML = entry.name; 
+                apellidoElement.innerHTML = entry.lastname;
+                emailElement.innerHTML = entry.email; 
 
            id = entry.id;
            console.log(id);
@@ -79,6 +80,7 @@ async function cargarDatosDesdeAPI() {
           });
             
             console.log(data);
+            console.log(data.id);
         
         } catch (error) {
 

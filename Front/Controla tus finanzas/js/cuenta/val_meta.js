@@ -1,5 +1,5 @@
-//Faltan moficaciones ne la parte de editar agregar crear inputs dinamicos 
-
+//Agregar en anbas que cuando se guarden los cambios deje de ser un input y vuelva a ser una valor normal un p
+//Y lo del gasto total
    // suma todo TODO despues loresta al total y compara si el resultado es mayor o igual a la meta da que se esta 
    // cuempliendo si el resultado es menor da que la meta esta incunprida Quien establece el plazo de la meta? 
    // es automatico a  un mes es por mes automatico se va sumando en unregistro al finalizar el mes se muestran 
@@ -44,19 +44,16 @@ console.log(' id desde val meta' + id);
 // Obtener referencias a los elementos del formulario
 const formIngresoValores = document.getElementById('form_ingreso_valores');
 // Variables para los campos de entrada del formulario
-const monto_inicial = document.getElementById('monto_inicial').value;
-const meta_ahorro = document.getElementById('meta_ahorro').value;
 
 // Agregar un evento de escucha al formulario
 formIngresoValores.addEventListener('submit', async (event) => {
     event.preventDefault(); // Evitar la acción de envío predeterminada
 
-    // Obtener los valores del formulario
-    //const nuevoValorInicial = valorInicial.value;
-    //const nuevaMetaAhorro = metaAhorro.value;
+    let monto_inicial = document.getElementById('monto_inicial').value;
+    let meta_ahorro = document.getElementById('meta_ahorro').value;
 
     try {
-        // Realizar una solicitud para guardar los datos en la API
+        const noteData = { monto_inicial, meta_ahorro};
         await fetch('http://localhost:4000/guardar_valor_meta', {
             method: 'POST', // Usar el método POST para crear nuevos datos
             headers: {
@@ -64,11 +61,7 @@ formIngresoValores.addEventListener('submit', async (event) => {
             },
             //Toma los valores pasados desde el front como null se guardan en la base d atos desde
             //post man no
-            body: JSON.stringify({ 
-                monto_inicial, meta_ahorro
-            }
-                
-                ),
+            body: JSON.stringify(noteData),
         });
 
          console.log(monto_inicial);
@@ -101,8 +94,8 @@ async function cargarYMostrarValoresDesdeAPI() {
         }
 
         // Mostrar los valores
-        valorInicialMostrado.textContent = `Valor Inicial:` + entry.valor_inicial;
-        metaAhorroMostrada.textContent = `Meta de Ahorro:` + entry.meta_ahorro; 
+        montoInicialMostrado.textContent = entry.valor_inicial;
+        metaAhorroMostrada.textContent =  entry.meta_ahorro; 
         });
     } catch (error) {
         console.error('Error al cargar los valores:', error);
@@ -154,12 +147,11 @@ async function guardarCambiosValMeta() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ monto_inicial: nuevoMontoInicial, meta_ahorro: metaAhorroMostrada }),
+            body: JSON.stringify({ monto_inicial: nuevoMontoInicial, meta_ahorro: nuevaMetaAhorro }),
         });
         // Recargar y mostrar los valores actualizados desde la API
         cargarYMostrarValoresDesdeAPI();
-        // Ocultar el formulario de edición
-        document.getElementById('form_valores').style.display = 'none';
+       
     } catch (error) {
         console.error('Error al guardar los cambios:', error);
     }
@@ -168,7 +160,7 @@ async function guardarCambiosValMeta() {
 function mostrarTotalGastosYmeta(){
 async function sumar_total_gastos(){
     try { 
-       const response = await fetch('http://localhost:4000/traer_valor_meta');
+       const response = await fetch('http://localhost:4000/suma_total');
        const data = await response.json() 
 
        let total_gastos = data; 

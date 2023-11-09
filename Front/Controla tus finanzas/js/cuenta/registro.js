@@ -60,8 +60,7 @@ viewPasswordReg1.addEventListener('change', (event)=>{
 })
 
 let confirmPassword = document.getElementById('confirmPassword');
-let viewPasswordReg1 = document.getElementById('viewPasswordReg2');
-let click = false;
+let viewPasswordReg2 = document.getElementById('viewPasswordReg2');
 
 viewPasswordReg2.addEventListener('change', (event)=>{
   if(!click){
