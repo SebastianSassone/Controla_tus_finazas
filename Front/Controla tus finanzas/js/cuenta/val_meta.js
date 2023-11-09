@@ -107,12 +107,29 @@ async function cargarYMostrarValoresDesdeAPI() {
     }
 }
 
+function crearInputsDinamicosValMeta() {
+    // Crea elementos input para cada campo de edición
+    let nuevoMonto = document.createElement('input');
+    nuevoMonto.type = 'text';
+    nuevoMonto.value = montoInicialMostrado.textContent;
+
+    let nuevaMeta = document.createElement('input');
+    nuevaMeta.type = 'text';
+    nuevaMeta.value = metaAhorroMostrada.textContent;
+
+    // Reemplaza los elementos HTML existentes con los inputs dinámicos
+    montoInicialMostrado.replaceWith(nuevoMonto);
+    metaAhorroMostrada.replaceWith(nuevaMeta);
+}
+
 // Función para habilitar el modo de edición
 function habilitarEdicionValMeta() {
     modoEdit = true;
     editarBt.style.display = 'none';
     eliminarBt.style.display = 'none';
     guardarCambiosBt.style.display = 'inline-block';
+
+   crearInputsDinamicosValMeta(); 
     // Habilitar la edición de los campos
 }
 
