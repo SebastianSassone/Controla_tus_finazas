@@ -39,6 +39,8 @@ let mont_inicial = 0;
 
 let met_ahorro = 0;
 
+console.log(' id desde val meta' + id);
+
 // Obtener referencias a los elementos del formulario
 const formIngresoValores = document.getElementById('form_ingreso_valores');
 // Variables para los campos de entrada del formulario
@@ -140,11 +142,11 @@ async function guardarCambiosValMeta() {
     eliminarBt.style.display = 'inline-block';
     guardarCambiosBt.style.display = 'none';
     // Deshabilitar la edición de los campos
-    valorInicialInput.setAttribute('readonly', true);
-    metaAhorroInput.setAttribute('readonly', true);
+    montoInicialMostrado.setAttribute('readonly', true);
+    metaAhorroMostrada.setAttribute('readonly', true);
     // Obtener los valores editados
-    const nuevoValorInicial = valorInicialInput.value;
-    const nuevaMetaAhorro = metaAhorroInput.value;
+    const nuevoMontoInicial = montoInicialMostrado.value;
+    const nuevaMetaAhorro = metaAhorroMostrada.value;
     try {
         // Realiza una solicitud para actualizar los cambios en la API (Debes implementar esta función)
         await fetch('http://localhost:4000/actualizar_valor_meta/{id}', {
@@ -152,7 +154,7 @@ async function guardarCambiosValMeta() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ valor_inicial: nuevoValorInicial, meta_ahorro: nuevaMetaAhorro }),
+            body: JSON.stringify({ monto_inicial: nuevoMontoInicial, meta_ahorro: metaAhorroMostrada }),
         });
         // Recargar y mostrar los valores actualizados desde la API
         cargarYMostrarValoresDesdeAPI();
