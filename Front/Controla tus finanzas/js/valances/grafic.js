@@ -9,6 +9,7 @@ let chartdata = [];
 
 let longCharData = 0;
 
+let sumaTotal = 0;
 
 async function waitForCounterToReach(targetCount) {
 
@@ -63,6 +64,8 @@ anychart.onDocumentReady(function () {
       const alimentacionData = await response.json();
 
       chartdata.push(["Alimentacion", alimentacionData]);
+
+      sumaTotal += alimentacionData;
       
       longCharData++;
 
@@ -82,6 +85,8 @@ anychart.onDocumentReady(function () {
       const serviciosData = await response.json();
 
       chartdata.push(["Servicios", serviciosData]);
+
+      sumaTotal += serviciosData;
       
       longCharData++;;
 
@@ -101,6 +106,8 @@ anychart.onDocumentReady(function () {
       const higieneData = await response.json();
 
       chartdata.push(["Higiene", higieneData]);
+
+      sumaTotal += higieneData;
       
       longCharData++;;
 
@@ -120,6 +127,8 @@ anychart.onDocumentReady(function () {
       const saludData = await response.json();
 
       chartdata.push(["Salud", saludData]);
+
+      sumaTotal += saludData;
       
       longCharData++;;
 
@@ -139,6 +148,8 @@ anychart.onDocumentReady(function () {
       const transporteData = await response.json();
 
       chartdata.push(["Transporte", transporteData]);
+
+      sumaTotal += transporteData;
       
       longCharData++;;
 
@@ -158,6 +169,9 @@ anychart.onDocumentReady(function () {
       const otrosData = await response.json();
 
       chartdata.push(["Otros", otrosData]);
+
+      sumaTotal += otrosData;
+      
       console.log(chartdata)
       
       longCharData++;;
