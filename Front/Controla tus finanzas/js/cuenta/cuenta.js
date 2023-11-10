@@ -1,5 +1,5 @@
 // Cerrar sesion
-
+//Desde vs
 document.getElementById('cerrarSesionBtn').addEventListener('click', function() {
     // Realizar una solicitud Fetch para cerrar la sesión
     fetch('http://localhost:4000/cerrar_sesion', {
