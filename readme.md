@@ -7,3 +7,8 @@ opcion 2 hacerlo desde java detectando la fecha de cada ingreso que cada vez que
  en el caso de login o registro si el id es diferente de 0 a estas pantallas o se podra acceder o se oculataran directamente se puede mostras tambien una noticacion sesion avierta
 
 considerar hacer el cierre de mes con todos los datos que neseitan de forma manual, que simplemente aya una funcion que detecte la fecha del monto inical la cuar se guarda de foeama automatica y si esta es diferente en la cuenta y en el ingerso se bloque la opcion de cerara mes en un atbala donde se muestran los valores precargdos.
+
+Deberiamos agregar filtros en el listado local y el grafico para que solo muestre lo del es actual.
+Considerar hacer modulos para no repetir codigo.
+Cuando llegue el momento de hacer el filtro se debera agregar bloquear el ingreso y ver los valances actuales se mostrara una alerta que diga se debe hacer el cierre del mes actual
+
