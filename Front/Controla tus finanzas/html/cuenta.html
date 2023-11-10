@@ -94,17 +94,16 @@
         </div>
     
         <section class="section_form_cierre" id="section_form_cierre">
-             <form>
-                <label for="">Monto inicial:</label>
-                    <input type="number" id="" readonly>
-                <label for="">Meta de ahorro</label>
-                    <input type="number" id="" readonly>
-                <label for=""></label>
-                    <input type="number" id="" readonly>
-                <label for="">Total gastos:</label>
-                    <input type="number" id="" readonly>
-                <label for="">Total ahorro:</label>
-                    <input type="number" id="" readonly>      
+             <form action="/cierre" method="POST" id="form_cierre" class="form_cierre">
+                <label for="monto_in">Monto inicial:</label>
+                    <input type="number" id="monto_in" readonly for="monto_in">
+                <label for="met_aho">Meta de ahorro</label>
+                    <input type="number" id="met_aho" readonly for="met_aho">
+                <label for="total_gas">Total gastos:</label>
+                    <input type="number" id="total_gas" readonly for="total_gas">
+                <label for="total_aho">Total ahorro:</label>
+                    <input type="number" id="total_aho" readonly for="total_aho"> 
+                <button type="submit" id="button_cierre" class="button_cierre">Confirmar cierre</button>        
              </form>                               
         </section>
 

@@ -861,6 +861,12 @@ background-image: url('../img/fondo_cuenta.png');
   display: none;
 }
 
+.section_form_cierre{
+  display: none;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 /* Footer */
 
 footer {
