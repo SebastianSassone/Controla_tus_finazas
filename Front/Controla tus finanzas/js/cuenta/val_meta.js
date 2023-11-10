@@ -156,7 +156,9 @@ async function guardarCambiosValMeta() {
             body: JSON.stringify({ monto_inicial: nuevoMontoInicial, meta_ahorro: nuevaMetaAhorro }),
         });
         // Recargar y mostrar los valores actualizados desde la API
-        cargarYMostrarValoresDesdeAPI();
+          nuevoMonto.replaceWith(montoInicialMostrado);
+          nuevaMeta.replaceWith(metaAhorroMostrada);
+          cargarYMostrarValoresDesdeAPI();
        
     } catch (error) {
         console.error('Error al guardar los cambios:', error);
