@@ -59,7 +59,7 @@ eliminarCuentaBtn.addEventListener('click', () => {
       }}
 )
 
-let id = 0;
+// let id = 1;
 // Función para cargar los datos desde la API usando Fetch
 async function cargarDatosDesdeAPI() {
     try {
@@ -74,7 +74,7 @@ async function cargarDatosDesdeAPI() {
                 apellidoElement.innerHTML = entry.lastname;
                 emailElement.innerHTML = entry.email; 
 
-           id = entry.id;
+        //    id = entry.id;
            console.log(id);
 
           });

@@ -167,14 +167,13 @@ public class Controller {
     }
 
 @PutMapping(value="/actualizar_valor_meta/{id}")
-    public ResponseEntity<Object> actualizarValorMeta(@PathVariable long id, @RequestBody Model model){
-        Model updatedModel = repository.findById((int) id).orElse(null);
-        if (updatedModel != null) {
-            updatedModel.setProducto(model.getProducto());
-            updatedModel.setCategoria(model.getCategoria());
-            updatedModel.setSubcategoria(model.getSubcategoria());
-            repository.save(updatedModel);
-            return ResponseEntity.ok(updatedModel);
+    public ResponseEntity<Object> actualizarValorMeta(@PathVariable long id, @RequestBody Model_mont_in model_mont_in){
+        Model_mont_in updatedModel_mont_in = repository_mont_ini.findModelsMetaByUserId((int) id).(null);
+        if (updatedModel_mont_in != null) {
+            updatedModel_mont_in.setMonto_inicial(updatedModel_mont_in.getMonto_inicial());
+            updatedModel_mont_in.setMeta_ahorro(updatedModel_mont_in.getMonto_inicial());
+            repository_mont_ini.save(updatedModel_mont_in);
+            return ResponseEntity.ok(updatedModel_mont_in);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No actualizado");
         }
@@ -182,14 +181,15 @@ public class Controller {
 
     @DeleteMapping(value="/borrar_valor_meta/{id}")
     public ResponseEntity<Object> borrarValorMeta(@PathVariable long id){
-        Model deletedModel = repository.findById((int) id).orElse(null);
-        if (deletedModel != null) {
-            repository.delete(deletedModel);
+        com.API_Finazas.app.rest.Model.Model_mont_in deletedModel_mont_in = repository_mont_ini.findModelsMetaByUserId((int) id).orElse(null);
+        if (deletedModel_mont_in != null) {
+            repository_mont_ini.delete(deletedModel_mont_in);
             return ResponseEntity.ok("Borrado");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
         }
     }
+
     
     @GetMapping(value = "/traer_valor_meta") 
     public List<Model_mont_in> traerValorMeta(){
@@ -200,17 +200,6 @@ public class Controller {
         } else {
             return Collections.emptyList();
         }   
-    }
-
-    //Suma total
-
-    @GetMapping("/suma_total")
-    public Double sumaTotal(){
-        if(id_user != 0) {
-            return repository.sumarTotalValoresPorCategoriaAndUserId(id_user);
-        }else{
-            return 0.0;
-        }
     }
 
     //Cargar detalle

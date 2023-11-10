@@ -9,7 +9,7 @@ let chartdata = [];
 
 let longCharData = 0;
 
-let sumaTotal = 0;
+let total_gastos = 0;
 
 async function waitForCounterToReach(targetCount) {
 
@@ -17,7 +17,7 @@ async function waitForCounterToReach(targetCount) {
     await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
   }
 
-  console.log(sumaTotal);
+  console.log(total_gastos);
   
   mosGrafic();
   console.log(`El contador ha alcanzado ${targetCount}.`);
@@ -67,7 +67,7 @@ anychart.onDocumentReady(function () {
 
       chartdata.push(["Alimentacion", alimentacionData]);
 
-      sumaTotal += alimentacionData;
+      total_gastos += alimentacionData;
       
       longCharData++;
 
@@ -88,7 +88,7 @@ anychart.onDocumentReady(function () {
 
       chartdata.push(["Servicios", serviciosData]);
 
-      sumaTotal += serviciosData;
+      total_gastos += serviciosData;
       
       longCharData++;;
 
@@ -109,7 +109,7 @@ anychart.onDocumentReady(function () {
 
       chartdata.push(["Higiene", higieneData]);
 
-      sumaTotal += higieneData;
+      total_gastos += higieneData;
       
       longCharData++;;
 
@@ -130,7 +130,7 @@ anychart.onDocumentReady(function () {
 
       chartdata.push(["Salud", saludData]);
 
-      sumaTotal += saludData;
+      total_gastos += saludData;
       
       longCharData++;;
 
@@ -151,7 +151,7 @@ anychart.onDocumentReady(function () {
 
       chartdata.push(["Transporte", transporteData]);
 
-      sumaTotal += transporteData;
+      total_gastos += transporteData;
       
       longCharData++;;
 
@@ -172,7 +172,7 @@ anychart.onDocumentReady(function () {
 
       chartdata.push(["Otros", otrosData]);
 
-      sumaTotal += otrosData;
+      total_gastos += otrosData;
       
       console.log(chartdata)
       

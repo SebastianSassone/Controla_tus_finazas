@@ -28,6 +28,10 @@ editarBt.addEventListener('click', () => {
 guardarCambiosBt.addEventListener('click', () => {
     guardarCambiosValMeta();
 });
+
+eliminarBt.addEventListener('click',  () => {
+    eliminarMontMeta();
+})
 //Control de val meta
 
 // Variable para controlar el modo de edición
@@ -39,7 +43,9 @@ let mont_inicial = 0;
 
 let met_ahorro = 0;
 
-console.log(' id desde val meta' + id);
+let id = 1;
+
+console.log(' id desde val meta  ' + id);
 
 // Obtener referencias a los elementos del formulario
 const formIngresoValores = document.getElementById('form_ingreso_valores');
@@ -142,7 +148,7 @@ async function guardarCambiosValMeta() {
     const nuevaMetaAhorro = metaAhorroMostrada.value;
     try {
         // Realiza una solicitud para actualizar los cambios en la API (Debes implementar esta función)
-        await fetch('http://localhost:4000/actualizar_valor_meta/{id}', {
+        await fetch(`http://localhost:4000/actualizar_valor_meta/${id}`, {
             method: 'PUT', // Usar el método PUT para actualizar
             headers: {
                 'Content-Type': 'application/json',
@@ -157,28 +163,40 @@ async function guardarCambiosValMeta() {
     }
 }        
 
-function mostrarTotalGastosYmeta(){
-async function sumar_total_gastos(){
-    try { 
-       const response = await fetch('http://localhost:4000/suma_total');
-       const data = await response.json() 
+async function eliminarMontMeta() {
+    try {
+      const response = await fetch(`http://localhost:4000/borrar_valor_meta/${id}`, {
+        method: 'DELETE',
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error al eliminar los datos.');
+      }
+  
+      alert('Datos eliminados exitosamente.');
+      tbody.removeChild(row);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Ocurrió un error al eliminar los datos.');
+    }
+  }
 
-       let total_gastos = data; 
+function sumar_total_gastos(){
+  
+        let total_gastos = 130000
 
        if(total_gastos <= met_ahorro ){console.log('Meta de ahorro cumplida')
           }else{
           console.log('Meta de ahorro no cumplida')};  
-       }catch (error) {
-       console.error('Error al cargar los valores: ', error);
-    };
-};
+          
+          
+          let gastos_acumulados = mont_inicial - total_gastos;
+          
+          console.log('El total de los gasto asta la actuidad es de ', gastos_acumulados);
+  
+        };
 
-sumar_total_gastos()
 
-let gastos_acumulados = val_inicial - total_gastos;
-
-console.log('El total de los gasto asta la actuidad es de ', gastos_acumulados);
-}
 
 
 
