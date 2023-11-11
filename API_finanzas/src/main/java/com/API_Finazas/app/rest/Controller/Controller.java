@@ -22,12 +22,14 @@ public class Controller {
     private Repository repository;
     private Repository_user repository_user;
     private Repository_mont_ini repository_mont_ini;
+    private Repository_mont_alm repository_mont_alm;
 
     @Autowired
-    public Controller(Repository repository, Repository_user repository_user, Repository_mont_ini repository_mont_ini) {
+    public Controller(Repository repository, Repository_user repository_user, Repository_mont_ini repository_mont_ini, Repository_mont_alm repository_mont_alm) {
         this.repository = repository;
         this.repository_user = repository_user;
         this.repository_mont_ini = repository_mont_ini;
+        this.Repository_mont_alm = repository_mont_alm;
     }
 
     //Cuenta
@@ -206,39 +208,32 @@ public class Controller {
 
 //Cierre
     // @PostMapping(value="/guardar_cierre")
-    // public ResponseEntity<Object> guardarIngre(@RequestBody Model model) {
+    // public ResponseEntity<Object> guardarIngre(@RequestBody Model_mont_alm model_mont_alm) {
     //     // Realizar el casting y transformación a String
 
     //     if (id_user != 0) {
     //          // Asignar el ID del usuario al modelo de entrada
-    //         String categoria = model.getCategoria() != null ? String.valueOf(model.getCategoria()) : "N/A";
-    //         String fecha = model.getFecha() != null ? model.getFecha().toString() : "N/A";
-    //         String hora = model.getHora() != null ? model.getHora().toString() : "N/A";
-
-    //         // Imprimir los valores transformados
-    //         System.out.println("Categoría: " + categoria);
-    //         System.out.println("Fecha: " + fecha);
-    //         System.out.println("Hora: " + hora);
-    //         model.setUser_id(id_user);
-    //         repository.save(model);
+            
+    //         model.setId_user(id_user);
+    //         repository.save(Model_mont_alm);
     //         return ResponseEntity.ok("Guardado");
     //     } else {
     //         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
     //     }
     // }
 
-    // @GetMapping(value= "/traer_cierre")
-    // public List<Model> traerValan(){
-    //     if (id_user != 0) {
-    //         System.out.println("Ide: " + id_user);
-    //         return repository.findModelsByUserId(id_user); // Reemplaza con el método adecuado de tu repositorio
-    //         //return repository.findAll();
-    //     } else {
-    //         // Manejo de usuario no autenticado
-    //        // Puedes lanzar una excepción, devolver un mensaje de error o cualquier otra acción apropiada
-    //        return Collections.emptyList();
-    //   }
-    // }
+    @GetMapping(value= "/traer_cierre")
+    public List<Model_mont_alm> traerValan(){
+        if (id_user != 0) {
+            
+            return repository.findModelsCierreByUserId(id_user); 
+            
+        } else {
+        
+           return Collections.emptyList();
+      }
+    }
+
     //Cargar detalle
 
     @PostMapping(value="/guardar")
