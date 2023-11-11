@@ -222,17 +222,28 @@ public class Controller {
     //     }
     // }
 
-    @GetMapping(value= "/traer_cierre")
-    public List<Model_mont_alm> traerValan(){
-        if (id_user != 0) {
+    // @GetMapping(value= "/traer_cierre")
+    // public List<Model_mont_alm> traerValan(){
+    //     if (id_user != 0) {
             
-            return repository.findModelsCierreByUserId(id_user); 
+    //         return repository.findModelsCierreByUserId(id_user); 
             
-        } else {
+    //     } else {
         
-           return Collections.emptyList();
-      }
-    }
+    //        return Collections.emptyList();
+    //   }
+    // }
+
+    // @DeleteMapping(value="/eliminar_cierre/{id}")
+    // public ResponseEntity<Object> eliminarCierre(@PathVariable long id){
+    //     Model deletedModel_mont_alm = repository.findModelsCierreByUserId((int) id).orElse(null);
+    //     if (deletedModel_mont_alm != null) {
+    //         repository.delete(deletedModel_mont_alm);
+    //         return ResponseEntity.ok("Borrado");
+    //     } else {
+    //         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
+    //     }
+    // }
 
     //Cargar detalle
 
