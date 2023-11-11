@@ -33,6 +33,8 @@ async function consultarCierre() {
 
 // Guardar cierre
 
+//Cargar el formulario con los valores que se taen desde back mas las operaciones echas en el front
+
 let section_form_cierre = document.getElementById('section_form_cierre'); 
 
 let form_cierre = document.getElementById('form_cierre'); 
@@ -40,13 +42,16 @@ let form_cierre = document.getElementById('form_cierre');
 form_cierre.addEventListener('submit', async (event) => {
     event.preventDefault(); // Evitar la acción de envío predeterminada
     
-    let monto_in = document.getElementById('monto_in').value; 
-    let met_aho = document.getElementById('met_aho').value; 
-    let total_gas = document.getElementById('total_gas').value; 
-    let total_aho = document.getElementById('total_aho').value; 
+    let monto = document.getElementById('monto_in').value; 
+    let meta = document.getElementById('met_aho').value; 
+    let gastos = document.getElementById('total_gas').value; 
+    let ahorro = document.getElementById('total_aho').value; 
   
+    fecha = tolocaltimedate;
+    metacumplida = si-no;
+
     try {
-        const noteData = {monto_in,  met_aho, total_gas, total_aho};
+        const noteData = {monto,  meta, gastos, ahorro, fecha, meta_cumplida};
         await fetch('http://localhost:4000/guardar_cierre', {
             method: 'POST', // Usar el método POST para crear nuevos datos
             headers: {

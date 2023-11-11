@@ -3,9 +3,11 @@ package com.API_Finazas.app.rest.Controller;
 import com.API_Finazas.app.rest.Model.Model;
 import com.API_Finazas.app.rest.Model.Model_user;
 import com.API_Finazas.app.rest.Model.Model_mont_in;
+import com.API_Finazas.app.rest.Model.Model_mont_alm;
 import com.API_Finazas.app.rest.Repository.Repository;
 import com.API_Finazas.app.rest.Repository.Repository_user;
 import com.API_Finazas.app.rest.Repository.Repository_mont_ini;
+import com.API_Finazas.app.rest.Repository.Repository_mont_alm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -166,7 +168,7 @@ public class Controller {
         }
     }
 
-@PutMapping(value="/actualizar_valor_meta/{id}")
+    @PutMapping(value="/actualizar_valor_meta/{id}")
     public ResponseEntity<Object> actualizarValorMeta(@PathVariable long id, @RequestBody Model_mont_in model_mont_in){
         Model_mont_in updatedModel_mont_in = repository_mont_ini.findModelsMetaByUserId((int) id).(null);
         if (updatedModel_mont_in != null) {
@@ -202,6 +204,41 @@ public class Controller {
         }   
     }
 
+//Cierre
+    // @PostMapping(value="/guardar_cierre")
+    // public ResponseEntity<Object> guardarIngre(@RequestBody Model model) {
+    //     // Realizar el casting y transformación a String
+
+    //     if (id_user != 0) {
+    //          // Asignar el ID del usuario al modelo de entrada
+    //         String categoria = model.getCategoria() != null ? String.valueOf(model.getCategoria()) : "N/A";
+    //         String fecha = model.getFecha() != null ? model.getFecha().toString() : "N/A";
+    //         String hora = model.getHora() != null ? model.getHora().toString() : "N/A";
+
+    //         // Imprimir los valores transformados
+    //         System.out.println("Categoría: " + categoria);
+    //         System.out.println("Fecha: " + fecha);
+    //         System.out.println("Hora: " + hora);
+    //         model.setUser_id(id_user);
+    //         repository.save(model);
+    //         return ResponseEntity.ok("Guardado");
+    //     } else {
+    //         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
+    //     }
+    // }
+
+    // @GetMapping(value= "/traer_cierre")
+    // public List<Model> traerValan(){
+    //     if (id_user != 0) {
+    //         System.out.println("Ide: " + id_user);
+    //         return repository.findModelsByUserId(id_user); // Reemplaza con el método adecuado de tu repositorio
+    //         //return repository.findAll();
+    //     } else {
+    //         // Manejo de usuario no autenticado
+    //        // Puedes lanzar una excepción, devolver un mensaje de error o cualquier otra acción apropiada
+    //        return Collections.emptyList();
+    //   }
+    // }
     //Cargar detalle
 
     @PostMapping(value="/guardar")
