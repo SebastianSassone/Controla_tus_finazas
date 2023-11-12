@@ -1,40 +1,10 @@
-// Cerrar sesion
-//Desde vs
-document.getElementById('cerrarSesionBtn').addEventListener('click', function() {
-    // Realizar una solicitud Fetch para cerrar la sesión
-    fetch('http://localhost:4000/cerrar_sesion', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-    .then(response => {
-        if (response.status === 200) {
-            // La sesión se cerró exitosamente
-            console.log('Sesión cerrada exitosamente');
-            // Puedes redirigir al usuario a la página de inicio de sesión u otra página
-        } else if (response.status === 401) {
-            // No hay sesión activa para cerrar
-            console.log('No hay sesión activa para cerrar');
-        } else {
-            // Manejar otros códigos de estado según sea necesario
-            console.error('Error al cerrar sesión');
-        }
-    })
-    .catch(error => {
-        console.error('Error al realizar la solicitud:', error);
-    });
-});
-
-// Editar datos 
-// Variables para los elementos HTML
-        const nombreElement = document.getElementById('nombre');
-        const apellidoElement = document.getElementById('apellido');
-        const emailElement = document.getElementById('email');
-        const editarBtn = document.getElementById('editarBtn');
-        const guardarBtn = document.getElementById('guardarBtn');
-        const eliminarBtn = document.getElementById('eliminarBtn');
-        const eliminarCuentaBtn = document.getElementById('eliminarCuenta');
+const nombreElement = document.getElementById('nombre');
+const apellidoElement = document.getElementById('apellido');
+const emailElement = document.getElementById('email');
+const editarBtn = document.getElementById('editarBtn');
+const guardarBtn = document.getElementById('guardarBtn');
+const eliminarBtn = document.getElementById('eliminarBtn');
+const eliminarCuentaBtn = document.getElementById('eliminarCuenta');
 
 // Variable para controlar el modo de edición
 let modoEdicion = false;
@@ -76,9 +46,9 @@ async function cargarDatosDesdeAPI() {
 
         //    id = entry.id;
            console.log(id);
-
+        
           });
-            
+        
             console.log(data);
             console.log(data.id);
         
@@ -169,3 +139,30 @@ async function eliminarcuenta() {
     }
   }
        
+// Cerrar sesion
+
+document.getElementById('cerrarSesionBtn').addEventListener('click', function() {
+    // Realizar una solicitud Fetch para cerrar la sesión
+    fetch('http://localhost:4000/cerrar_sesion', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => {
+        if (response.status === 200) {
+            // La sesión se cerró exitosamente
+            console.log('Sesión cerrada exitosamente');
+            // Puedes redirigir al usuario a la página de inicio de sesión u otra página
+        } else if (response.status === 401) {
+            // No hay sesión activa para cerrar
+            console.log('No hay sesión activa para cerrar');
+        } else {
+            // Manejar otros códigos de estado según sea necesario
+            console.error('Error al cerrar sesión');
+        }
+    })
+    .catch(error => {
+        console.error('Error al realizar la solicitud:', error);
+    });
+});  

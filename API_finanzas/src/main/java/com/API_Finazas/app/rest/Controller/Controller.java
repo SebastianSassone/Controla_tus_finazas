@@ -215,7 +215,7 @@ public class Controller {
     //     if (id_user != 0) {
     //          // Asignar el ID del usuario al modelo de entrada
             
-    //         model.setId_user(id_user);
+    //         model_mont_alm.setId_user(id_user);
     //         repository.save(Model_mont_alm);
     //         return ResponseEntity.ok("Guardado");
     //     } else {
