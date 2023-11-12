@@ -56,6 +56,25 @@ anychart.onDocumentReady(function () {
     chart.draw();
   })};
 
+//Filtrar datos
+
+  function esMesActual(entry) {
+    const fechaParts = entry.fecha.split('/');
+    
+    if (fechaParts.length === 3) {
+      const mesValance = fechaParts[1];
+      
+      // Obtén el mes actual
+      const fechaActual = new Date();
+      const mesActual = fechaActual.getMonth() + 1; // Se suma 1 porque los meses en JavaScript van de 0 a 11
+      
+      return mesValance == mesActual;
+    } else {
+      // La fecha no tiene el formato esperado
+      return false;
+    }
+  }
+  
   async function valorAlim() {
     try {
       const response = await fetch('http://localhost:4000/total-valor-alimentos');
@@ -65,11 +84,21 @@ anychart.onDocumentReady(function () {
   
       const alimentacionData = await response.json();
 
-      chartdata.push(["Alimentacion", alimentacionData]);
+      if (esMesActual(higieneData)) {
+        chartdata.push(["Higiene", higieneData]);
+  
+        total_gastos += higieneData;
+  
+        longCharData++;
+      } else {
+        console.log('El dato no es del mes actual:', higieneData.fecha);
+      }
 
-      total_gastos += alimentacionData;
+      // chartdata.push(["Alimentacion", alimentacionData]);
+
+      // total_gastos += alimentacionData;
       
-      longCharData++;
+      // longCharData++;
 
     } catch (error) {
       console.error('Error:', error);
