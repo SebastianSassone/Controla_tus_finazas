@@ -1,217 +1,245 @@
 valorAlim();
-valorServi();
-valorHigie();
-valorSalud();
-valorTransp();
-valorOtros();
+// valorServi();
+// valorHigie();
+// valorSalud();
+// valorTransp();
+// valorOtros();
 
-let chartdata = [];
+// let chartdata = [];
 
-let longCharData = 0;
+// let longCharData = 0;
 
-let total_gastos = 0;
+// let total_gastos = 0;
 
-async function waitForCounterToReach(targetCount) {
+// async function waitForCounterToReach(targetCount) {
 
-  while (longCharData < targetCount) {
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
-  }
+//   while (longCharData < targetCount) {
+//     await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
+//   }
 
-  console.log(total_gastos);
+//   console.log(total_gastos);
   
-  mosGrafic();
-  console.log(`El contador ha alcanzado ${targetCount}.`);
-}
+//   mosGrafic();
+//   console.log(`El contador ha alcanzado ${targetCount}.`);
+// }
 
-waitForCounterToReach(6);
+// waitForCounterToReach(6);
 
-function mosGrafic(){
-anychart.onDocumentReady(function () {
-    // create pie chart with passed data
+// function mosGrafic(){
+// anychart.onDocumentReady(function () {
+//     // create pie chart with passed data
     
-    let chart = anychart.pie(chartdata);
+//     let chart = anychart.pie(chartdata);
 
-    // set chart title text settings
-    chart.title('Grafico de valances consumo diario');
-    // set chart labels position to outside
-    chart.labels().position('outside');
-    // set legend title settings
-    chart
-      .legend()
-      .title()
-      .enabled(true)
-      .text('Categorias')
-      .padding([0, 0, 10, 0]);
+//     // set chart title text settings
+//     chart.title('Grafico de valances consumo diario');
+//     // set chart labels position to outside
+//     chart.labels().position('outside');
+//     // set legend title settings
+//     chart
+//       .legend()
+//       .title()
+//       .enabled(true)
+//       .text('Categorias')
+//       .padding([0, 0, 10, 0]);
 
-    // set legend position and items layout
-    chart
-      .legend()
-      .position('center-bottom')
-      .itemsLayout('horizontal')
-      .align('center');
+//     // set legend position and items layout
+//     chart
+//       .legend()
+//       .position('center-bottom')
+//       .itemsLayout('horizontal')
+//       .align('center');
 
-    // set container id for the chart
-    chart.container('container');
-    // initiate chart drawing
-    chart.draw();
-  })};
+//     // set container id for the chart
+//     chart.container('container');
+//     // initiate chart drawing
+//     chart.draw();
+//   })};
 
 //Filtrar datos
 
-  function esMesActual(entry) {
+// function filtrarMes(data, mesSeleccionado) {
+//   const mesNumero = parseInt(mesSeleccionado, 10);
+
+//   if (mesNumero < 1 || mesNumero > 12) {
+//     console.log('Mes no seleccionado');
+//     return;
+//   }
+
+//   const resultadosFiltrados = data.filter(entry => {
+//     const fechaParts = entry.fecha.split('/');
+//     if (fechaParts.length === 3) {
+//       const mes = parseInt(fechaParts[1], 10);
+//       return mes === mesNumero;
+//     }
+//     return false;
+//   });
+
+//   // Hacer algo con los resultados filtrados, por ejemplo, devolverlos o imprimirlos
+//   return resultadosFiltrados;
+// }
+
+function sumarValoresPorFecha(data, mesSeleccionado) {
+  const mesNumero = parseInt(mesSeleccionado, 10);
+
+  if (mesNumero < 1 || mesNumero > 12) {
+    console.log('Mes no seleccionado');
+    return 0; // Devolvemos 0 si el mes no es válido
+  }
+
+  const total = data.reduce((sum, entry) => {
     const fechaParts = entry.fecha.split('/');
-    
     if (fechaParts.length === 3) {
-      const mesValance = fechaParts[1];
-      
-      // Obtén el mes actual
-      const fechaActual = new Date();
-      const mesActual = fechaActual.getMonth() + 1; // Se suma 1 porque los meses en JavaScript van de 0 a 11
-      
-      return mesValance == mesActual;
+      const mes = parseInt(fechaParts[1], 10);
+      if (mes === mesNumero) {
+        return sum + entry.valor;
+      }
+    }
+    return sum;
+  }, 0);
+
+  return total;
+}
+
+
+async function valorAlim() {
+  try {
+    const response = await fetch('http://localhost:4000/total-valor-alimentos');
+    if (!response.ok) {
+      throw new Error('Error al obtener los datos de alimentación.');
+    }
+
+    const alimentacionData = await response.json();
+
+    const select = document.getElementById('select_mes');
+    const mesSeleccionado = select.value;
+
+    const resultadosFiltrados = filtrarMes(alimentacionData, mesSeleccionado);
+
+    if (resultadosFiltrados > 0) {
+      // chartdata.push(["Alimentacion", resultadosFiltrados]);
+        console.log("Alimentacion", resultadosFiltrados);
+    
+      // Sumar los valores filtrados
+      total_gastos += resultadosFiltrados;
+    
+      longCharData++;
     } else {
-      // La fecha no tiene el formato esperado
-      return false;
+      console.log('No hay datos para el mes seleccionado:', mesSeleccionado);
     }
+
+  } catch (error) {
+    console.error('Error:', error);
   }
+}
+
+
+  // async function valorServi() {
+  //   try {
+  //     const response = await fetch('http://localhost:4000/total-valor-servicios');
+  //     if (!response.ok) {
+  //       throw new Error('Error al obtener las notas.');
+  //     }
   
-  async function valorAlim() {
-    try {
-      const response = await fetch('http://localhost:4000/total-valor-alimentos');
-      if (!response.ok) {
-        throw new Error('Error al obtener las notas.');
-      }
+  //     const serviciosData = await response.json();
+
+  //     chartdata.push(["Servicios", serviciosData]);
+
+  //     total_gastos += serviciosData;
+      
+  //     longCharData++;;
+
+  //   } catch (error) {
+  //     console.error('Error:', error);
+      
+  //   }
+  // }
+
+  // async function valorHigie() {
+  //   try {
+  //     const response = await fetch('http://localhost:4000/total-valor-otros');
+  //     if (!response.ok) {
+  //       throw new Error('Error al obtener las notas.');
+  //     }
   
-      const alimentacionData = await response.json();
+  //     const higieneData = await response.json();
 
-      if (esMesActual(higieneData)) {
-        chartdata.push(["Higiene", higieneData]);
+  //     chartdata.push(["Higiene", higieneData]);
+
+  //     total_gastos += higieneData;
+      
+  //     longCharData++;;
+
+  //   } catch (error) {
+  //     console.error('Error:', error);
+      
+  //   }
+  // }
+
+  // async function valorSalud() {
+  //   try {
+  //     const response = await fetch('http://localhost:4000/total-valor-transporte');
+  //     if (!response.ok) {
+  //       throw new Error('Error al obtener las notas.');
+  //     }
   
-        total_gastos += higieneData;
+  //     const saludData = await response.json();
+
+  //     chartdata.push(["Salud", saludData]);
+
+  //     total_gastos += saludData;
+      
+  //     longCharData++;;
+
+  //   } catch (error) {
+  //     console.error('Error:', error);
+      
+  //   }
+  // }
+
+  // async function valorTransp() {
+  //   try {
+  //     const response = await fetch('http://localhost:4000/total-valor-salud');
+  //     if (!response.ok) {
+  //       throw new Error('Error al obtener las notas.');
+  //     }
   
-        longCharData++;
-      } else {
-        console.log('El dato no es del mes actual:', higieneData.fecha);
-      }
+  //     const transporteData = await response.json();
 
-      // chartdata.push(["Alimentacion", alimentacionData]);
+  //     chartdata.push(["Transporte", transporteData]);
 
-      // total_gastos += alimentacionData;
+  //     total_gastos += transporteData;
       
-      // longCharData++;
+  //     longCharData++;;
 
-    } catch (error) {
-      console.error('Error:', error);
+  //   } catch (error) {
+  //     console.error('Error:', error);
       
-    }
-  }
+  //   }
+  // }
 
-  async function valorServi() {
-    try {
-      const response = await fetch('http://localhost:4000/total-valor-servicios');
-      if (!response.ok) {
-        throw new Error('Error al obtener las notas.');
-      }
+  // async function valorOtros() {
+  //   try {
+  //     const response = await fetch('http://localhost:4000/total-valor-higiene');
+  //     if (!response.ok) {
+  //       throw new Error('Error al obtener las notas.');
+  //     }
   
-      const serviciosData = await response.json();
+  //     const otrosData = await response.json();
 
-      chartdata.push(["Servicios", serviciosData]);
+  //     chartdata.push(["Otros", otrosData]);
 
-      total_gastos += serviciosData;
+  //     total_gastos += otrosData;
       
-      longCharData++;;
-
-    } catch (error) {
-      console.error('Error:', error);
+  //     console.log(chartdata)
       
-    }
-  }
+  //     longCharData++;;
 
-  async function valorHigie() {
-    try {
-      const response = await fetch('http://localhost:4000/total-valor-otros');
-      if (!response.ok) {
-        throw new Error('Error al obtener las notas.');
-      }
-  
-      const higieneData = await response.json();
-
-      chartdata.push(["Higiene", higieneData]);
-
-      total_gastos += higieneData;
+  //   } catch (error) {
+  //     console.error('Error:', error);
       
-      longCharData++;;
-
-    } catch (error) {
-      console.error('Error:', error);
-      
-    }
-  }
-
-  async function valorSalud() {
-    try {
-      const response = await fetch('http://localhost:4000/total-valor-transporte');
-      if (!response.ok) {
-        throw new Error('Error al obtener las notas.');
-      }
-  
-      const saludData = await response.json();
-
-      chartdata.push(["Salud", saludData]);
-
-      total_gastos += saludData;
-      
-      longCharData++;;
-
-    } catch (error) {
-      console.error('Error:', error);
-      
-    }
-  }
-
-  async function valorTransp() {
-    try {
-      const response = await fetch('http://localhost:4000/total-valor-salud');
-      if (!response.ok) {
-        throw new Error('Error al obtener las notas.');
-      }
-  
-      const transporteData = await response.json();
-
-      chartdata.push(["Transporte", transporteData]);
-
-      total_gastos += transporteData;
-      
-      longCharData++;;
-
-    } catch (error) {
-      console.error('Error:', error);
-      
-    }
-  }
-
-  async function valorOtros() {
-    try {
-      const response = await fetch('http://localhost:4000/total-valor-higiene');
-      if (!response.ok) {
-        throw new Error('Error al obtener las notas.');
-      }
-  
-      const otrosData = await response.json();
-
-      chartdata.push(["Otros", otrosData]);
-
-      total_gastos += otrosData;
-      
-      console.log(chartdata)
-      
-      longCharData++;;
-
-    } catch (error) {
-      console.error('Error:', error);
-      
-    }
-  }
+  //   }
+  // }
 
   console.log(chartdata.length);
 
