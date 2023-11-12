@@ -71,6 +71,22 @@
       <div class="tit-grafic"></div>
       <div id="container"></div>
     </section>
+        <select id="select_mes" class="select_mes">
+             <option value="0">Mes</option>
+             <option value="1">Enero</option>
+             <option value="2">Febrero</option>
+             <option value="3">Marzo</option>
+             <option value="4">Abril</option>
+             <option value="5">Mayo</option>
+             <option value="6">Junio</option>
+             <option value="7">Julio</option>
+             <option value="8">Agosto</option>
+             <option value="9">Septiembre</option>
+             <option value="10">Octubre</option>
+             <option value="11">Noviembre</option>
+             <option value="12">Diciembre</option>
+        </select>
+
     <div class="list-container">
       <table id="category-list">
           <thead class="thead">
@@ -88,6 +104,13 @@
               <!-- Aquí se agregarán las filas de forma dinámica con JavaScript -->
           </tbody>
       </table>
+	    <div class="list_valor_meta">
+		    <p id="val_ini">Monto inicial:</p>
+		    <p id="met_ahorr">Meta de ahorro</p>
+		    <p id="tot_gas">Total gastos:</p>
+		    <p id="tot_ahorr">Total ahorro:</p>
+            <p id="meta_cumplida">Meta cumplida</p>
+	    </div>
   </div>
     
     </section>
@@ -146,7 +169,7 @@
         </div>
     </footer>
   </body>
-  <script src="../js/valances/grafic.js"></script>
-  <script src="../js/valances/listad.js"></script>
+  <!-- <script src="../js/valances/valances_global/grafic_g.js"></script> -->
+  <script src="../js/valances/valances_global/listad_g.js"></script>
 </html>
                     
