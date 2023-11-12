@@ -24,7 +24,7 @@ public class Model_mont_alm {
         private Integer ahorro;
 
         @Column
-        private Integer fecha;
+        private String fecha;
 
         @Column
         private String meta_cumplida;
@@ -72,11 +72,11 @@ public class Model_mont_alm {
                 this.ahorro = ahorro;
         }
 
-        public Integer getFecha() {
+        public String getFecha() {
                 return fecha;
         }
 
-        public void setFecha(Integer fecha) {
+        public void setFecha(String fecha) {
                 this.fecha = fecha;
         }
 

@@ -63,11 +63,11 @@ async function agregarDetalle() {
 }
 
 // Agregar un event listener para el cambio en el select.
-const select = document.getElementById('select_mes');
-select.addEventListener('change', () => {
-  agregarDetalle();
-  console.log(select.value);
-});
+// const select = document.getElementById('select_mes');
+// select.addEventListener('change', () => {
+//   agregarDetalle();
+//   console.log(select.value);
+// });
 
 // También puedes llamar a agregarDetalle() cuando se carga la página.
 window.addEventListener('load', () => {
@@ -83,26 +83,26 @@ let tot_gas = document.getElementById('tot_gas');
 let tot_ahorr = document.getElementById('tot_ahorr');
 let meta_cumplida = document.getElementById('meta_cumplida');
 
-async function cargarYMostrarValoresDesdeAPI() {
-  try {
-      const response = await fetch('http://localhost:4000/traer_cierre'); // Ruta de lectura de montos
-      const data = await response.json();
+// async function cargarYMostrarValoresDesdeAPI() {
+//   try {
+//       const response = await fetch('http://localhost:4000/traer_cierre'); // Ruta de lectura de montos
+//       const data = await response.json();
 
-      console.log(data);
+//       console.log(data);
      
-      data.forEach((entry) => {
-        val_ini = entry. 
-        met_ahorr = entry.
-        tot_gas = entry.
-        tot_ahorr = entry.
-        meta_cumplida = entry.
+//       data.forEach((entry) => {
+//         val_ini = entry. 
+//         met_ahorr = entry.
+//         tot_gas = entry.
+//         tot_ahorr = entry.
+//         meta_cumplida = entry.
 
-        // completar
-      });
-  } catch (error) {
-      console.error('Error al cargar los valores:', error);
-  }
-}
+//         // completar |^|
+      
+//   } catch (error) {
+//       console.error('Error al cargar los valores:', error);
+//   }
+// }
 
 /* mes equvocado
 

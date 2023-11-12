@@ -1,13 +1,13 @@
 package com.API_Finazas.app.rest.Controller;
 
 import com.API_Finazas.app.rest.Model.Model;
-import com.API_Finazas.app.rest.Model.Model_user;
-import com.API_Finazas.app.rest.Model.Model_mont_in;
 import com.API_Finazas.app.rest.Model.Model_mont_alm;
+import com.API_Finazas.app.rest.Model.Model_mont_in;
+import com.API_Finazas.app.rest.Model.Model_user;
 import com.API_Finazas.app.rest.Repository.Repository;
-import com.API_Finazas.app.rest.Repository.Repository_user;
-import com.API_Finazas.app.rest.Repository.Repository_mont_ini;
 import com.API_Finazas.app.rest.Repository.Repository_mont_alm;
+import com.API_Finazas.app.rest.Repository.Repository_mont_ini;
+import com.API_Finazas.app.rest.Repository.Repository_user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,6 @@ public class Controller {
     private Repository repository;
     private Repository_user repository_user;
     private Repository_mont_ini repository_mont_ini;
-
     private Repository_mont_alm repository_mont_alm;
 
     @Autowired
@@ -30,7 +29,7 @@ public class Controller {
         this.repository = repository;
         this.repository_user = repository_user;
         this.repository_mont_ini = repository_mont_ini;
-        this.Repository_mont_alm = repository_mont_alm;
+        this.repository_mont_alm = repository_mont_alm;
     }
 
     //Cuenta
@@ -128,7 +127,6 @@ public class Controller {
         }
     }
 
-
     @PutMapping(value = "/actualizar_user/{id}")
     public ResponseEntity<Object> actualizar_user(@PathVariable long id, @RequestBody com.API_Finazas.app.rest.Model.Model_user modelUser) {
         com.API_Finazas.app.rest.Model.Model_user updatedModelUser = repository_user.findById((int) id).orElse(null);
@@ -171,9 +169,9 @@ public class Controller {
         }
     }
 
-    @PutMapping(value="/actualizar_valor_meta/{id}")
-    public ResponseEntity<Object> actualizarValorMeta(@PathVariable long id, @RequestBody Model_mont_in model_mont_in){
-        Model_mont_in updatedModel_mont_in = repository_mont_ini.findModelsMetaByUserId((int) id).orElse(null);
+   /* @PutMapping(value="/actualizar_valor_meta/{id}")
+    public ResponseEntity<Object> actualizarValorMeta(@PathVariable long id, @RequestBody com.API_Finazas.app.rest.Model.Model_mont_in model_mont_in){
+        com.API_Finazas.app.rest.Model.Model_mont_in updatedModel_mont_in = repository_mont_ini.findModelsMetaByUserId((int) id).orElse(null);
         if (updatedModel_mont_in != null) {
             updatedModel_mont_in.setMonto_inicial(updatedModel_mont_in.getMonto_inicial());
             updatedModel_mont_in.setMeta_ahorro(updatedModel_mont_in.getMonto_inicial());
@@ -184,16 +182,31 @@ public class Controller {
         }
     }
 
+    @PutMapping(value = "/actualizar_user/{id}")
+    public ResponseEntity<Object> actualizar_user(@PathVariable long id, @RequestBody com.API_Finazas.app.rest.Model.Model_user modelUser) {
+        com.API_Finazas.app.rest.Model.Model_user updatedModelUser = repository_user.findById((int) id).orElse(null);
+        if (updatedModelUser != null) {
+            updatedModelUser.setName(modelUser.getName());
+            updatedModelUser.setLastname(modelUser.getLastname());
+            updatedModelUser.setEmail(modelUser.getEmail());
+            updatedModelUser.setPassword(modelUser.getPassword());
+            repository_user.save(updatedModelUser);
+            return ResponseEntity.ok(updatedModelUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no actualizado");
+        }
+    }
+
     @DeleteMapping(value="/borrar_valor_meta/{id}")
     public ResponseEntity<Object> borrarValorMeta(@PathVariable long id){
-        com.API_Finazas.app.rest.Model.Model_mont_in deletedModel_mont_in = repository_mont_ini.findModelsMetaByUserId((int) id).orElse(null);
+        Model_mont_in deletedModel_mont_in = repository_mont_ini.findModelsMetaByUserId((int) id).orElse(null);
         if (deletedModel_mont_in != null) {
             repository_mont_ini.delete(deletedModel_mont_in);
             return ResponseEntity.ok("Borrado");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
         }
-    }
+    }*/
 
     
     @GetMapping(value = "/traer_valor_meta") 
@@ -215,8 +228,8 @@ public class Controller {
         if (id_user != 0) {
              // Asignar el ID del usuario al modelo de entrada
             
-            model_mont_alm.setId_user(id_user);
-            repository.save(Model_mont_alm);
+            model_mont_alm.setUser_id(id_user);
+            repository_mont_alm.save(model_mont_alm);
             return ResponseEntity.ok("Guardado");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
@@ -224,27 +237,27 @@ public class Controller {
     }
 
        @GetMapping(value= "/traer_cierre")
-       public List<Model_mont_alm> traerValan(){
+       public List<Model_mont_alm> traerCierre(){
            if (id_user != 0) {
             
-               return repository_mont_alm.findModelsCierreByUserId(id_user); 
-            
+               return repository_mont_alm.findModelsCierreByUserId(id_user);
+
            } else {
         
               return Collections.emptyList();
          }
        }
 
-       @DeleteMapping(value="/eliminar_cierre/{id}")
+     /*  @DeleteMapping(value="/eliminar_cierre/{id}")
        public ResponseEntity<Object> eliminarCierre(@PathVariable long id){
-           Model deletedModel_mont_alm = repository.findModelsCierreByUserId((int) id).orElse(null);
+           Model deletedModel_mont_alm = repository_mont_alm.findModelsCierreByUserId((int) id).orElse(null);
            if (deletedModel_mont_alm != null) {
                repository_mont_alm.delete(deletedModel_mont_alm);
                return ResponseEntity.ok("Borrado");
            } else {
                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
            }
-       }
+       }*/
 
     //Cargar detalle
 
@@ -311,20 +324,24 @@ public class Controller {
       }
     }
 
-    
+
     @GetMapping("/total-valor-alimentos")
-    public Double obtenerTotalValorAlimen() {
+    public ResponseEntity<List<Model>> obtenerTotalValorAlimen() {
         if (id_user != 0) {
-            Double totalValorAlimentos = repository.sumarValoresPorCategoriaAndUserId("Alimentacion",  id_user);
-            return totalValorAlimentos != null ? totalValorAlimentos : 0.0;
+            List<Model> totalValorAlimentos;
+            totalValorAlimentos = repository.sumarValoresPorCategoriaAndUserId("Alimentacion", id_user);
+            return ResponseEntity.ok(totalValorAlimentos);
         } else {
             // Manejo de usuario no autenticado
             // Puedes lanzar una excepción, devolver un mensaje de error o cualquier otra acción apropiada
-            return 0.0;
+            return ResponseEntity.notFound().build();
         }
     }
 
-    @GetMapping("/total-valor-servicios")
+ }
+
+
+    /*@GetMapping("/total-valor-servicios")
     public Double obtenerTotalValorServi() {
         if (id_user != 0) {
         Double totalValorServicios = repository.sumarValoresPorCategoriaAndUserId("Servicios" , id_user);
@@ -364,4 +381,4 @@ public class Controller {
          return totalValorHigiene != null ? totalValorHigiene : 0.0;
         } else { return 0.0; }
     }
-}
+}*/

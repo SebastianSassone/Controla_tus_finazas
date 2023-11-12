@@ -3,7 +3,7 @@ package com.API_Finazas.app.rest.Model;
 import javax.persistence.*;
 @Entity
 @Table(schema = "ingresotabla")
-public class Model {
+public class Model extends Model_mont_alm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,9 +69,7 @@ public class Model {
         this.valor = valor;
     }
 
-    public String getFecha() {
-        return fecha;
-    }
+    public String getFecha() { return fecha; }
 
     public void setFecha(String fecha) {
         this.fecha = fecha;

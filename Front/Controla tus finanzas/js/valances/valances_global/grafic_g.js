@@ -133,6 +133,11 @@ async function valorAlim() {
   }
 }
 
+const select = document.getElementById('select_mes');
+select.addEventListener('change', () => {
+  valorAlim();
+  console.log(select.value);
+});
 
   // async function valorServi() {
   //   try {
@@ -241,5 +246,5 @@ async function valorAlim() {
   //   }
   // }
 
-  console.log(chartdata.length);
+  //console.log(chartdata.length);
 

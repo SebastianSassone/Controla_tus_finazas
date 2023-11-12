@@ -10,8 +10,9 @@ import java.util.List;
 public interface Repository extends JpaRepository<Model, Integer> {
 
     @Query("SELECT m FROM Model m WHERE m.categoria = ?1 AND m.user_id = ?2")
-    List<Model> obtenerElementosPorCategoriaAndUserId(@Param("categoria") String categoria, @Param("userId") int user_id); 
+    List<Model> sumarValoresPorCategoriaAndUserId(@Param("categoria") String categoria, @Param("userId") int user_id);
 
+    //obtenerElementosPorCategoriaAndUserId(
     // @Query("SELECT COALESCE(SUM(m.valor), 0) FROM Model m WHERE m.categoria = ?1 AND m.user_id = ?2")
     // Double sumarValoresPorCategoriaAndUserId(@Param("categoria") String categoria, @Param("userId") int user_id);
 
