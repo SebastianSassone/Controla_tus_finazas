@@ -173,7 +173,7 @@ public class Controller {
 
     @PutMapping(value="/actualizar_valor_meta/{id}")
     public ResponseEntity<Object> actualizarValorMeta(@PathVariable long id, @RequestBody Model_mont_in model_mont_in){
-        Model_mont_in updatedModel_mont_in = repository_mont_ini.findModelsMetaByUserId((int) id).(null);
+        Model_mont_in updatedModel_mont_in = repository_mont_ini.findModelsMetaByUserId((int) id).orElse(null);
         if (updatedModel_mont_in != null) {
             updatedModel_mont_in.setMonto_inicial(updatedModel_mont_in.getMonto_inicial());
             updatedModel_mont_in.setMeta_ahorro(updatedModel_mont_in.getMonto_inicial());
@@ -208,43 +208,43 @@ public class Controller {
     }
 
 //Cierre
-    // @PostMapping(value="/guardar_cierre")
-    // public ResponseEntity<Object> guardarIngre(@RequestBody Model_mont_alm model_mont_alm) {
-    //     // Realizar el casting y transformación a String
+    @PostMapping(value="/guardar_cierre")
+    public ResponseEntity<Object> guardarIngre(@RequestBody Model_mont_alm model_mont_alm) {
+        // Realizar el casting y transformación a String
 
-    //     if (id_user != 0) {
-    //          // Asignar el ID del usuario al modelo de entrada
+        if (id_user != 0) {
+             // Asignar el ID del usuario al modelo de entrada
             
-    //         model_mont_alm.setId_user(id_user);
-    //         repository.save(Model_mont_alm);
-    //         return ResponseEntity.ok("Guardado");
-    //     } else {
-    //         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
-    //     }
-    // }
+            model_mont_alm.setId_user(id_user);
+            repository.save(Model_mont_alm);
+            return ResponseEntity.ok("Guardado");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
+        }
+    }
 
-    // @GetMapping(value= "/traer_cierre")
-    // public List<Model_mont_alm> traerValan(){
-    //     if (id_user != 0) {
+       @GetMapping(value= "/traer_cierre")
+       public List<Model_mont_alm> traerValan(){
+           if (id_user != 0) {
             
-    //         return repository.findModelsCierreByUserId(id_user); 
+               return repository_mont_alm.findModelsCierreByUserId(id_user); 
             
-    //     } else {
+           } else {
         
-    //        return Collections.emptyList();
-    //   }
-    // }
+              return Collections.emptyList();
+         }
+       }
 
-    // @DeleteMapping(value="/eliminar_cierre/{id}")
-    // public ResponseEntity<Object> eliminarCierre(@PathVariable long id){
-    //     Model deletedModel_mont_alm = repository.findModelsCierreByUserId((int) id).orElse(null);
-    //     if (deletedModel_mont_alm != null) {
-    //         repository.delete(deletedModel_mont_alm);
-    //         return ResponseEntity.ok("Borrado");
-    //     } else {
-    //         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
-    //     }
-    // }
+       @DeleteMapping(value="/eliminar_cierre/{id}")
+       public ResponseEntity<Object> eliminarCierre(@PathVariable long id){
+           Model deletedModel_mont_alm = repository.findModelsCierreByUserId((int) id).orElse(null);
+           if (deletedModel_mont_alm != null) {
+               repository_mont_alm.delete(deletedModel_mont_alm);
+               return ResponseEntity.ok("Borrado");
+           } else {
+               return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
+           }
+       }
 
     //Cargar detalle
 
