@@ -21,4 +21,5 @@ public interface Repository extends JpaRepository<Model, Integer> {
 
 
 
+
 }

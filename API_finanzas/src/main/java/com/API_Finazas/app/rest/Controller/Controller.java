@@ -297,16 +297,14 @@ public class Controller {
 
     @GetMapping(value= "/valances")
     public List<Model> traerValan(){
-        if (id_user != 0) {
-            System.out.println("Ide: " + id_user);
-            //return repository.findModelsByUserId(id_user); // Reemplaza con el método adecuado de tu repositorio
-            return repository.findAll();
-        } else {
-            // Manejo de usuario no autenticado
-           // Puedes lanzar una excepción, devolver un mensaje de error o cualquier otra acción apropiada
-           return Collections.emptyList();
-      }
+    if (id_user != 0) {
+        System.out.println("ID de usuario: " + id_user);
+        return repository.findModelsByUserId(id_user);
+    } else {
+        return Collections.emptyList();
     }
+}
+
 
 
     @GetMapping("/total-valor-alimentos")

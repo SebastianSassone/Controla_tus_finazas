@@ -88,18 +88,19 @@ function sumarValoresPorFecha(data, mesSeleccionado) {
   }
 
   const total = data.reduce((sum, entry) => {
-    const fechaParts = entry.fecha.split('/');
-    if (fechaParts.length === 3) {
-      const mes = parseInt(fechaParts[1], 10);
-      if (mes === mesNumero) {
-        return sum + entry.valor;
-      }
+    const fecha = new Date(entry.fecha);
+    const mes = fecha.getMonth() + 1; // getMonth() devuelve el mes en base 0 (enero es 0), por eso sumamos 1
+
+    if (mes === mesNumero) {
+      return sum + entry.valor;
     }
+    
     return sum;
   }, 0);
 
   return total;
 }
+
 
 
 async function valorAlim() {
