@@ -111,6 +111,8 @@ async function valorAlim() {
 
     const alimentacionData = await response.json();
 
+    console.log(alimentacionData);
+
     const select = document.getElementById('select_mes');
     const mesSeleccionado = select.value;
 

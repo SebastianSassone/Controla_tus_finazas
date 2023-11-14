@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface Repository_mont_ini extends JpaRepository<Model_mont_in, Integer> {
-    @Query(value = "SELECT m FROM Model_mont_in m WHERE m.user_id = :user_id", nativeQuery = true)
+    @Query(value = "SELECT m FROM Model_mont_in m WHERE m.user_id = :user_id")
     List<Model_mont_in> findModelsMetaByUserId(@Param("user_id") int user_id);
 }

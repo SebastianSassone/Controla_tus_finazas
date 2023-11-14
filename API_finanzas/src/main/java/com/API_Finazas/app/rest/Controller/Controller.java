@@ -1,9 +1,9 @@
 package com.API_Finazas.app.rest.Controller;
 
 import com.API_Finazas.app.rest.Model.Model;
-import com.API_Finazas.app.rest.Model.Model_mont_alm;
 import com.API_Finazas.app.rest.Model.Model_mont_in;
 import com.API_Finazas.app.rest.Model.Model_user;
+import com.API_Finazas.app.rest.Model.Model_mont_alm;
 import com.API_Finazas.app.rest.Repository.Repository;
 import com.API_Finazas.app.rest.Repository.Repository_mont_alm;
 import com.API_Finazas.app.rest.Repository.Repository_mont_ini;
@@ -169,9 +169,9 @@ public class Controller {
         }
     }
 
-   /* @PutMapping(value="/actualizar_valor_meta/{id}")
+    @PutMapping(value="/actualizar_valor_meta/{id}")
     public ResponseEntity<Object> actualizarValorMeta(@PathVariable long id, @RequestBody com.API_Finazas.app.rest.Model.Model_mont_in model_mont_in){
-        com.API_Finazas.app.rest.Model.Model_mont_in updatedModel_mont_in = repository_mont_ini.findModelsMetaByUserId((int) id).orElse(null);
+        com.API_Finazas.app.rest.Model.Model_mont_in updatedModel_mont_in = repository_mont_ini.findById((int) id).orElse(null);
         if (updatedModel_mont_in != null) {
             updatedModel_mont_in.setMonto_inicial(updatedModel_mont_in.getMonto_inicial());
             updatedModel_mont_in.setMeta_ahorro(updatedModel_mont_in.getMonto_inicial());
@@ -182,33 +182,18 @@ public class Controller {
         }
     }
 
-    @PutMapping(value = "/actualizar_user/{id}")
-    public ResponseEntity<Object> actualizar_user(@PathVariable long id, @RequestBody com.API_Finazas.app.rest.Model.Model_user modelUser) {
-        com.API_Finazas.app.rest.Model.Model_user updatedModelUser = repository_user.findById((int) id).orElse(null);
-        if (updatedModelUser != null) {
-            updatedModelUser.setName(modelUser.getName());
-            updatedModelUser.setLastname(modelUser.getLastname());
-            updatedModelUser.setEmail(modelUser.getEmail());
-            updatedModelUser.setPassword(modelUser.getPassword());
-            repository_user.save(updatedModelUser);
-            return ResponseEntity.ok(updatedModelUser);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no actualizado");
-        }
-    }
-
     @DeleteMapping(value="/borrar_valor_meta/{id}")
     public ResponseEntity<Object> borrarValorMeta(@PathVariable long id){
-        Model_mont_in deletedModel_mont_in = repository_mont_ini.findModelsMetaByUserId((int) id).orElse(null);
+        Model_mont_in deletedModel_mont_in = repository_mont_ini.findById((int) id).orElse(null);
         if (deletedModel_mont_in != null) {
             repository_mont_ini.delete(deletedModel_mont_in);
             return ResponseEntity.ok("Borrado");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
         }
-    }*/
+    }
 
-    
+
     @GetMapping(value = "/traer_valor_meta") 
     public List<Model_mont_in> traerValorMeta(){
         if (id_user != 0) {
@@ -247,17 +232,16 @@ public class Controller {
               return Collections.emptyList();
          }
        }
-
-     /*  @DeleteMapping(value="/eliminar_cierre/{id}")
-       public ResponseEntity<Object> eliminarCierre(@PathVariable long id){
-           Model deletedModel_mont_alm = repository_mont_alm.findModelsCierreByUserId((int) id).orElse(null);
-           if (deletedModel_mont_alm != null) {
-               repository_mont_alm.delete(deletedModel_mont_alm);
-               return ResponseEntity.ok("Borrado");
-           } else {
-               return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
-           }
-       }*/
+       @DeleteMapping(value="/borrar_cierre/{id}")
+        public ResponseEntity<Object> eliminarCierre(@PathVariable long id){
+        Model_mont_alm deletedModel_mont_alm = repository_mont_alm.findById((int) id).orElse(null);
+        if (deletedModel_mont_alm != null) {
+            repository_mont_alm.delete(deletedModel_mont_alm);
+            return ResponseEntity.ok("Borrado");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
+        }
+    }
 
     //Cargar detalle
 
@@ -315,8 +299,8 @@ public class Controller {
     public List<Model> traerValan(){
         if (id_user != 0) {
             System.out.println("Ide: " + id_user);
-            return repository.findModelsByUserId(id_user); // Reemplaza con el método adecuado de tu repositorio
-            //return repository.findAll();
+            //return repository.findModelsByUserId(id_user); // Reemplaza con el método adecuado de tu repositorio
+            return repository.findAll();
         } else {
             // Manejo de usuario no autenticado
            // Puedes lanzar una excepción, devolver un mensaje de error o cualquier otra acción apropiada
