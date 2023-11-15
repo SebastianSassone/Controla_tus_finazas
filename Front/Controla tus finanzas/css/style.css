@@ -861,8 +861,10 @@ background-image: url('../img/fondo_cuenta.png');
   display: none;
 }
 
+/* Cierre */
+
 .section_form_cierre{
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: space-evenly;
 }

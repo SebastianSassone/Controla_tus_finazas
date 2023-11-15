@@ -94,9 +94,7 @@ public class Controller {
         System.out.println("No se encontró una coincidencia de contraseña válida en la base de datos.");
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
     }
-
-
-
+    
     @GetMapping("/cerrar_sesion")
     public ResponseEntity<String> cerrarSesion() {
         if (id_user != 0) {
@@ -173,14 +171,15 @@ public class Controller {
     public ResponseEntity<Object> actualizarValorMeta(@PathVariable long id, @RequestBody com.API_Finazas.app.rest.Model.Model_mont_in model_mont_in){
         com.API_Finazas.app.rest.Model.Model_mont_in updatedModel_mont_in = repository_mont_ini.findById((int) id).orElse(null);
         if (updatedModel_mont_in != null) {
-            updatedModel_mont_in.setMonto_inicial(updatedModel_mont_in.getMonto_inicial());
-            updatedModel_mont_in.setMeta_ahorro(updatedModel_mont_in.getMonto_inicial());
+            updatedModel_mont_in.setMonto_inicial(model_mont_in.getMonto_inicial());
+            updatedModel_mont_in.setMeta_ahorro(model_mont_in.getMeta_ahorro());
             repository_mont_ini.save(updatedModel_mont_in);
             return ResponseEntity.ok(updatedModel_mont_in);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No actualizado");
         }
     }
+
 
     @DeleteMapping(value="/borrar_valor_meta/{id}")
     public ResponseEntity<Object> borrarValorMeta(@PathVariable long id){
@@ -225,7 +224,9 @@ public class Controller {
        public List<Model_mont_alm> traerCierre(){
            if (id_user != 0) {
             
-               return repository_mont_alm.findModelsCierreByUserId(id_user);
+            ///   return repository_mont_alm.findModelsCierreByUserId(id_user);
+               return repository_mont_alm.findAll();
+
 
            } else {
         
