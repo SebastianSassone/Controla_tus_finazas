@@ -10,11 +10,18 @@ async function agregarDetalle() {
 
     const data = await response.json();
 
-    const mesActual = new Date().getMonth() + 1; // El mes actual es base 0, así que sumamos 1.
+    // const mesActual = new Date().getMonth() + 1; // El mes actual es base 0, así que sumamos 1.
 
-    data.forEach((entry) => {
-      const fechaParts = entry.fecha.split('/');
-      if (fechaParts.length === 3) {
+    // data.forEach((entry) => {
+    //   const fechaParts = entry.fecha.split('/');
+    //   if (fechaParts.length === 3) {
+        const mesActual = new Date().getMonth() + 1;
+
+        data.forEach(entry => {
+        const fecha = new Date(entry.fecha);
+        const mes = fecha.getMonth() + 1; // getMonth() devuelve el mes en base 0 (enero es 0), por eso sumamos 1
+
+        if (mes === mesActual) {
         const mesValance = parseInt(fechaParts[1], 10);
         if (mesValance === mesActual) {
           let row = document.createElement("tr");

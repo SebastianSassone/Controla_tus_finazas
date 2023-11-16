@@ -56,24 +56,26 @@ anychart.onDocumentReady(function () {
     chart.draw();
   })};
 
-//Filtrar datos
 
-  function esMesActual(entry) {
-    const fechaParts = entry.fecha.split('/');
-    
-    if (fechaParts.length === 3) {
-      const mesValance = fechaParts[1];
-      
-      // Obtén el mes actual
-      const fechaActual = new Date();
-      const mesActual = fechaActual.getMonth() + 1; // Se suma 1 porque los meses en JavaScript van de 0 a 11
-      
-      return mesValance == mesActual;
-    } else {
-      // La fecha no tiene el formato esperado
-      return false;
+
+//Filtrar datos mas for each
+
+  function sumarValoresPorFecha(data) {
+  const mesActual = new Date().getMonth() + 1;
+
+  let total = 0;
+
+  data.forEach(entry => {
+    const fecha = new Date(entry.fecha);
+    const mes = fecha.getMonth() + 1; // getMonth() devuelve el mes en base 0 (enero es 0), por eso sumamos 1
+
+    if (mes === mesActual) {
+      total += entry.valor;
     }
-  }
+  });
+
+  return total;
+}
   
   async function valorAlim() {
     try {

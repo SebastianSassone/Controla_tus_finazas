@@ -79,28 +79,50 @@ valorAlim();
 //   return resultadosFiltrados;
 // }
 
+//Funcion vieja
+// function sumarValoresPorFecha(data, mesSeleccionado) {
+//   const mesNumero = parseInt(mesSeleccionado, 10);
+
+//   if (mesNumero < 1 || mesNumero > 12) {
+//     console.log('Mes no seleccionado');
+//     return 0; // Devolvemos 0 si el mes no es válido
+//   }
+
+//   const total = data.reduce((sum, entry) => {
+//     const fecha = new Date(entry.fecha);
+//     const mes = fecha.getMonth() + 1; // getMonth() devuelve el mes en base 0 (enero es 0), por eso sumamos 1
+
+//     if (mes === mesNumero) {
+//       return sum + entry.valor;
+//     }
+    
+//     return sum;
+//   }, 0);
+
+//   return total;
+// }
+
 function sumarValoresPorFecha(data, mesSeleccionado) {
   const mesNumero = parseInt(mesSeleccionado, 10);
 
   if (mesNumero < 1 || mesNumero > 12) {
-    console.log('Mes no seleccionado');
+    alert('Mes no seleccionado');
     return 0; // Devolvemos 0 si el mes no es válido
   }
 
-  const total = data.reduce((sum, entry) => {
+  let total = 0;
+
+  data.forEach(entry => {
     const fecha = new Date(entry.fecha);
     const mes = fecha.getMonth() + 1; // getMonth() devuelve el mes en base 0 (enero es 0), por eso sumamos 1
 
     if (mes === mesNumero) {
-      return sum + entry.valor;
+      total += entry.valor;
     }
-    
-    return sum;
-  }, 0);
+  });
 
   return total;
 }
-
 
 
 async function valorAlim() {
