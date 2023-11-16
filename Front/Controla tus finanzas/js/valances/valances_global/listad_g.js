@@ -63,11 +63,11 @@ async function agregarDetalle() {
 }
 
 // Agregar un event listener para el cambio en el select.
-// const select = document.getElementById('select_mes');
-// select.addEventListener('change', () => {
-//   agregarDetalle();
-//   console.log(select.value);
-// });
+const select = document.getElementById('select_mes');
+select.addEventListener('change', () => {
+agregarDetalle();
+console.log(select.value);
+});
 
 // También puedes llamar a agregarDetalle() cuando se carga la página.
 window.addEventListener('load', () => {
@@ -77,7 +77,7 @@ window.addEventListener('load', () => {
 
 //Mostrar cierre 
 
-let val_ini = document.getElementById('val_ini');
+let mont_ini = document.getElementById('val_ini');
 let met_ahorr = document.getElementById('met_ahorr');
 let tot_gas = document.getElementById('tot_gas');
 let tot_ahorr = document.getElementById('tot_ahorr');
@@ -91,13 +91,13 @@ async function cargarYMostrarValoresDesdeAPI() {
             console.log(data);
      
             data.forEach((entry) => {
-                val_ini = entry. 
-       met_ahorr = entry.
-        tot_gas = entry.
-       tot_ahorr = entry.
-       meta_cumplida = entry.                              
-
+              mont_ini.innerHTML = entry.monto; 
+              met_ahorr.innerHTML = entry.meta;
+              tot_gas.innerHTML = entry.gastos;
+              tot_ahorr.innerHTML = entry.ahorro;
+              meta_cumplida.innerHTML = entry.meta_cumplida;                              
           // completar |^|
+        })
       
   } catch (error) {
                   console.error('Error al cargar los valores:', error);
