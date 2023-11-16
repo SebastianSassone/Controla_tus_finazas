@@ -1,10 +1,10 @@
 package com.API_Finazas.app.rest.Controller;
 
-import com.API_Finazas.app.rest.Model.Model;
+import com.API_Finazas.app.rest.Model.Model_ingre;
 import com.API_Finazas.app.rest.Model.Model_mont_in;
 import com.API_Finazas.app.rest.Model.Model_user;
 import com.API_Finazas.app.rest.Model.Model_mont_alm;
-import com.API_Finazas.app.rest.Repository.Repository;
+import com.API_Finazas.app.rest.Repository.Repository_ingre;
 import com.API_Finazas.app.rest.Repository.Repository_mont_alm;
 import com.API_Finazas.app.rest.Repository.Repository_mont_ini;
 import com.API_Finazas.app.rest.Repository.Repository_user;
@@ -19,14 +19,14 @@ import java.util.List;
 @RestController
 @CrossOrigin
 public class Controller {
-    private Repository repository;
+    private Repository_ingre repositoryIngre;
     private Repository_user repository_user;
     private Repository_mont_ini repository_mont_ini;
     private Repository_mont_alm repository_mont_alm;
 
     @Autowired
-    public Controller(Repository repository, Repository_user repository_user, Repository_mont_ini repository_mont_ini, Repository_mont_alm repository_mont_alm) {
-        this.repository = repository;
+    public Controller(Repository_ingre repositoryIngre, Repository_user repository_user, Repository_mont_ini repository_mont_ini, Repository_mont_alm repository_mont_alm) {
+        this.repositoryIngre = repositoryIngre;
         this.repository_user = repository_user;
         this.repository_mont_ini = repository_mont_ini;
         this.repository_mont_alm = repository_mont_alm;
@@ -45,22 +45,29 @@ public class Controller {
 
         List<Model_user> users = repository_user.findByEmail(email);
 
-        if (modelUser.getPassword().equals(modelUser.getConfirmPassword()) && id_user != 0)  {
-            repository_user.save(modelUser);
-            id_user = modelUser.getId();
-            email_user = modelUser.getEmail();
-            user_name = modelUser.getName();
-            System.out.println("Ide: " + id_user);
-            System.out.println(modelUser.getName());
-            System.out.println(modelUser.getLastname());
-            System.out.println(email_user);
-            System.out.println(modelUser.getPassword());
-            System.out.println(modelUser.getConfirmPassword());
-            return ResponseEntity.ok("Usuario registrado");
+        if (modelUser.getPassword().equals(modelUser.getConfirmPassword()) && id_user == 0) {
+            try {
+                repository_user.save(modelUser);
+                id_user = modelUser.getId();
+                email_user = modelUser.getEmail();
+                user_name = modelUser.getName();
+                System.out.println("Ide: " + id_user);
+                System.out.println(modelUser.getName());
+                System.out.println(modelUser.getLastname());
+                System.out.println(email_user);
+                System.out.println(modelUser.getPassword());
+                System.out.println(modelUser.getConfirmPassword());
+                return ResponseEntity.ok("Usuario registrado");
+            } catch (Exception e) {
+                // Manejar la excepción e imprimir detalles del error
+                e.printStackTrace();
+                return ResponseEntity.badRequest().body("Error al registrar el usuario: " + e.getMessage());
+            }
         } else {
-            return ResponseEntity.badRequest().body("Las contraseñas no coinciden");
+            return ResponseEntity.badRequest().body("Las contraseñas no coinciden o id_user es igual a 0");
         }
     }
+
 
     @PostMapping(value = "/login")
     public ResponseEntity<Object> login(@RequestBody Model_user modelUser) {
@@ -179,8 +186,6 @@ public class Controller {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No actualizado");
         }
     }
-
-
     @DeleteMapping(value="/borrar_valor_meta/{id}")
     public ResponseEntity<Object> borrarValorMeta(@PathVariable long id){
         Model_mont_in deletedModel_mont_in = repository_mont_ini.findById((int) id).orElse(null);
@@ -191,13 +196,11 @@ public class Controller {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
         }
     }
-
-
     @GetMapping(value = "/traer_valor_meta") 
     public List<Model_mont_in> traerValorMeta(){
         if (id_user != 0) {
-            //return repository_mont_ini.findModelsMetaByUserId(id_user);
-            return repository_mont_ini.findAll();
+            return repository_mont_ini.findModelsMetaByUserId(id_user);
+            //return repository_mont_ini.findAll();
 
         } else {
             return Collections.emptyList();
@@ -224,9 +227,8 @@ public class Controller {
        public List<Model_mont_alm> traerCierre(){
            if (id_user != 0) {
             
-            ///   return repository_mont_alm.findModelsCierreByUserId(id_user);
-               return repository_mont_alm.findAll();
-
+              //return repository_mont_alm.findModelsCierreByUserId(id_user);
+             return repository_mont_alm.findAll();
 
            } else {
         
@@ -247,21 +249,21 @@ public class Controller {
     //Cargar detalle
 
     @PostMapping(value="/guardar")
-    public ResponseEntity<Object> guardarIngre(@RequestBody Model model) {
+    public ResponseEntity<Object> guardarIngre(@RequestBody Model_ingre modelIngre) {
         // Realizar el casting y transformación a String
 
         if (id_user != 0) {
              // Asignar el ID del usuario al modelo de entrada
-            String categoria = model.getCategoria() != null ? String.valueOf(model.getCategoria()) : "N/A";
-            String fecha = model.getFecha() != null ? model.getFecha().toString() : "N/A";
-            String hora = model.getHora() != null ? model.getHora().toString() : "N/A";
+            String categoria = modelIngre.getCategoria() != null ? String.valueOf(modelIngre.getCategoria()) : "N/A";
+            String fecha = modelIngre.getFecha() != null ? modelIngre.getFecha().toString() : "N/A";
+            String hora = modelIngre.getHora() != null ? modelIngre.getHora().toString() : "N/A";
 
             // Imprimir los valores transformados
             System.out.println("Categoría: " + categoria);
             System.out.println("Fecha: " + fecha);
             System.out.println("Hora: " + hora);
-            model.setUser_id(id_user);
-            repository.save(model);
+            modelIngre.setUser_id(id_user);
+            repositoryIngre.save(modelIngre);
             return ResponseEntity.ok("Guardado");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
@@ -269,17 +271,17 @@ public class Controller {
     }
 
     @PutMapping(value="/actualizar/{id}")
-    public ResponseEntity<Object> actualizarIngre(@PathVariable long id, @RequestBody Model model){
-        Model updatedModel = repository.findById((int) id).orElse(null);
-        if (updatedModel != null) {
-            updatedModel.setProducto(model.getProducto());
-            updatedModel.setCategoria(model.getCategoria());
-            updatedModel.setSubcategoria(model.getSubcategoria());
-            updatedModel.setValor(model.getValor());
-            updatedModel.setFecha(model.getFecha());
-            updatedModel.setHora(model.getHora());
-            repository.save(updatedModel);
-            return ResponseEntity.ok(updatedModel);
+    public ResponseEntity<Object> actualizarIngre(@PathVariable long id, @RequestBody Model_ingre modelIngre){
+        Model_ingre updatedModelIngre = repositoryIngre.findById((int) id).orElse(null);
+        if (updatedModelIngre != null) {
+            updatedModelIngre.setProducto(modelIngre.getProducto());
+            updatedModelIngre.setCategoria(modelIngre.getCategoria());
+            updatedModelIngre.setSubcategoria(modelIngre.getSubcategoria());
+            updatedModelIngre.setValor(modelIngre.getValor());
+            updatedModelIngre.setFecha(modelIngre.getFecha());
+            updatedModelIngre.setHora(modelIngre.getHora());
+            repositoryIngre.save(updatedModelIngre);
+            return ResponseEntity.ok(updatedModelIngre);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No actualizado");
         }
@@ -287,9 +289,9 @@ public class Controller {
 
     @DeleteMapping(value="/borrar/{id}")
     public ResponseEntity<Object> borrarIngre(@PathVariable long id){
-        Model deletedModel = repository.findById((int) id).orElse(null);
-        if (deletedModel != null) {
-            repository.delete(deletedModel);
+        Model_ingre deletedModelIngre = repositoryIngre.findById((int) id).orElse(null);
+        if (deletedModelIngre != null) {
+            repositoryIngre.delete(deletedModelIngre);
             return ResponseEntity.ok("Borrado");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
@@ -297,10 +299,10 @@ public class Controller {
     }
 
     @GetMapping(value= "/valances")
-    public List<Model> traerValan(){
+    public List<Model_ingre> traerValan(){
     if (id_user != 0) {
         System.out.println("ID de usuario: " + id_user);
-        return repository.findModelsByUserId(id_user);
+        return repositoryIngre.findModelsByUserId(id_user);
     } else {
         return Collections.emptyList();
     }
@@ -309,10 +311,10 @@ public class Controller {
 
 
     @GetMapping("/total-valor-alimentos")
-    public ResponseEntity<List<Model>> obtenerTotalValorAlimen() {
+    public ResponseEntity<List<Model_ingre>> obtenerTotalValorAlimen() {
         if (id_user != 0) {
-            List<Model> totalValorAlimentos;
-            totalValorAlimentos = repository.sumarValoresPorCategoriaAndUserId("Alimentacion", id_user);
+            List<Model_ingre> totalValorAlimentos;
+            totalValorAlimentos = repositoryIngre.sumarValoresPorCategoriaAndUserId("Alimentacion", id_user);
             return ResponseEntity.ok(totalValorAlimentos);
         } else {
             // Manejo de usuario no autenticado
@@ -327,7 +329,7 @@ public class Controller {
     /*@GetMapping("/total-valor-servicios")
     public Double obtenerTotalValorServi() {
         if (id_user != 0) {
-        Double totalValorServicios = repository.sumarValoresPorCategoriaAndUserId("Servicios" , id_user);
+        Double totalValorServicios = repositoryIngre.sumarValoresPorCategoriaAndUserId("Servicios" , id_user);
         return totalValorServicios != null ? totalValorServicios : 0.0;
         } else { return 0.0;}
     }
@@ -335,7 +337,7 @@ public class Controller {
     @GetMapping("/total-valor-otros")
     public Double obtenerTotalValorotros() {
             if (id_user != 0) {
-                Double totalValorOtros = repository.sumarValoresPorCategoriaAndUserId("Otros" ,   id_user);
+                Double totalValorOtros = repositoryIngre.sumarValoresPorCategoriaAndUserId("Otros" ,   id_user);
                 return totalValorOtros != null ? totalValorOtros : 0.0;
             } else { return 0.0;
             }
@@ -344,7 +346,7 @@ public class Controller {
     @GetMapping("/total-valor-transporte")
     public Double obtenerTotalValorTraspor() {
         if (id_user != 0) {
-            Double totalValorTransporte = repository.sumarValoresPorCategoriaAndUserId("Transporte" ,   id_user);
+            Double totalValorTransporte = repositoryIngre.sumarValoresPorCategoriaAndUserId("Transporte" ,   id_user);
             return totalValorTransporte != null ? totalValorTransporte : 0.0;
         } else { return 0.0; }
     }
@@ -352,7 +354,7 @@ public class Controller {
     @GetMapping("/total-valor-salud")
     public Double obtenerTotalValorSalud() {
         if (id_user != 0) {
-         Double totalValorSalud = repository.sumarValoresPorCategoriaAndUserId("Salud" ,  id_user);
+         Double totalValorSalud = repositoryIngre.sumarValoresPorCategoriaAndUserId("Salud" ,  id_user);
          return totalValorSalud != null ? totalValorSalud : 0.0;
         } else { return 0.0;}
     }
@@ -360,7 +362,7 @@ public class Controller {
     @GetMapping("/total-valor-higiene")
     public Double obtenerTotalValorHigie() {
         if (id_user != 0) {
-         Double totalValorHigiene = repository.sumarValoresPorCategoriaAndUserId("Higiene" ,   id_user);
+         Double totalValorHigiene = repositoryIngre.sumarValoresPorCategoriaAndUserId("Higiene" ,   id_user);
          return totalValorHigiene != null ? totalValorHigiene : 0.0;
         } else { return 0.0; }
     }

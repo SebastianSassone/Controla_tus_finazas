@@ -3,7 +3,7 @@ package com.API_Finazas.app.rest.Model;
 import javax.persistence.*;
 @Entity
 @Table(schema = "ingresotabla")
-public class Model extends Model_mont_alm {
+public class Model_ingre extends Model_mont_alm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
