@@ -58,7 +58,7 @@ anychart.onDocumentReady(function () {
 
 
 
-//Filtrar datos mas for each
+//Filtrar datos mas for each falta actualizar las funciones
 
   function sumarValoresPorFecha(data) {
   const mesActual = new Date().getMonth() + 1;
