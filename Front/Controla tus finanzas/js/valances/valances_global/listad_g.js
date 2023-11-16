@@ -46,7 +46,7 @@ function filtrarMes(data, mesSeleccionado) {
 
 async function agregarDetalle() {
   try {
-    const response = await fetch('http://localhost:4000/valances');
+    const response = await fetch('http://localhost:4000/valances_ingreso');
     if (!response.ok) {
       throw new Error('Error al obtener los datos.');
     }

@@ -248,7 +248,7 @@ public class Controller {
 
     //Cargar detalle
 
-    @PostMapping(value="/guardar")
+    @PostMapping(value="/guardar_ingreso")
     public ResponseEntity<Object> guardarIngre(@RequestBody Model_ingre modelIngre) {
         // Realizar el casting y transformación a String
 
@@ -270,7 +270,7 @@ public class Controller {
         }
     }
 
-    @PutMapping(value="/actualizar/{id}")
+    @PutMapping(value="/actualizar_ingreso/{id}")
     public ResponseEntity<Object> actualizarIngre(@PathVariable long id, @RequestBody Model_ingre modelIngre){
         Model_ingre updatedModelIngre = repositoryIngre.findById((int) id).orElse(null);
         if (updatedModelIngre != null) {
@@ -287,7 +287,7 @@ public class Controller {
         }
     }
 
-    @DeleteMapping(value="/borrar/{id}")
+    @DeleteMapping(value="/borrar_ingreso/{id}")
     public ResponseEntity<Object> borrarIngre(@PathVariable long id){
         Model_ingre deletedModelIngre = repositoryIngre.findById((int) id).orElse(null);
         if (deletedModelIngre != null) {
@@ -298,7 +298,7 @@ public class Controller {
         }
     }
 
-    @GetMapping(value= "/valances")
+    @GetMapping(value= "/valances_ingreso")
     public List<Model_ingre> traerValan(){
     if (id_user != 0) {
         System.out.println("ID de usuario: " + id_user);

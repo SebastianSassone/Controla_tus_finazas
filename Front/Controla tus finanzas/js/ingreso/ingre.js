@@ -33,7 +33,7 @@ const section_detalle = document.getElementById('section_detalle');
    
      try {
        const noteData = {producto, categoria, subcategoria, valor, fecha, hora};
-       const response = await fetch('http://localhost:4000/guardar', {
+       const response = await fetch('http://localhost:4000/guardar_ingreso', {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
          body: JSON.stringify(noteData),

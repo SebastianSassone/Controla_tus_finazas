@@ -3,7 +3,7 @@ let isGrayRow = false;
 
 async function agregarDetalle() {
   try {
-    const response = await fetch('http://localhost:4000/valances');
+    const response = await fetch('http://localhost:4000/valances_ingreso');
     if (!response.ok) {
       throw new Error('Error al obtener los datos.');
     }
@@ -153,7 +153,7 @@ async function guardarEdicion(btn) {
     let fecha = cells[4].innerText;
     let hora = cells[5].innerText;
 
-    const response = await fetch(`http://localhost:4000/actualizar/${id}`, {
+    const response = await fetch(`http://localhost:4000/actualizar_ingreso/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({producto, categoria, subcategoria, valor, fecha, hora}),
@@ -175,7 +175,7 @@ async function eliminarDetalle(btn) {
   let id = row.dataset.id;
 
   try {
-    const response = await fetch(`http://localhost:4000/borrar/${id}`, {
+    const response = await fetch(`http://localhost:4000/borrar_ingreso/${id}`, {
       method: 'DELETE',
     });
 
