@@ -310,15 +310,67 @@ public class Controller {
 
 
 
-    @GetMapping("/total-valor-alimentos")
-    public ResponseEntity<List<Model_ingre>> obtenerTotalValorAlimen() {
+    @GetMapping("/total_alimentos")
+    public ResponseEntity<List<Model_ingre>> obtenerTotalAlimen() {
         if (id_user != 0) {
             List<Model_ingre> totalValorAlimentos;
-            totalValorAlimentos = repositoryIngre.sumarValoresPorCategoriaAndUserId("Alimentacion", id_user);
+            totalValorAlimentos = repositoryIngre.obtenerElementosPorCategoriaAndUserId("Alimentacion", id_user);
             return ResponseEntity.ok(totalValorAlimentos);
-        } else {
-            // Manejo de usuario no autenticado
-            // Puedes lanzar una excepción, devolver un mensaje de error o cualquier otra acción apropiada
+        } else {       
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("/total_servicios")
+    public ResponseEntity<List<Model_ingre>> TotalServi() {
+        if (id_user != 0) {
+            List<Model_ingre> totalServicios;
+            totalServicios = repositoryIngre.obtenerElementosPorCategoriaAndUserId("Servicios", id_user);
+            return ResponseEntity.ok(totalServicios);
+        } else {       
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/total_otros")
+    public ResponseEntity<List<Model_ingre>> Totalotros() {
+        if (id_user != 0) {
+            List<Model_ingre> totalOtros;
+            totalOtros = repositoryIngre.obtenerElementosPorCategoriaAndUserId("Otros", id_user);
+            return ResponseEntity.ok(totalOtros);
+        } else {       
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/total_transporte")
+    public ResponseEntity<List<Model_ingre>> TotalTraspor() {
+        if (id_user != 0) {
+            List<Model_ingre> totalTransporte;
+            totalTransporte = repositoryIngre.obtenerElementosPorCategoriaAndUserId("Transporte", id_user);
+            return ResponseEntity.ok(totalTransporte);
+        } else {       
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/total_salud")
+    public ResponseEntity<List<Model_ingre>> TotalSalud() {
+        if (id_user != 0) {
+            List<Model_ingre> totalSalud;
+            totalSalud = repositoryIngre.obtenerElementosPorCategoriaAndUserId("Salud", id_user);
+            return ResponseEntity.ok(totalSalud);
+        } else {       
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/total_higiene")
+    public ResponseEntity<List<Model_ingre>> TotalHigie() {
+        if (id_user != 0) {
+            List<Model_ingre> totalHigiene;
+            totalHigiene = repositoryIngre.obtenerElementosPorCategoriaAndUserId("Higiene", id_user);
+            return ResponseEntity.ok(totalHigiene);
+        } else {       
             return ResponseEntity.notFound().build();
         }
     }
