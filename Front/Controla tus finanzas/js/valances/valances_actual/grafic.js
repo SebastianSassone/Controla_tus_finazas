@@ -62,9 +62,7 @@ anychart.onDocumentReady(function () {
 
 
 function sumarValoresPorFecha(data) {
-
-  let total = 0;
-
+  
   const fechaActual = new Date();
   const mesActual = fechaActual.getMonth() + 1;
 
@@ -72,17 +70,15 @@ function sumarValoresPorFecha(data) {
     const fechaParts = entry.fecha.split('/');
     if (fechaParts.length === 3) {
       const mes = parseInt(fechaParts[1], 10);
-     if(mes === mesActual;){
-  
-        data.forEach(entry => {
-         total += entry.valor;
-         console.log(entry.valor);})
-    
-      return total;}
-        }
-
+      if (mes === mesActual) {
+        total += entry.valor;
+      }
+    }
   });
+
+  return total;
 }
+
 
 
 
