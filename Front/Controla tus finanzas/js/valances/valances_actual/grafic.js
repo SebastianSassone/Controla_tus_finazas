@@ -72,21 +72,19 @@ function sumarValoresPorFecha(data) {
     const fechaParts = entry.fecha.split('/');
     if (fechaParts.length === 3) {
       const mes = parseInt(fechaParts[1], 10);
-      return mes === mesActual;
-    }
-    return false;
+     if(mes === mesActual;){
   
-
-  resultadosFiltrados.forEach(entry => {
-      total += entry.valor;
-      console.log(entry.valor);
+        data.forEach(entry => {
+         total += entry.valor;
+         console.log(entry.valor);})
     
+      return total;}
+        }
+
   });
-
-  return total;
-
-});
 }
+
+
 
 
 async function valorAlim() {
@@ -100,19 +98,14 @@ async function valorAlim() {
 
     console.log(alimentacionData);
 
-    const resultadosFiltrados = sumarValoresPorFecha(alimentacionData, mesSeleccionado);
+    const resultadosFiltrados = sumarValoresPorFecha(alimentacionData)
 
-    if (resultadosFiltrados > 0) {
-      // chartdata.push(["Alimentacion", resultadosFiltrados]);
-        console.log("Alimentacion", resultadosFiltrados);
+    console.log("Alimentacion", resultadosFiltrados);
     
       // Sumar los valores filtrados
       total_gastos += resultadosFiltrados;
     
       longCharData++;
-    } else {
-      console.log('No hay datos para el mes seleccionado:', mesSeleccionado);
-    }
 
   } catch (error) {
     console.error('Error:', error);
@@ -132,7 +125,7 @@ async function valorAlim() {
        
 
 
-       const resultadosFiltrados = sumarValoresPorFecha(serviciosData, mesSeleccionado);
+       const resultadosFiltrados = sumarValoresPorFecha(serviciosData)
 
       chartdata.push(["Servicios", resultadosFiltrados]);
 
@@ -159,7 +152,7 @@ async function valorAlim() {
        
 
 
-       const resultadosFiltrados = sumarValoresPorFecha(higieneData, mesSeleccionado);
+       const resultadosFiltrados = sumarValoresPorFecha(higieneData)
 
       chartdata.push(["Higiene", resultadosFiltrados]);
 
@@ -186,7 +179,7 @@ async function valorAlim() {
        
 
 
-       const resultadosFiltrados = sumarValoresPorFecha(saludData, mesSeleccionado);
+       const resultadosFiltrados = sumarValoresPorFecha(saludData)
 
       chartdata.push(["Salud", resultadosFiltrados]);
 
@@ -213,7 +206,7 @@ async function valorAlim() {
        
 
 
-       const resultadosFiltrados = sumarValoresPorFecha(transporteData, mesSeleccionado);
+       const resultadosFiltrados = sumarValoresPorFecha(transporteData)
 
       chartdata.push(["Transporte", resultadosFiltrados]);
 
@@ -240,7 +233,7 @@ async function valorAlim() {
        
 
 
-       const resultadosFiltrados = sumarValoresPorFecha(otrosData, mesSeleccionado);
+       const resultadosFiltrados = sumarValoresPorFecha(otrosData)
 
       chartdata.push(["Otros", resultadosFiltrados]);
 
