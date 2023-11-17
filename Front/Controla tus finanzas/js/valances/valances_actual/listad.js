@@ -10,10 +10,8 @@ async function agregarDetalle() {
 
     const data = await response.json();
 
-   
- 
     const fechaActual = new Date();
-    const mesActual = fechaActual.getMonth() + 1; // El mes actual es base 0, así que sumamos 1.
+    const mesActual = fechaActual.getMonth() + 1;
 
     const resultadosFiltrados = data.filter(entry => {
       const fechaParts = entry.fecha.split('/');
