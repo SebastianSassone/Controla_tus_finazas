@@ -66,89 +66,74 @@
   </nav>
 </head>
 <body>
-    <section class="section_registro">
-		<form id="form_registro" action="" method="POST" class="form">
-	
-			<label for="nombre">Nombre</label>
-			<input type="text" name="name" id="name" placeholder="Nombre" minlength="4" required>
-			
-			<label for="apellido">Apellido</label>
-			<input type="text" name="lastname" id="lastname" placeholder="Apellido"  minlength="4" required>
-	
+    <section class="section_ini_sec">
+		<form id="form_in_sec" action="" method="post" class="form">
+
 			<label for="email">Email</label>
 			<input type="email" name="email" id="email" placeholder="Email@example.com" minlength="10" required>
 
-			<label for="contraseña1">Contraseña</label>
-			<input type="password" name="password" id="password" minlength="8" required> 
-			<input type="checkbox" id="viewPasswordReg1">Mostrar contraseña</input>
+			<label for="contraseña">Contraseña</label>
+			<input type="password" class="login" name="contraseña" id="password" minlength="8" required> 
+		        <input type="checkbox" id="viewPasswordLogin">Mostrar contraseña</input>
 
-			<label for="contraseña2">Repetir Contraseña</label>
-			<input type="password" name="confirmPassword" id="confirmPassword" minlength="8" required>
-			<input type="checkbox" id="viewPasswordReg2">Mostrar contraseña</input>
-			
+		<button id="button_form_in" type="submit" name="button" class="btn primary full, button_form_in">Iniciar sesion</button>
+        </form>
+    </section>    
+    <footer class="footer-distributed">
 
-		<button id="button_form" type="submit" name="button">Registrarse</button>
-	     
-		Ya estas registrado <a href="/ini_sec">Inicia sesion</a>
-	</form>
-</section>
-<footer class="footer-distributed">
+        <div class="footer-left">
+            <div class="pag_logo">
+                <p class="p_verde">CONTROLA</p>
+                <p class="p_negro">TUS</p>
+                <p class="p_verde">FINANZAS</p>
+            </div>   
 
-    <div class="footer-left">
-        <div class="pag_logo">
-            <p class="p_verde">CONTROLA</p>
-            <p class="p_negro">TUS</p>
-            <p class="p_verde">FINANZAS</p>
-        </div>   
+            <p class="footer-links">
+                <a href="index.html">Inicio</a>
+                |
+                <a href="#">About</a>
+                |
+                <a href="#">Contact</a>
+                |
+                <a href="#">Blog</a>
+            </p>
 
-        <p class="footer-links">
-            <a href="index.html">Inicio</a>
-            |
-            <a href="#">About</a>
-            |
-            <a href="#">Contact</a>
-            |
-            <a href="#">Blog</a>
-        </p>
-
-        <p class="footer-company-name">Copyright © 2023 <strong>Controla tus finanzas</strong></p>
-    </div>
-
-    <div class="footer-center">
-        <div>
-            <i class="fa fa-map-marker"></i>
-            <p><span>Buenos Aires</span>
-                CABA</p>
+            <p class="footer-company-name">Copyright © 2023 <strong>Controla tus finanzas</strong></p>
         </div>
 
-        <div>
-            <i class="fa fa-phone"></i>
-            <p>+54 223 567896</p>
+        <div class="footer-center">
+            <div>
+                <i class="fa fa-map-marker"></i>
+                <p><span>Buenos Aires</span>
+                    CABA</p>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <p>+54 223 567896</p>
+            </div>
+            <div>
+                <i class="fa fa-envelope"></i>
+                <p><a href="mailto:sagar00001.co@gmail.com">controlatusfinanzas@gmail.com</a></p>
+            </div>
         </div>
-        <div>
-            <i class="fa fa-envelope"></i>
-            <p><a href="mailto:sagar00001.co@gmail.com">controlatusfinanzas@gmail.com</a></p>
+        <div class="footer-right">
+            <p class="footer-company-about">
+                <span>Sobre nuestra aplicacion</span>
+                <strong>Controla tus finanzas</strong> 
+                Es una pagina web destinada al control de nuestras finanzas 
+                personales para obtener mejores resultados en la administracion de la misma.
+            </p>
+            <div class="footer-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+            </div>
         </div>
-    </div>
-    <div class="footer-right">
-        <p class="footer-company-about">
-            <span>Sobre nuestra aplicacion</span>
-            <strong>Controla tus finanzas</strong> 
-            Es una pagina web destinada al control de nuestras finanzas 
-            personales para obtener mejores resultados en la administracion de la misma.
-        </p>
-        <div class="footer-icons">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-youtube"></i></a>
-        </div>
-    </div>
-</footer>
+    </footer>
 </body>
 <script src="../js/funcionalidades/script.js"></script>
-<script src="../js/funcionalidades/mostrar_clave.js"></script>
-<script src="../js/cuenta/registro.js"></script>
-
+<script src="../js/cuenta/iniciar_sesion/iniciar_sec.js"></script>
 </html>
