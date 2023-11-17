@@ -10,20 +10,21 @@ async function agregarDetalle() {
 
     const data = await response.json();
 
-    // const mesActual = new Date().getMonth() + 1; // El mes actual es base 0, así que sumamos 1.
+   
+ 
+    const fechaActual = new Date();
+    const mesActual = fechaActual.getMonth() + 1; // El mes actual es base 0, así que sumamos 1.
 
-    // data.forEach((entry) => {
-    //   const fechaParts = entry.fecha.split('/');
-    //   if (fechaParts.length === 3) {
-        const mesActual = new Date().getMonth() + 1;
+    const resultadosFiltrados = data.filter(entry => {
+      const fechaParts = entry.fecha.split('/');
+      if (fechaParts.length === 3) {
+        const mes = parseInt(fechaParts[1], 10);
+        return mes === mesActual;
+      }
+      return false;
+    });
 
-        data.forEach(entry => {
-        const fecha = new Date(entry.fecha);
-        const mes = fecha.getMonth() + 1; // getMonth() devuelve el mes en base 0 (enero es 0), por eso sumamos 1
-
-        if (mes === mesActual) {
-        const mesValance = parseInt(fechaParts[1], 10);
-        if (mesValance === mesActual) {
+       resultadosFiltrados.forEach((entry) => {
           let row = document.createElement("tr");
           row.dataset.id = entry.id;
           row.innerHTML =
@@ -49,10 +50,8 @@ async function agregarDetalle() {
           tbody.appendChild(row);
 
           isGrayRow = !isGrayRow;
-        }
-      }
-    });
-  } catch (error) {
+        });
+      } catch (error) {
     console.error('Error:', error);
   }
 }

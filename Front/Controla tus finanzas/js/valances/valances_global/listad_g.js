@@ -63,8 +63,8 @@ async function agregarDetalle() {
 }
 
 // Agregar un event listener para el cambio en el select.
-const select = document.getElementById('select_mes');
-select.addEventListener('change', () => {
+const selection = document.getElementById('select_mes');
+selection.addEventListener('change', () => {
 agregarDetalle();
 console.log(select.value);
 });

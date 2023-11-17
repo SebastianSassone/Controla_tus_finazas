@@ -33,16 +33,17 @@ eliminarCuentaBtn.addEventListener('click', () => {
 // Función para cargar los datos desde la API usando Fetch
 async function cargarDatosDesdeAPI() {
     try {
-        const response = await fetch('http://localhost:4000/datos_cuenta'); // Ruta de lectura de cuenta
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts'); // Ruta de lectura de cuenta
+        // const response = await fetch('http://localhost:4000/datos_cuenta'); // Ruta de lectura de cuenta
         const data = await response.json();
         // Actualiza los elementos HTML con los datos de la cuenta
 
             // Actualiza los elementos HTML con los datos de la cuenta
             data.forEach((entry) => {
                 
-                nombreElement.innerHTML = entry.name; 
-                apellidoElement.innerHTML = entry.lastname;
-                emailElement.innerHTML = entry.email; 
+                nombreElement.innerHTML = entry.title; 
+                // apellidoElement.innerHTML = entry.lastname;
+                // emailElement.innerHTML = entry.email; 
 
         //    id = entry.id;
            console.log(id);
