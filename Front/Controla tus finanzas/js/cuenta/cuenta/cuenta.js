@@ -36,9 +36,7 @@ async function cargarDatosDesdeAPI() {
         const response = await fetch('https://jsonplaceholder.typicode.com/posts'); // Ruta de lectura de cuenta
         // const response = await fetch('http://localhost:4000/datos_cuenta'); // Ruta de lectura de cuenta
         const data = await response.json();
-        // Actualiza los elementos HTML con los datos de la cuenta
-
-            // Actualiza los elementos HTML con los datos de la cuenta
+        
             data.forEach((entry) => {
                 
                 nombreElement.innerHTML = entry.title; 
@@ -61,7 +59,6 @@ async function cargarDatosDesdeAPI() {
 
 // Función para crear los elementos input dinámicos
 function crearInputsDinamicos() {
-    // Crea elementos input para cada campo de edición
     let nuevoNombreInput = document.createElement('input');
     nuevoNombreInput.type = 'text';
     nuevoNombreInput.value = nombreElement.textContent;
@@ -74,40 +71,47 @@ function crearInputsDinamicos() {
     nuevoEmailInput.type = 'email';
     nuevoEmailInput.value = emailElement.textContent;
 
-    // Reemplaza los elementos HTML existentes con los inputs dinámicos
-    nombreElement.replaceWith(nuevoNombreInput);
-    apellidoElement.replaceWith(nuevoApellidoInput);
-    emailElement.replaceWith(nuevoEmailInput);
+    // nombreElement.replaceWith(nuevoNombreInput);
+    // apellidoElement.replaceWith(nuevoApellidoInput);
+    // emailElement.replaceWith(nuevoEmailInput);
+
+    nombreElement.style.display = 'none';
+    apellidoElement.style.display = 'none';
+    emailElement.style.display = 'none';
 }
 
 // Función para habilitar el modo de edición
 function habilitarEdicion() {
     modoEdicion = true;
-    // Oculta el botón de editar
+
     document.getElementById('editarBtn').style.display = 'none';
-    // Muestra el botón de guardar y cancelar
+
     document.getElementById('guardarBtn').style.display = 'inline-block';
-    // Llama a la función para crear los inputs dinámicos
+
     crearInputsDinamicos();
 }
 
 // Función para guardar los cambios y deshabilitar el modo de edición
 async function guardarCambios() {
     modoEdicion = false;
-    // Muestra el botón de editar
+
     document.getElementById('editarBtn').style.display = 'inline-block';
-    // Oculta el botón de guardar y cancelar
+  
     document.getElementById('guardarBtn').style.display = 'none';
-    // Deshabilita la edición de los campos
+ 
+    nuevoNombreInput.style.display = 'none'
+    nuevoApellidoInput.style.display = 'none'
+    nuevoEmailInput.style.display = 'none'
+
     nombreElement.readOnly = true;
     apellidoElement.readOnly = true;
     emailElement.readOnly = true;
-    // Obtener los nuevos valores editados
+
     const nuevoNombre = nombreElement.value;
     const nuevoApellido = apellidoElement.value;
     const nuevoEmail = emailElement.value;
     try {
-        // Realiza una solicitud para actualizar los cambios en la API (Debes implementar esta función)
+      
         await fetch(`http://localhost:4000/actualizar_user/${id}`, {
             method: 'PUT', // Usar el método PUT para actualizar
             headers: {
@@ -115,7 +119,7 @@ async function guardarCambios() {
             },
             body: JSON.stringify({ nombre: nuevoNombre, apellido: nuevoApellido, email: nuevoEmail }),
         });
-        // Recargar los datos actualizados desde la API
+    
         cargarDatosDesdeAPI();
     } catch (error) {
         console.error('Error al guardar los cambios:', error);
@@ -127,11 +131,9 @@ async function eliminarcuenta() {
       const response = await fetch(`http://localhost:4000/eliminar_cuenta/${id}`, {
         method: 'DELETE',
       });
-  
       if (!response.ok) {
         throw new Error('Error al eliminar los datos.');
       }
-  
       alert('Datos eliminados exitosamente.');
       tbody.removeChild(row);
     } catch (error) {
@@ -152,14 +154,12 @@ document.getElementById('cerrarSesionBtn').addEventListener('click', function() 
     })
     .then(response => {
         if (response.status === 200) {
-            // La sesión se cerró exitosamente
-            console.log('Sesión cerrada exitosamente');
-            // Puedes redirigir al usuario a la página de inicio de sesión u otra página
+         
+        console.log('Sesión cerrada exitosamente');
+
         } else if (response.status === 401) {
-            // No hay sesión activa para cerrar
             console.log('No hay sesión activa para cerrar');
         } else {
-            // Manejar otros códigos de estado según sea necesario
             console.error('Error al cerrar sesión');
         }
     })

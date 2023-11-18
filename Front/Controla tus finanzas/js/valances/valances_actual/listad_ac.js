@@ -54,47 +54,6 @@ async function agregarDetalle() {
   }
 }
 
-
-// async function agregarDetalle() {
-//   try {
-//     const response = await fetch('http://localhost:4000/valances');
-//     if (!response.ok) {
-//       throw new Error('Error al obtener los datos.');
-//     }
-
-//     const data = await response.json();
-
-//     data.forEach((entry) => {
-//       let row = document.createElement("tr");
-//       row.dataset.id = entry.id;
-//       row.innerHTML =
-//         "<td>" + entry.producto + "</td>" +
-//         "<td>" + entry.categoria + "</td>" +
-//         "<td>" + entry.subcategoria + "</td>" +
-//         "<td>" + entry.valor + "</td>" +
-//         "<td>" + entry.fecha + "</td>" +
-//         "<td>" + entry.hora + "</td>" +
-//         "<td class='actions'>" +
-//         "<div class='edit-btn' onclick='editarDetalle(this)'><div class='popup-text'>Editar</div></div>" +
-//         "<div class='delete-btn' onclick='eliminarDetalle(this)'><div class='popup-text'>Borrar</div></div>" +
-//         "<div class='save-btn' onclick='guardarEdicion(this)'><div class='popup-text'>Guardar</div></div>" +
-//         "</td>";
-
-//       let saveBtn = row.querySelector(".save-btn");
-//       saveBtn.style.display = "none";
-//       if (isGrayRow) {
-//         row.classList.add("gray-row");
-//       }
-
-//       tbody.appendChild(row);
-
-//       isGrayRow = !isGrayRow;
-//     });
-//   } catch (error) {
-//     console.error('Error:', error);
-//   }
-// }
-
 async function editarDetalle(btn) {
   let row = btn.parentNode.parentNode;
   let cells = row.querySelectorAll("td:not(.actions)");
@@ -141,7 +100,6 @@ async function guardarEdicion(btn) {
   deleteBtn.style.display = "inline-block";
   saveBtn.style.display = "none";
 
-  // Código para actualizar los datos en la API utilizando fetch
   try {
     let producto = cells[0].innerText;
     let categoria = cells[1].innerText;
