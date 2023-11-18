@@ -9,7 +9,6 @@ const eliminarCuentaBtn = document.getElementById('eliminarCuenta');
 // Variable para controlar el modo de edición
 let modoEdicion = false;
 
-// Añadir eventos a botones y demas
 
 window.addEventListener("load", () => {
     cargarDatosDesdeAPI();
@@ -103,17 +102,21 @@ async function guardarCambios() {
     nuevoApellidoInput.style.display = 'none'
     nuevoEmailInput.style.display = 'none'
 
-    nombreElement.readOnly = true;
-    apellidoElement.readOnly = true;
-    emailElement.readOnly = true;
+    nombreElement.style.display = 'flex';
+    apellidoElement.style.display = 'flex';
+    emailElement.style.display = 'flex';
 
-    const nuevoNombre = nombreElement.value;
-    const nuevoApellido = apellidoElement.value;
-    const nuevoEmail = emailElement.value;
+    nombreElement.innerHTML = nuevoNombreInput.value
+    apellidoElement.innerHTML = nuevoApellidoInput.value
+    emailElement.innerHTML = nuevoEmailInput.value
+
+    const nuevoNombre = nuevoNombreInput.value
+    const nuevoApellido = nuevoApellidoInput.value
+    const nuevoEmail = nuevoEmailInput.value
     try {
       
         await fetch(`http://localhost:4000/actualizar_user/${id}`, {
-            method: 'PUT', // Usar el método PUT para actualizar
+            method: 'PUT', 
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -145,7 +148,6 @@ async function eliminarcuenta() {
 // Cerrar sesion
 
 document.getElementById('cerrarSesionBtn').addEventListener('click', function() {
-    // Realizar una solicitud Fetch para cerrar la sesión
     fetch('http://localhost:4000/cerrar_sesion', {
         method: 'GET',
         headers: {
