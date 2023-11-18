@@ -17,7 +17,7 @@ async function waitForCounterToReach(targetCount) {
 }
 
 waitForCounterToReach(6)
-select.addEventListener('change', () => {
+window.addEventListener('load', () => {
   valorAlim();
   valorServi();
   valorHigie();
@@ -79,10 +79,6 @@ function sumarValoresPorFecha(data) {
   return total;
 }
 
-
-
-
-
 async function valorAlim() {
   try {
     const response = await fetch('http://localhost:4000/total_alimentos');
@@ -117,10 +113,6 @@ async function valorAlim() {
   
       const serviciosData = await response.json();
 
-  
-       
-
-
        const resultadosFiltrados = sumarValoresPorFecha(serviciosData)
 
       chartdata.push(["Servicios", resultadosFiltrados]);
@@ -143,10 +135,6 @@ async function valorAlim() {
       }
   
       const higieneData = await response.json();
-
-  
-       
-
 
        const resultadosFiltrados = sumarValoresPorFecha(higieneData)
 
@@ -171,11 +159,7 @@ async function valorAlim() {
   
       const saludData = await response.json();
 
-  
-       
-
-
-       const resultadosFiltrados = sumarValoresPorFecha(saludData)
+      const resultadosFiltrados = sumarValoresPorFecha(saludData)
 
       chartdata.push(["Salud", resultadosFiltrados]);
 
@@ -198,11 +182,7 @@ async function valorAlim() {
   
       const transporteData = await response.json();
 
-  
-       
-
-
-       const resultadosFiltrados = sumarValoresPorFecha(transporteData)
+      const resultadosFiltrados = sumarValoresPorFecha(transporteData)
 
       chartdata.push(["Transporte", resultadosFiltrados]);
 
@@ -225,11 +205,7 @@ async function valorAlim() {
   
       const otrosData = await response.json();
 
-  
-       
-
-
-       const resultadosFiltrados = sumarValoresPorFecha(otrosData)
+      const resultadosFiltrados = sumarValoresPorFecha(otrosData)
 
       chartdata.push(["Otros", resultadosFiltrados]);
 
