@@ -40,20 +40,19 @@ let modoEdit = false;
 //Variables para calcular meta de ahorro cumplida
 
 let mont_inicial = 0;
-
 let met_ahorro = 0;
-
-let id = 1;
+let total_gastos = 0;
+let total_ahorro = 0;
+let meta_cumplida = "";
+let id = 0;
 
 console.log(' id desde val meta  ' + id);
 
-// Obtener referencias a los elementos del formulario
 const formIngresoValores = document.getElementById('form_ingreso_valores');
-// Variables para los campos de entrada del formulario
 
-// Agregar un evento de escucha al formulario
+
 formIngresoValores.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Evitar la acción de envío predeterminada
+    event.preventDefault(); 
 
     let monto_inicial = document.getElementById('monto_inicial').value;
     let meta_ahorro = document.getElementById('meta_ahorro').value;
@@ -61,20 +60,19 @@ formIngresoValores.addEventListener('submit', async (event) => {
     try {
         const noteData = { monto_inicial, meta_ahorro};
         await fetch('http://localhost:4000/guardar_valor_meta', {
-            method: 'POST', // Usar el método POST para crear nuevos datos
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            //Toma los valores pasados desde el front como null se guardan en la base d atos desde
-            //post man no
+           
             body: JSON.stringify(noteData),
         });
 
          console.log(monto_inicial);
          console.log(meta_ahorro);
-        // Recargar y mostrar los valores actualizados desde la API
+        
         cargarYMostrarValoresDesdeAPI();
-        // Ocultar el formulario de edición
+        
         // document.getElementById('form_valores').style.display = 'none';
     } catch (error) {
         console.error('Error al guardar los datos:', error);
@@ -95,13 +93,17 @@ async function cargarYMostrarValoresDesdeAPI() {
         console.log(mont_inicial);
         console.log(met_ahorro);
            
-        if(mont_inicial || met_ahorro > 0){
+        if(mont_inicial != 0 || met_ahorro != 0){
         formIngresoValores.style.display = 'none';
-        }
+        
 
-        // Mostrar los valores
-        montoInicialMostrado.textContent = entry.valor_inicial;
+        montoInicialMostrado.textContent = entry.monto_inicial;
         metaAhorroMostrada.textContent =  entry.meta_ahorro; 
+
+        let tot_gas_in = total_gastos;
+
+        calcular_gastos(monto_inicial, meta_ahorro, tot_gas_in);
+    }
         });
     } catch (error) {
         console.error('Error al cargar los valores:', error);
@@ -109,7 +111,7 @@ async function cargarYMostrarValoresDesdeAPI() {
 }
 
 function crearInputsDinamicosValMeta() {
-    // Crea elementos input para cada campo de edición
+
     let nuevoMonto = document.createElement('input');
     nuevoMonto.type = 'text';
     nuevoMonto.value = montoInicialMostrado.textContent;
@@ -118,12 +120,12 @@ function crearInputsDinamicosValMeta() {
     nuevaMeta.type = 'text';
     nuevaMeta.value = metaAhorroMostrada.textContent;
 
-    // Reemplaza los elementos HTML existentes con los inputs dinámicos
+    
     montoInicialMostrado.replaceWith(nuevoMonto);
     metaAhorroMostrada.replaceWith(nuevaMeta);
 }
 
-// Función para habilitar el modo de edición
+
 function habilitarEdicionValMeta() {
     modoEdit = true;
     editarBt.style.display = 'none';
@@ -131,7 +133,7 @@ function habilitarEdicionValMeta() {
     guardarCambiosBt.style.display = 'inline-block';
 
    crearInputsDinamicosValMeta(); 
-    // Habilitar la edición de los campos
+    
 }
 
 // Función para guardar los cambios y deshabilitar el modo de edición
@@ -140,22 +142,22 @@ async function guardarCambiosValMeta() {
     editarBt.style.display = 'inline-block';
     eliminarBt.style.display = 'inline-block';
     guardarCambiosBt.style.display = 'none';
-    // Deshabilitar la edición de los campos
+
     montoInicialMostrado.setAttribute('readonly', true);
     metaAhorroMostrada.setAttribute('readonly', true);
-    // Obtener los valores editados
+ 
     const nuevoMontoInicial = montoInicialMostrado.value;
     const nuevaMetaAhorro = metaAhorroMostrada.value;
     try {
-        // Realiza una solicitud para actualizar los cambios en la API (Debes implementar esta función)
+        
         await fetch(`http://localhost:4000/actualizar_valor_meta/${id}`, {
-            method: 'PUT', // Usar el método PUT para actualizar
+            method: 'PUT', 
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ monto_inicial: nuevoMontoInicial, meta_ahorro: nuevaMetaAhorro }),
         });
-        // Recargar y mostrar los valores actualizados desde la API
+        
           nuevoMonto.replaceWith(montoInicialMostrado);
           nuevaMeta.replaceWith(metaAhorroMostrada);
           cargarYMostrarValoresDesdeAPI();
@@ -183,17 +185,22 @@ async function eliminarMontMeta() {
     }
   }
 
-function sumar_total_gastos(){
+function calcular_gastos(mont, met, tot_gas){
   
-        let total_gastos = 130000
+        mont_inicial = mont;
+        met_ahorro = met;
+        total_gastos = tot_gas;
 
-       if(total_gastos <= met_ahorro ){console.log('Meta de ahorro cumplida')
+       if(total_gastos <= met_ahorro ){
+        console.log('Meta de ahorro cumplida');
+          total_ahorro = mont_inicial - total_gastos;
+          meta_cumplida = "Si";
           }else{
-          console.log('Meta de ahorro no cumplida')};  
-          
-          
-          let gastos_acumulados = mont_inicial - total_gastos;
-          
+          console.log('Meta de ahorro no cumplida');
+          total_ahorro = mont_inicial - total_gastos;
+          meta_cumplida = "No";
+        };  
+                  
           console.log('El total de los gasto asta la actuidad es de ', gastos_acumulados);
   
         };

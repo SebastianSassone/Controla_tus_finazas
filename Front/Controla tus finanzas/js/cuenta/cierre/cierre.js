@@ -2,6 +2,12 @@ window.addEventListener('load', () => {
     consultarCierre();
 })
 
+monto_v = mont_inicial; 
+meta_v = met_ahorro; 
+gastos_v = total_gastos; 
+ahorro_v = total_ahorro; 
+meta_cumplida = meta_cumplida; 
+
 // Consultar cierre
 
 async function consultarCierre() {
@@ -19,10 +25,17 @@ async function consultarCierre() {
         const fechaParts = entry.fecha.split('/');
         if (fechaParts.length === 3) {
           const mesValance = fechaParts[1];
-          if (mesValance === mesActual) {
-            console.log('Fecha actual y fecha del valance son iguales:', entry.fecha);
-          } else {
-            console.log('Mes diferente:', entry.fecha);
+          if (mesValance != mesActual) {
+            let monto = document.getElementById('monto_in'); 
+            let meta = document.getElementById('met_aho'); 
+            let gastos = document.getElementById('total_gas'); 
+            let ahorro = document.getElementById('total_aho'); 
+
+            monto.value = monto_v;
+            meta.value = meta_v;
+            gastos.value = gastos_v;
+            ahorro.value = ahorro_v;
+
           }
         }
       }
@@ -42,14 +55,13 @@ let form_cierre = document.getElementById('form_cierre');
 form_cierre.addEventListener('submit', async (event) => {
     event.preventDefault(); // Evitar la acción de envío predeterminada
     
-    let monto = document.getElementById('monto_in').value; 
-    let meta = document.getElementById('met_aho').value; 
-    let gastos = document.getElementById('total_gas').value; 
-    let ahorro = document.getElementById('total_aho').value; 
+    monto = monto_v;
+    meta = meta_v;
+    gastos = gastos_v;
+    ahorro = ahorro_v;
+    fecha =  new Date().toLocaleString('es-ES', { month: 'numeric' });;
+    meta_cumplida =  meta_cumplida;
   
-    fecha = tolocaltimedate;
-    metacumplida = si-no;
-
     try {
         const noteData = {monto,  meta, gastos, ahorro, fecha, meta_cumplida};
         await fetch('http://localhost:4000/guardar_cierre', {
