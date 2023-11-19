@@ -159,6 +159,9 @@ document.getElementById('cerrarSesionBtn').addEventListener('click', function() 
          
         console.log('Sesión cerrada exitosamente');
 
+        registro_realizado = 0; 
+        sesion_en_curso = 0;
+
         } else if (response.status === 401) {
             console.log('No hay sesión activa para cerrar');
         } else {

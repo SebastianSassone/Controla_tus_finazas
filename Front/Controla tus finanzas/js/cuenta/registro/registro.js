@@ -1,6 +1,8 @@
 //Registrase
 const form_registro = document.getElementById('form_registro');
 
+let registro_realizado = 0;
+
 form_registro.addEventListener('submit', async (event) => {
      event.preventDefault();
 
@@ -33,8 +35,10 @@ form_registro.addEventListener('submit', async (event) => {
        }
       //  window.location.href = "/seccion"
       // window.location.replace("http://127.0.0.1:5500/html/cuenta.html");
-       alert('Registro realizado exitosamente.');
-       
+        alert('Registro realizado exitosamente.');
+        
+        registro_realizado = 1;
+      
      console.log(name);
      console.log(lastname);
      console.log(email);

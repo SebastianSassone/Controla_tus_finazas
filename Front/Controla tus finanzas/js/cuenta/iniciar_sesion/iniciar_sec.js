@@ -1,5 +1,7 @@
 // Iniciar sesion
 
+let sesion_en_curso = 0;
+
 const form_in_sec = document.getElementById('form_in_sec');
 
 form_in_sec.addEventListener('submit', async (event) => {
@@ -22,10 +24,12 @@ form_in_sec.addEventListener('submit', async (event) => {
     });
 
     if (!response.ok) {
-      throw new Error('Error al agregar la nota.');
+      throw new Error('Error al iniciar sesion.');
     }
 
     //window.location.replace("http://127.0.0.1:5500/html/cuenta.html");
+    sesion_en_curso = 1;
+    
     alert('Sesion iniciada');
   } catch (error) {}
 });
