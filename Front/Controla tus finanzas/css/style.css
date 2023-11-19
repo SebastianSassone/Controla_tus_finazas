@@ -869,11 +869,64 @@ background-image: url('../img/fondo_cuenta.png');
   justify-content: space-evenly;
 }
 
+.form_cierre{
+  font-size : 20px;
+}
+
+.form_cierre input{
+  border: none;
+}
+
+.form_cierre input:focus {
+  outline: none;
+	border-color: #0000;
+  border: none;
+}
+
+.button_cierre{
+  background-color: #00be0e;
+	border: 2px solid #00be0e;
+	border-radius: 4px;
+	color: #fff;
+	display: block;
+	font-family: inherit;
+	font-size: 19px;
+	padding: 10px;
+	/* margin-top: 20px; */
+	width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+
+
 /* Footer */
 
 footer {
   position: fixed;
   bottom: 0;
+}
+
+.pag_logo_f{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 10%;
+  border: 1px solid red;
+}
+
+.pag_logo_f p{
+  font-size: 18px;
+  border: 1px solid red;
+}
+
+.p_verde_f{
+  color: #00be0e;
+}
+.p_negro_f{
+  color: black;
 }
 
 @media (max-height:800px) {
