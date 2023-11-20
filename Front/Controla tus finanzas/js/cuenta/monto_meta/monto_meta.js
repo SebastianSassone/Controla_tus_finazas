@@ -1,16 +1,3 @@
-//Agregar en anbas que cuando se guarden los cambios deje de ser un input y vuelva a ser una valor normal un p
-//Y lo del gasto total
-   // suma todo TODO despues loresta al total y compara si el resultado es mayor o igual a la meta da que se esta 
-   // cuempliendo si el resultado es menor da que la meta esta incunprida Quien establece el plazo de la meta? 
-   // es automatico a  un mes es por mes automatico se va sumando en unregistro al finalizar el mes se muestran 
-   // los datos de cada categotia, abajo de todo se muestra historico
-   // El cierre se hace automaticamente a fin de mes y se agrega al listado
-   // Hacer una qry que sume todo que la fecha se registre con java y el cierre se haga desde ai
-   // Agregar el guardar directamente y no solo desde editar y que antes de pedir que se ingrse el valor deve consulta 
-   // si esta o no ya cargado en caso de estarlo no deve mostrar el formulario podria ser un boolean
-
-//Ingresar valor inicial y meta de ahorro
-// Variables para los elementos HTML
 const montoInicialMostrado = document.getElementById('montoInicialMostrado');
 const metaAhorroMostrada = document.getElementById('metaAhorroMostrada');
 const editarBt = document.getElementById('editarBt');
@@ -32,9 +19,8 @@ guardarCambiosBt.addEventListener('click', () => {
 eliminarBt.addEventListener('click',  () => {
     eliminarMontMeta();
 })
-//Control de val meta
 
-// Variable para controlar el modo de edición
+
 let modoEdit = false;
 
 //Variables para calcular meta de ahorro cumplida
@@ -121,8 +107,11 @@ function crearInputsDinamicosValMeta() {
     nuevaMeta.value = metaAhorroMostrada.textContent;
 
     
-    montoInicialMostrado.replaceWith(nuevoMonto);
-    metaAhorroMostrada.replaceWith(nuevaMeta);
+    montoInicialMostrado.style.display = "none";
+    metaAhorroMostrada.style.display = "none";
+
+    montoInicialMostrado.insertAdjacentElement('afterend', nuevaMeta);
+    metaAhorroMostrada.insertAdjacentElement('afterend', nuevoMonto);
 }
 
 
@@ -145,9 +134,18 @@ async function guardarCambiosValMeta() {
 
     montoInicialMostrado.setAttribute('readonly', true);
     metaAhorroMostrada.setAttribute('readonly', true);
- 
-    const nuevoMontoInicial = montoInicialMostrado.value;
-    const nuevaMetaAhorro = metaAhorroMostrada.value;
+
+    nuevaMeta.style.display = "none";
+    nuevoMonto.style.display = "none";
+
+    montoInicialMostrado.style.display = "flex";
+    metaAhorroMostrada.style.display = "flex"; 
+    
+    montoInicialMostrado.innerHTML = nuevaMeta.value;
+    metaAhorroMostrada.innerHTML = nuevoMonto.value;
+
+    const nuevoMontoInicial = nuevaMeta.value;
+    const nuevaMetaAhorro = nuevoMonto.value;
     try {
         
         await fetch(`http://localhost:4000/actualizar_valor_meta/${id}`, {

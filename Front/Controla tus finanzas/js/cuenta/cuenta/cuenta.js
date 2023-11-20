@@ -70,16 +70,16 @@ function crearInputsDinamicos() {
     nuevoEmailInput.type = 'email';
     nuevoEmailInput.value = emailElement.textContent;
 
-    // nombreElement.replaceWith(nuevoNombreInput);
-    // apellidoElement.replaceWith(nuevoApellidoInput);
-    // emailElement.replaceWith(nuevoEmailInput);
-
     nombreElement.style.display = 'none';
     apellidoElement.style.display = 'none';
     emailElement.style.display = 'none';
+
+    nombreElement.insertAdjacentElement('afterend', nuevoNombreInput);
+    apellidoElement.insertAdjacentElement('afterend', nuevoApellidoInput);
+    emailElement.insertAdjacentElement('afterend', nuevoEmailInput);
 }
 
-// Función para habilitar el modo de edición
+
 function habilitarEdicion() {
     modoEdicion = true;
 
@@ -90,7 +90,7 @@ function habilitarEdicion() {
     crearInputsDinamicos();
 }
 
-// Función para guardar los cambios y deshabilitar el modo de edición
+
 async function guardarCambios() {
     modoEdicion = false;
 
@@ -106,13 +106,13 @@ async function guardarCambios() {
     apellidoElement.style.display = 'flex';
     emailElement.style.display = 'flex';
 
-    nombreElement.innerHTML = nuevoNombreInput.value
-    apellidoElement.innerHTML = nuevoApellidoInput.value
-    emailElement.innerHTML = nuevoEmailInput.value
+    nombreElement.innerHTML = nuevoNombreInput.value;
+    apellidoElement.innerHTML = nuevoApellidoInput.value;
+    emailElement.innerHTML = nuevoEmailInput.value;
 
-    const nuevoNombre = nuevoNombreInput.value
-    const nuevoApellido = nuevoApellidoInput.value
-    const nuevoEmail = nuevoEmailInput.value
+    const nuevoNombre = nuevoNombreInput.value;
+    const nuevoApellido = nuevoApellidoInput.value;
+    const nuevoEmail = nuevoEmailInput.value;
     try {
       
         await fetch(`http://localhost:4000/actualizar_user/${id}`, {
