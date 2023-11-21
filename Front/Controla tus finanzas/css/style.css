@@ -775,6 +775,8 @@ background-image: url('../img/fondo_cuenta.png');
   font-size: 19px;
 }
 
+/* Meta */
+
 .form_ingreso_valores{
   height: 220px; 
   width: 50%;
@@ -835,6 +837,14 @@ background-image: url('../img/fondo_cuenta.png');
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+.montoInicialMostrado{outline: none;
+	border-color: #0000;
+  border: none;}
+
+.metaAhorroMostrada{outline: none;
+	border-color: #0000;
+  border: none;}
 
 .btn_cuenta{
   background-color: white;
@@ -899,8 +909,6 @@ background-image: url('../img/fondo_cuenta.png');
   justify-content: center;
   cursor: pointer;
 }
-
-
 
 /* Footer */
 
