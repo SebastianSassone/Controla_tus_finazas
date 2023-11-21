@@ -121,6 +121,12 @@ function habilitarEdicionValMeta() {
     eliminarBt.style.display = 'none';
     guardarCambiosBt.style.display = 'inline-block';
 
+    montoInicialMostrado.classList.remove('montoInicialMostrado');
+    metaAhorroMostrada.classList.remove('metaAhorroMostrada');
+    
+    montoInicialMostrado.setAttribute('readonly', false);
+    metaAhorroMostrada.setAttribute('readonly', false);
+  
     //Que monto mostrado y meta sean inpunt a los cuales se le gregaa y remueve es clase 
 //    crearInputsDinamicosValMeta();  
 }
@@ -132,8 +138,11 @@ async function guardarCambiosValMeta() {
     eliminarBt.style.display = 'inline-block';
     guardarCambiosBt.style.display = 'none';
 
-    // montoInicialMostrado.setAttribute('readonly', true);
-    // metaAhorroMostrada.setAttribute('readonly', true);
+    montoInicialMostrado.classList.add('montoInicialMostrado');
+    metaAhorroMostrada.classList.add('metaAhorroMostrada');
+    
+    montoInicialMostrado.setAttribute('readonly', true);
+    metaAhorroMostrada.setAttribute('readonly', true);
 
     // await new Promise(resolve => setTimeout(resolve, 200))
 
