@@ -20,6 +20,8 @@ eliminarBt.addEventListener('click',  () => {
     eliminarMontMeta();
 })
 
+let nuevoMonto;
+let nuevaMeta;
 
 let modoEdit = false;
 
@@ -30,7 +32,6 @@ let met_ahorro = 0;
 let total_gastos = 0;
 let total_ahorro = 0;
 let meta_cumplida = "";
-let id = 0;
 
 console.log(' id desde val meta  ' + id);
 
@@ -83,12 +84,12 @@ async function cargarYMostrarValoresDesdeAPI() {
         formIngresoValores.style.display = 'none';
         
 
-        montoInicialMostrado.textContent = entry.monto_inicial;
-        metaAhorroMostrada.textContent =  entry.meta_ahorro; 
+        montoInicialMostrado.value = entry.monto_inicial;
+        metaAhorroMostrada.value =  entry.meta_ahorro; 
 
-        let tot_gas_in = total_gastos;
+        let total_gastos = 100000;
 
-        calcular_gastos(monto_inicial, meta_ahorro, tot_gas_in);
+        calcular_gastos(entry.monto_inicial, entry.meta_ahorro, total_gastos);
     }
         });
     } catch (error) {
@@ -99,14 +100,13 @@ async function cargarYMostrarValoresDesdeAPI() {
 function crearInputsDinamicosValMeta() {
 
     let nuevoMonto = document.createElement('input');
-    nuevoMonto.type = 'text';
-    nuevoMonto.value = montoInicialMostrado.textContent;
+    nuevoMonto.type = 'number';
+    nuevoMonto.value = montoInicialMostrado.value;
 
     let nuevaMeta = document.createElement('input');
-    nuevaMeta.type = 'text';
-    nuevaMeta.value = metaAhorroMostrada.textContent;
+    nuevaMeta.type = 'number';
+    nuevaMeta.value = metaAhorroMostrada.value;
 
-    
     montoInicialMostrado.style.display = "none";
     metaAhorroMostrada.style.display = "none";
 
@@ -121,8 +121,8 @@ function habilitarEdicionValMeta() {
     eliminarBt.style.display = 'none';
     guardarCambiosBt.style.display = 'inline-block';
 
-   crearInputsDinamicosValMeta(); 
-    
+    //Que monto mostrado y meta sean inpunt a los cuales se le gregaa y remueve es clase 
+//    crearInputsDinamicosValMeta();  
 }
 
 // Función para guardar los cambios y deshabilitar el modo de edición
@@ -132,20 +132,24 @@ async function guardarCambiosValMeta() {
     eliminarBt.style.display = 'inline-block';
     guardarCambiosBt.style.display = 'none';
 
-    montoInicialMostrado.setAttribute('readonly', true);
-    metaAhorroMostrada.setAttribute('readonly', true);
+    // montoInicialMostrado.setAttribute('readonly', true);
+    // metaAhorroMostrada.setAttribute('readonly', true);
 
-    nuevaMeta.style.display = "none";
-    nuevoMonto.style.display = "none";
+    // await new Promise(resolve => setTimeout(resolve, 200))
 
-    montoInicialMostrado.style.display = "flex";
-    metaAhorroMostrada.style.display = "flex"; 
+    // montoInicialMostrado.style.display = "flex";
+    // metaAhorroMostrada.style.display = "flex"; 
     
-    montoInicialMostrado.innerHTML = nuevaMeta.value;
-    metaAhorroMostrada.innerHTML = nuevoMonto.value;
+    // montoInicialMostrado.innerHTML = nuevaMeta.value;
+    // metaAhorroMostrada.innerHTML = nuevoMonto.value;
 
-    const nuevoMontoInicial = nuevaMeta.value;
-    const nuevaMetaAhorro = nuevoMonto.value;
+
+    const nuevoMontoInicial = montoInicialMostrado.value;
+    const nuevaMetaAhorro = metaAhorroMostrada.value;
+
+    // nuevaMeta.remove();
+    // nuevoMonto.remove();
+
     try {
         
         await fetch(`http://localhost:4000/actualizar_valor_meta/${id}`, {
@@ -156,8 +160,8 @@ async function guardarCambiosValMeta() {
             body: JSON.stringify({ monto_inicial: nuevoMontoInicial, meta_ahorro: nuevaMetaAhorro }),
         });
         
-          nuevoMonto.replaceWith(montoInicialMostrado);
-          nuevaMeta.replaceWith(metaAhorroMostrada);
+        //   nuevoMonto.replaceWith(montoInicialMostrado);
+        //   nuevaMeta.replaceWith(metaAhorroMostrada);
           cargarYMostrarValoresDesdeAPI();
        
     } catch (error) {

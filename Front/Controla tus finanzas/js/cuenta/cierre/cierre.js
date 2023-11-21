@@ -8,11 +8,18 @@ gastos_v = total_gastos;
 ahorro_v = total_ahorro; 
 meta_cumplida = meta_cumplida; 
 
+//  let monto_v = 340000; 
+//  let meta_v = 200000; 
+//  let gastos_v = 130000; 
+//  let ahorro_v = 210000;
+//  let fech = "algo"; 
+// let meta_cump =   "Si"; 
+
 // Consultar cierre
 
 async function consultarCierre() {
     try {
-      const response = await fetch('http://localhost:4000/valances');
+      const response = await fetch('http://localhost:4000/valances_ingreso');
       if (!response.ok) {
         throw new Error('Error al obtener los datos.');
       }
@@ -35,6 +42,7 @@ async function consultarCierre() {
             meta.value = meta_v;
             gastos.value = gastos_v;
             ahorro.value = ahorro_v;
+            fecha = entry.fecha;
 
           }
         }
@@ -59,8 +67,8 @@ form_cierre.addEventListener('submit', async (event) => {
     meta = meta_v;
     gastos = gastos_v;
     ahorro = ahorro_v;
-    fecha =  new Date().toLocaleString('es-ES', { month: 'numeric' });;
-    meta_cumplida =  meta_cumplida;
+    fecha =  fech;
+    meta_cumplida = meta_cump;
   
     try {
         const noteData = {monto,  meta, gastos, ahorro, fecha, meta_cumplida};
@@ -73,7 +81,9 @@ form_cierre.addEventListener('submit', async (event) => {
             body: JSON.stringify(noteData),
         });
 
-    section_form_cierre.style.display = 'none';    
+    section_form_cierre.style.display = 'none';  
+    
+    alert('Cierre realizado exito');
 
     } catch (error) {
         console.error('Error al guardar los datos:', error);

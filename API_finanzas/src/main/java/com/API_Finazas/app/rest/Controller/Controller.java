@@ -115,20 +115,12 @@ public class Controller {
     }
 
     @GetMapping(value = "/datos_cuenta")
-    public ResponseEntity<List<List<Model_user>>> traerDatosCuenta() {
-
+    public List<Model_user> traerDatosCuenta() {
         if (id_user != 0) {
-            List<Model_user> user = repository_user.findByEmail(email_user);
-            if (user != null) {
-                // Devuelve el usuario encontrado en una lista de un solo elemento
-                return ResponseEntity.ok(Collections.singletonList(user));
-            } else {
-                // Devuelve una respuesta 404 (Not Found) si no se encuentra ningún usuario
-                return ResponseEntity.notFound().build();
-            }
+            return repository_user.findByEmail(email_user);
+            //return repository_mont_ini.findAll();
         } else {
-            // Devuelve una respuesta 404 (Not Found) si id_user es igual a 0
-            return ResponseEntity.notFound().build();
+            return Collections.emptyList();
         }
     }
 
@@ -201,7 +193,6 @@ public class Controller {
         if (id_user != 0) {
             return repository_mont_ini.findModelsMetaByUserId(id_user);
             //return repository_mont_ini.findAll();
-
         } else {
             return Collections.emptyList();
         }   
