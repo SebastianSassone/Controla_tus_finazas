@@ -2,6 +2,9 @@ window.addEventListener('load', () => {
     consultarCierre();
 })
 
+//Para hacer el cierre desde haca se de preguntar si algun mes del ingreso es 
+//anterior al mes actual
+
 monto_v = mont_inicial; 
 meta_v = met_ahorro; 
 gastos_v = total_gastos; 
@@ -27,7 +30,7 @@ async function consultarCierre() {
       const data = await response.json();
       const mesActual = new Date().toLocaleString('es-ES', { month: 'numeric' });
   
-      // Verificar si la fecha del valance es igual al mes actual
+
       for (const entry of data) {
         const fechaParts = entry.fecha.split('/');
         if (fechaParts.length === 3) {

@@ -37,7 +37,6 @@ console.log(' id desde val meta  ' + id);
 
 const formIngresoValores = document.getElementById('form_ingreso_valores');
 
-
 formIngresoValores.addEventListener('submit', async (event) => {
     event.preventDefault(); 
 
@@ -66,7 +65,6 @@ formIngresoValores.addEventListener('submit', async (event) => {
     }
 }); 
 
-// Función para cargar y mostrar los valores desde la API
 async function cargarYMostrarValoresDesdeAPI() {
     try {
         const response = await fetch('http://localhost:4000/traer_valor_meta'); // Ruta de lectura de montos
@@ -86,8 +84,6 @@ async function cargarYMostrarValoresDesdeAPI() {
 
         montoInicialMostrado.value = entry.monto_inicial;
         metaAhorroMostrada.value =  entry.meta_ahorro; 
-
-        let total_gastos = 100000;
 
         calcular_gastos(entry.monto_inicial, entry.meta_ahorro, total_gastos);
     }
