@@ -108,17 +108,15 @@ async function valorAlim() {
 
     const resultadosFiltrados = sumarValoresPorFecha(alimentacionData, mesSeleccionado);
 
-    if (resultadosFiltrados > 0) {
-      // chartdata.push(["Alimentacion", resultadosFiltrados]);
+    
+      chartdata.push(["Alimentacion", resultadosFiltrados]);
         console.log("Alimentacion", resultadosFiltrados);
     
-      // Sumar los valores filtrados
+   
       total_gastos += resultadosFiltrados;
     
       longCharData++;
-    } else {
-      console.log('No hay datos para el mes seleccionado:', mesSeleccionado);
-    }
+    
 
   } catch (error) {
     console.error('Error:', error);

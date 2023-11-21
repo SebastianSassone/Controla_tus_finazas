@@ -24,7 +24,6 @@ window.addEventListener('load', () => {
   valorSalud();
   valorTransp();
   valorOtros();
-  console.log(select.value);
 });
 
 function mosGrafic(){
@@ -62,11 +61,12 @@ anychart.onDocumentReady(function () {
 
 
 function sumarValoresPorFecha(data) {
-  
   const fechaActual = new Date();
   const mesActual = fechaActual.getMonth() + 1;
 
-  const resultadosFiltrados = data.filter(entry => {
+  let total = 0;
+
+  data.forEach(entry => {
     const fechaParts = entry.fecha.split('/');
     if (fechaParts.length === 3) {
       const mes = parseInt(fechaParts[1], 10);
@@ -76,8 +76,9 @@ function sumarValoresPorFecha(data) {
     }
   });
 
-  return total;
+  return total; // Retorna el valor total calculado
 }
+
 
 async function valorAlim() {
   try {
@@ -94,6 +95,7 @@ async function valorAlim() {
 
     console.log("Alimentacion", resultadosFiltrados);
     
+    chartdata.push(["Alimentacion", resultadosFiltrados]);
       // Sumar los valores filtrados
       total_gastos += resultadosFiltrados;
     
