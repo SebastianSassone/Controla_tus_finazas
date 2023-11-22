@@ -6,9 +6,7 @@ const guardarBtn = document.getElementById('guardarBtn');
 const eliminarBtn = document.getElementById('eliminarBtn');
 const eliminarCuentaBtn = document.getElementById('eliminarCuenta');
 
-// Variable para controlar el modo de edición
 let modoEdicion = false;
-
 
 window.addEventListener("load", () => {
     cargarDatosDesdeAPI();
@@ -28,26 +26,24 @@ eliminarCuentaBtn.addEventListener('click', () => {
       }}
 )
 
- let id = 0;
-// Función para cargar los datos desde la API usando Fetch
+let id = 0;
+
 async function cargarDatosDesdeAPI() {
     try {
-        //const response = await fetch('https://jsonplaceholder.typicode.com/posts'); // Ruta de lectura de cuenta
         const response = await fetch('http://localhost:4000/datos_cuenta'); // Ruta de lectura de cuenta
         const data = await response.json();
         
             data.forEach((entry) => {
                 
-                nombreElement.innerHTML = entry.nombre; 
-                apellidoElement.innerHTML = entry.lastname;
-                emailElement.innerHTML = entry.email; 
+                nombreElement.value   = entry.name; 
+                apellidoElement.value = entry.lastname;
+                emailElement.value    = entry.email; 
 
            id = entry.id;
            console.log(id);
         
           });
-            
-          
+        
             console.log(data);
             console.log(data.id);
         
@@ -57,63 +53,37 @@ async function cargarDatosDesdeAPI() {
     }
 }
 
-// Función para crear los elementos input dinámicos
-function crearInputsDinamicos() {
-    let nuevoNombreInput = document.createElement('input');
-    nuevoNombreInput.type = 'text';
-    nuevoNombreInput.value = nombreElement.textContent;
-
-    let nuevoApellidoInput = document.createElement('input');
-    nuevoApellidoInput.type = 'text';
-    nuevoApellidoInput.value = apellidoElement.textContent;
-
-    let nuevoEmailInput = document.createElement('input');
-    nuevoEmailInput.type = 'email';
-    nuevoEmailInput.value = emailElement.textContent;
-
-    nombreElement.style.display = 'none';
-    apellidoElement.style.display = 'none';
-    emailElement.style.display = 'none';
-
-    nombreElement.insertAdjacentElement('afterend', nuevoNombreInput);
-    apellidoElement.insertAdjacentElement('afterend', nuevoApellidoInput);
-    emailElement.insertAdjacentElement('afterend', nuevoEmailInput);
-}
-
-
 function habilitarEdicion() {
     modoEdicion = true;
-
     document.getElementById('editarBtn').style.display = 'none';
-
     document.getElementById('guardarBtn').style.display = 'inline-block';
 
-    crearInputsDinamicos();
-}
+    nombreElement.classList.remove('nombre');
+    apellidoElement.classList.remove('apellido');
+    emailElement.classList.remove('email');
 
+    nombreElement.removeAttribute('readonly');
+    apellidoElement.removeAttribute('readonly');
+    emailElement.removeAttribute('readonly');
+}
 
 async function guardarCambios() {
     modoEdicion = false;
 
     document.getElementById('editarBtn').style.display = 'inline-block';
-  
     document.getElementById('guardarBtn').style.display = 'none';
- 
-    nuevoNombreInput.style.display = 'none'
-    nuevoApellidoInput.style.display = 'none'
-    nuevoEmailInput.style.display = 'none'
 
-    nombreElement.style.display = 'flex';
-    apellidoElement.style.display = 'flex';
-    emailElement.style.display = 'flex';
+    nombreElement.classList.add('nombre');
+    apellidoElement.classList.add('apellido');
+    emailElement.classList.add('email');
 
-    nombreElement.innerHTML = nuevoNombreInput.value;
-    apellidoElement.innerHTML = nuevoApellidoInput.value;
-    emailElement.innerHTML = nuevoEmailInput.value;
+    nombreElement.setAttribute('readonly', true);
+    apellidoElement.setAttribute('readonly', true);
+    emailElement.setAttribute('readonly', true);
 
-    const nuevoNombre = nuevoNombreInput.value;
-    const nuevoApellido = nuevoApellidoInput.value;
-    const nuevoEmail = nuevoEmailInput.value;
+    const nuevoNombre    =  nombreElement.value;
+    const nuevoApellido  =  apellidoElement.value;
+    const nuevoEmail     =  emailElement.value;
     try {
       
         await fetch(`http://localhost:4000/actualizar_user/${id}`, {
@@ -121,7 +91,7 @@ async function guardarCambios() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ nombre: nuevoNombre, apellido: nuevoApellido, email: nuevoEmail }),
+            body: JSON.stringify({ name: nuevoNombre, lastname: nuevoApellido, email: nuevoEmail }),
         });
     
         cargarDatosDesdeAPI();
@@ -161,7 +131,7 @@ document.getElementById('cerrarSesionBtn').addEventListener('click', function() 
         console.log('Sesión cerrada exitosamente');
 
         registro_realizado = 0; 
-        sesion_en_curso = 0;
+        sesion_en_curso    = 0;
 
         } else if (response.status === 401) {
             console.log('No hay sesión activa para cerrar');

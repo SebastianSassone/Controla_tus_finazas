@@ -775,6 +775,24 @@ background-image: url('../img/fondo_cuenta.png');
   font-size: 19px;
 }
 
+.nombre{
+  outline: none;
+	border-color: #0000;
+  border: none;
+}
+
+.apellido{
+  outline: none;
+	border-color: #0000;
+  border: none;
+}
+
+.email{
+  outline: none;
+	border-color: #0000;
+  border: none;
+}
+
 /* Meta */
 
 .form_ingreso_valores{
@@ -838,13 +856,17 @@ background-image: url('../img/fondo_cuenta.png');
   justify-content: space-evenly;
 }
 
-.montoInicialMostrado{outline: none;
+.montoInicialMostrado{
+  outline: none;
 	border-color: #0000;
-  border: none;}
+  border: none;
+}
 
-.metaAhorroMostrada{outline: none;
+.metaAhorroMostrada{
+  outline: none;
 	border-color: #0000;
-  border: none;}
+  border: none;
+}
 
 .btn_cuenta{
   background-color: white;

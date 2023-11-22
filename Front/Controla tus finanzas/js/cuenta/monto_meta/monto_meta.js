@@ -81,7 +81,6 @@ async function cargarYMostrarValoresDesdeAPI() {
         if(mont_inicial != 0 || met_ahorro != 0){
         formIngresoValores.style.display = 'none';
         
-
         montoInicialMostrado.value = entry.monto_inicial;
         metaAhorroMostrada.value =  entry.meta_ahorro; 
 
@@ -93,24 +92,6 @@ async function cargarYMostrarValoresDesdeAPI() {
     }
 }
 
-function crearInputsDinamicosValMeta() {
-
-    let nuevoMonto = document.createElement('input');
-    nuevoMonto.type = 'number';
-    nuevoMonto.value = montoInicialMostrado.value;
-
-    let nuevaMeta = document.createElement('input');
-    nuevaMeta.type = 'number';
-    nuevaMeta.value = metaAhorroMostrada.value;
-
-    montoInicialMostrado.style.display = "none";
-    metaAhorroMostrada.style.display = "none";
-
-    montoInicialMostrado.insertAdjacentElement('afterend', nuevaMeta);
-    metaAhorroMostrada.insertAdjacentElement('afterend', nuevoMonto);
-}
-
-
 function habilitarEdicionValMeta() {
     modoEdit = true;
     editarBt.style.display = 'none';
@@ -120,14 +101,11 @@ function habilitarEdicionValMeta() {
     montoInicialMostrado.classList.remove('montoInicialMostrado');
     metaAhorroMostrada.classList.remove('metaAhorroMostrada');
     
-    montoInicialMostrado.setAttribute('readonly', false);
-    metaAhorroMostrada.setAttribute('readonly', false);
-  
-    //Que monto mostrado y meta sean inpunt a los cuales se le gregaa y remueve es clase 
-//    crearInputsDinamicosValMeta();  
+    montoInicialMostrado.removeAttribute('readonly');
+    metaAhorroMostrada.removeAttribute('readonly');
+
 }
 
-// Función para guardar los cambios y deshabilitar el modo de edición
 async function guardarCambiosValMeta() {
     modoEdit = false;
     editarBt.style.display = 'inline-block';
@@ -140,20 +118,8 @@ async function guardarCambiosValMeta() {
     montoInicialMostrado.setAttribute('readonly', true);
     metaAhorroMostrada.setAttribute('readonly', true);
 
-    // await new Promise(resolve => setTimeout(resolve, 200))
-
-    // montoInicialMostrado.style.display = "flex";
-    // metaAhorroMostrada.style.display = "flex"; 
-    
-    // montoInicialMostrado.innerHTML = nuevaMeta.value;
-    // metaAhorroMostrada.innerHTML = nuevoMonto.value;
-
-
     const nuevoMontoInicial = montoInicialMostrado.value;
-    const nuevaMetaAhorro = metaAhorroMostrada.value;
-
-    // nuevaMeta.remove();
-    // nuevoMonto.remove();
+    const nuevaMetaAhorro   = metaAhorroMostrada.value;
 
     try {
         
@@ -165,8 +131,6 @@ async function guardarCambiosValMeta() {
             body: JSON.stringify({ monto_inicial: nuevoMontoInicial, meta_ahorro: nuevaMetaAhorro }),
         });
         
-        //   nuevoMonto.replaceWith(montoInicialMostrado);
-        //   nuevaMeta.replaceWith(metaAhorroMostrada);
           cargarYMostrarValoresDesdeAPI();
        
     } catch (error) {
@@ -208,7 +172,7 @@ function calcular_gastos(mont, met, tot_gas){
           meta_cumplida = "No";
         };  
                   
-          console.log('El total de los gasto asta la actuidad es de ', gastos_acumulados);
+          console.log('El total de los gasto asta la actuidad es de ', total_gastos);
   
         };
 

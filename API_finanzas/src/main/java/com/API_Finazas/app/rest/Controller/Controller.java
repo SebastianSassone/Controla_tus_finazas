@@ -150,8 +150,6 @@ public class Controller {
         }
     }
 
-    //Agregar al eleiminar cuenta uqese borre toda la informacion asoscida
-
     //Monto inicial y meta de ahorro
 
     @PostMapping(value = "/guardar_valor_meta")

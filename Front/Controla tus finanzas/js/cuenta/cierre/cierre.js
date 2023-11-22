@@ -2,8 +2,14 @@ window.addEventListener('load', () => {
     consultarCierre();
 })
 
-//Para hacer el cierre desde haca se de preguntar si algun mes del ingreso es 
-//anterior al mes actual
+//Agregar una columna a base tabla de ingreso que indica si forma parde su cierre o no en el caso de 
+//hacerlo no se tiene en cuenta ese elemento, si no forma parte de un cierre se mostrara que hace falta 
+//relizar un cierre, en caso cntrrio ademas en el filtro se preguntara si el valance tiene numero de fecha de 
+//mes menor al mes actual y si fue echo un cierre en ese mes por defeto en ingreso se guardara no y despues se imrimra si
+//a la hora de realizar el cierre, sino podemos preguntar por el cierre del mes anterior el cual 
+//se le guarda fecha osea que se pregunta si el mes anterior al actual tiene un cierre en la tabla cierre
+//de no ser asi se le activa el cierre al usurio y de ser asi no se hace.
+
 
 monto_v = mont_inicial; 
 meta_v = met_ahorro; 
