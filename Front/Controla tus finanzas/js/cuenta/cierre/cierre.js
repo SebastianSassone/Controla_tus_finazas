@@ -2,6 +2,10 @@ window.addEventListener('load', () => {
     consultarCierre();
 })
 
+let section_form_cierre = document.getElementById('section_form_cierre'); 
+
+section_form_cierre.style.display = 'none';
+
 //Agregar una columna a base tabla de ingreso que indica si forma parde su cierre o no en el caso de 
 //hacerlo no se tiene en cuenta ese elemento, si no forma parte de un cierre se mostrara que hace falta 
 //relizar un cierre, en caso cntrrio ademas en el filtro se preguntara si el valance tiene numero de fecha de 
@@ -26,7 +30,42 @@ meta_cumplida = meta_cumplida;
 
 // Consultar cierre
 
-async function consultarCierre() {
+// async function consultarCierre() {
+//     try {
+//       const response = await fetch('http://localhost:4000/valances_ingreso');
+//       if (!response.ok) {
+//         throw new Error('Error al obtener los datos.');
+//       }
+  
+//       const data = await response.json();
+//       const mesActual = new Date().toLocaleString('es-ES', { month: 'numeric' });
+  
+
+//       for (const entry of data) {
+//         const fechaParts = entry.fecha.split('/');
+//         if (fechaParts.length === 3) {
+//           const mesValance = fechaParts[1];
+//           if (mesValance != mesActual) {
+//             let monto = document.getElementById('monto_in'); 
+//             let meta = document.getElementById('met_aho'); 
+//             let gastos = document.getElementById('total_gas'); 
+//             let ahorro = document.getElementById('total_aho'); 
+
+//             monto.value = monto_v;
+//             meta.value = meta_v;
+//             gastos.value = gastos_v;
+//             ahorro.value = ahorro_v;
+//             fecha = entry.fecha;
+
+//           }
+//         }
+//       }
+//     } catch (error) {
+//       console.error('Error:', error.message);
+//     }
+//   }
+
+  async function consultarCierre() {
     try {
       const response = await fetch('http://localhost:4000/valances_ingreso');
       if (!response.ok) {
@@ -36,41 +75,73 @@ async function consultarCierre() {
       const data = await response.json();
       const mesActual = new Date().toLocaleString('es-ES', { month: 'numeric' });
   
-
+      let fechaMenorAmesActualEncontrada = false;
+  
       for (const entry of data) {
         const fechaParts = entry.fecha.split('/');
         if (fechaParts.length === 3) {
           const mesValance = fechaParts[1];
-          if (mesValance != mesActual) {
-            let monto = document.getElementById('monto_in'); 
-            let meta = document.getElementById('met_aho'); 
-            let gastos = document.getElementById('total_gas'); 
-            let ahorro = document.getElementById('total_aho'); 
-
-            monto.value = monto_v;
-            meta.value = meta_v;
-            gastos.value = gastos_v;
-            ahorro.value = ahorro_v;
-            fecha = entry.fecha;
-
+          if (mesValance !== mesActual) {
+            // Se encontró una fecha menor al mes actual
+            fechaMenorAmesActualEncontrada = true;
+            const fechaMenorAmesActual = entry.fecha;
+  
+            // Verificar si hay un cierre para esta fecha
+            await verificarCierre(fechaMenorAmesActual);
           }
         }
+      }
+  
+      if (!fechaMenorAmesActualEncontrada) {
+        // No se encontraron fechas menores al mes actual
+        console.log('No hay ingresos con fecha anterior al mes actual.');
       }
     } catch (error) {
       console.error('Error:', error.message);
     }
   }
+  
+  async function verificarCierre(fecha) {
+    try {
+      const response = await fetch('http://localhost:4000/traer_cierre');
+      const data = await response.json();
+  
+      const mesActual = new Date().toLocaleString('es-ES', { month: 'numeric' });
+  
+      const cierreEncontrado = data.find((entry) => {
+        const fechaParts = entry.fecha.split('/');
+        return fechaParts.length === 3 && fechaParts[1] === mesActual;
+      });
+  
+      if (cierreEncontrado) {
+        console.log(`Se encontró un cierre para la fecha ${fecha}.`);
+        section_form_cierre.style.display = 'flex';
+        let monto = document.getElementById('monto_in'); 
+        let meta = document.getElementById('met_aho'); 
+        let gastos = document.getElementById('total_gas'); 
+        let ahorro = document.getElementById('total_aho'); 
+
+        monto.value = monto_v;
+        meta.value = meta_v;
+        gastos.value = gastos_v;
+        ahorro.value = ahorro_v;
+        fecha = entry.fecha;
+      } else {
+        console.log(`No se encontró un cierre para la fecha ${fecha}.`);
+        // Realizar acciones en caso de no encontrar un cierre para esa fecha
+      }
+    } catch (error) {
+      console.error('Error al verificar el cierre:', error);
+    }
+  }
+  
 
 // Guardar cierre
-
-//Cargar el formulario con los valores que se taen desde back mas las operaciones echas en el front
-
-let section_form_cierre = document.getElementById('section_form_cierre'); 
 
 let form_cierre = document.getElementById('form_cierre'); 
 
 form_cierre.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Evitar la acción de envío predeterminada
+    event.preventDefault();
     
     monto = monto_v;
     meta = meta_v;
