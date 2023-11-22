@@ -74,7 +74,7 @@ form_cierre.addEventListener('submit', async (event) => {
     
     monto = monto_v;
     meta = meta_v;
-    gastos = gastos_v;
+    gastos = gastos_v;     
     ahorro = ahorro_v;
     fecha =  fech;
     meta_cumplida = meta_cump;

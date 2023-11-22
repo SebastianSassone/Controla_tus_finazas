@@ -86,7 +86,7 @@ let meta_cumplida = document.getElementById('meta_cumplida');
 
 async function cargarYTraerCierre() {
     try {
-            const response = await fetch('http://localhost:4000/traer_cierre'); // Ruta de lectura de montos
+            const response = await fetch('http://localhost:4000/traer_cierre'); 
             const data = await response.json();
 
             console.log(data);
@@ -97,7 +97,7 @@ async function cargarYTraerCierre() {
               tot_gas.innerHTML = entry.gastos;
               tot_ahorr.innerHTML = entry.ahorro;
               meta_cumplida.innerHTML = entry.meta_cumplida;                              
-          // completar |^|
+      
         })
       
   } catch (error) {
