@@ -59,7 +59,6 @@ public class Controller {
                 System.out.println(modelUser.getConfirmPassword());
                 return ResponseEntity.ok("Usuario registrado");
             } catch (Exception e) {
-                // Manejar la excepción e imprimir detalles del error
                 e.printStackTrace();
                 return ResponseEntity.badRequest().body("Error al registrar el usuario: " + e.getMessage());
             }
@@ -76,18 +75,15 @@ public class Controller {
         System.out.println("Email recibido: " + email);
         System.out.println("Contraseña recibida: " + password);
 
-        // Buscar usuarios por su dirección de correo electrónico en la base de datos
         List<Model_user> users = repository_user.findByEmail(email);
 
         System.out.println("Usuarios encontrados en la base de datos: " + users.size());
 
         if (users.isEmpty()) {
-            // No se encontraron usuarios con el correo electrónico proporcionado
             System.out.println("No se encontraron usuarios con el correo electrónico proporcionado.");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
 
-        // Itera a través de los usuarios y verifica las credenciales
         for (Model_user user : users) {
             System.out.println("Contraseña en la base de datos para " + user.getEmail() + ": " + user.getPassword());
             if (user.getPassword().equals(password) && id_user == 0) {
@@ -105,7 +101,7 @@ public class Controller {
     @GetMapping("/cerrar_sesion")
     public ResponseEntity<String> cerrarSesion() {
         if (id_user != 0) {
-            id_user = 0; // Cierra la sesión
+            id_user = 0;
             System.out.println("Ide: " + id_user);
 
             return ResponseEntity.ok("Sesión cerrada exitosamente");
@@ -118,7 +114,6 @@ public class Controller {
     public List<Model_user> traerDatosCuenta() {
         if (id_user != 0) {
             return repository_user.findByEmail(email_user);
-            //return repository_mont_ini.findAll();
         } else {
             return Collections.emptyList();
         }
@@ -190,7 +185,6 @@ public class Controller {
     public List<Model_mont_in> traerValorMeta(){
         if (id_user != 0) {
             return repository_mont_ini.findModelsMetaByUserId(id_user);
-            //return repository_mont_ini.findAll();
         } else {
             return Collections.emptyList();
         }   
@@ -199,10 +193,8 @@ public class Controller {
 //Cierre
     @PostMapping(value="/guardar_cierre")
     public ResponseEntity<Object> guardarIngre(@RequestBody Model_mont_alm model_mont_alm) {
-        // Realizar el casting y transformación a String
 
         if (id_user != 0) {
-             // Asignar el ID del usuario al modelo de entrada
             
             model_mont_alm.setUser_id(id_user);
             repository_mont_alm.save(model_mont_alm);
@@ -214,13 +206,9 @@ public class Controller {
 
        @GetMapping(value= "/traer_cierre")
        public List<Model_mont_alm> traerCierre(){
-           if (id_user != 0) {
-            
-              //return repository_mont_alm.findModelsCierreByUserId(id_user);
+           if (id_user != 0) {         
              return repository_mont_alm.findAll();
-
-           } else {
-        
+           } else {     
               return Collections.emptyList();
          }
        }
@@ -239,15 +227,12 @@ public class Controller {
 
     @PostMapping(value="/guardar_ingreso")
     public ResponseEntity<Object> guardarIngre(@RequestBody Model_ingre modelIngre) {
-        // Realizar el casting y transformación a String
 
         if (id_user != 0) {
-             // Asignar el ID del usuario al modelo de entrada
             String categoria = modelIngre.getCategoria() != null ? String.valueOf(modelIngre.getCategoria()) : "N/A";
             String fecha = modelIngre.getFecha() != null ? modelIngre.getFecha().toString() : "N/A";
             String hora = modelIngre.getHora() != null ? modelIngre.getHora().toString() : "N/A";
 
-            // Imprimir los valores transformados
             System.out.println("Categoría: " + categoria);
             System.out.println("Fecha: " + fecha);
             System.out.println("Hora: " + hora);
@@ -296,8 +281,6 @@ public class Controller {
         return Collections.emptyList();
     }
 }
-
-
 
     @GetMapping("/total_alimentos")
     public ResponseEntity<List<Model_ingre>> obtenerTotalAlimen() {
@@ -363,48 +346,4 @@ public class Controller {
             return ResponseEntity.notFound().build();
         }
     }
-
  }
-
-
-    /*@GetMapping("/total-valor-servicios")
-    public Double obtenerTotalValorServi() {
-        if (id_user != 0) {
-        Double totalValorServicios = repositoryIngre.sumarValoresPorCategoriaAndUserId("Servicios" , id_user);
-        return totalValorServicios != null ? totalValorServicios : 0.0;
-        } else { return 0.0;}
-    }
-
-    @GetMapping("/total-valor-otros")
-    public Double obtenerTotalValorotros() {
-            if (id_user != 0) {
-                Double totalValorOtros = repositoryIngre.sumarValoresPorCategoriaAndUserId("Otros" ,   id_user);
-                return totalValorOtros != null ? totalValorOtros : 0.0;
-            } else { return 0.0;
-            }
-        }
-
-    @GetMapping("/total-valor-transporte")
-    public Double obtenerTotalValorTraspor() {
-        if (id_user != 0) {
-            Double totalValorTransporte = repositoryIngre.sumarValoresPorCategoriaAndUserId("Transporte" ,   id_user);
-            return totalValorTransporte != null ? totalValorTransporte : 0.0;
-        } else { return 0.0; }
-    }
-
-    @GetMapping("/total-valor-salud")
-    public Double obtenerTotalValorSalud() {
-        if (id_user != 0) {
-         Double totalValorSalud = repositoryIngre.sumarValoresPorCategoriaAndUserId("Salud" ,  id_user);
-         return totalValorSalud != null ? totalValorSalud : 0.0;
-        } else { return 0.0;}
-    }
-
-    @GetMapping("/total-valor-higiene")
-    public Double obtenerTotalValorHigie() {
-        if (id_user != 0) {
-         Double totalValorHigiene = repositoryIngre.sumarValoresPorCategoriaAndUserId("Higiene" ,   id_user);
-         return totalValorHigiene != null ? totalValorHigiene : 0.0;
-        } else { return 0.0; }
-    }
-}*/
