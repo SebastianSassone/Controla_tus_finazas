@@ -20,7 +20,7 @@ meta_v = met_ahorro;
 gastos_v = total_gastos; 
 ahorro_v = total_ahorro; 
 meta_cumplida = meta_cumplida; 
-
+let fech = "fecha"; 
 //  let monto_v = 340000; 
 //  let meta_v = 200000; 
 //  let gastos_v = 130000; 
@@ -85,6 +85,7 @@ meta_cumplida = meta_cumplida;
             // Se encontró una fecha menor al mes actual
             fechaMenorAmesActualEncontrada = true;
             const fechaMenorAmesActual = entry.fecha;
+            fech = entry.fecha;
   
             // Verificar si hay un cierre para esta fecha
             await verificarCierre(fechaMenorAmesActual);
@@ -115,6 +116,10 @@ meta_cumplida = meta_cumplida;
   
       if (cierreEncontrado) {
         console.log(`Se encontró un cierre para la fecha ${fecha}.`);
+      
+      } else {
+        console.log(`No se encontró un cierre para la fecha ${fecha}.`);
+        let section_form_cierre = document.getElementById('section_form_cierre'); 
         section_form_cierre.style.display = 'flex';
         let monto = document.getElementById('monto_in'); 
         let meta = document.getElementById('met_aho'); 
@@ -125,10 +130,6 @@ meta_cumplida = meta_cumplida;
         meta.value = meta_v;
         gastos.value = gastos_v;
         ahorro.value = ahorro_v;
-        fecha = entry.fecha;
-      } else {
-        console.log(`No se encontró un cierre para la fecha ${fecha}.`);
-        // Realizar acciones en caso de no encontrar un cierre para esa fecha
       }
     } catch (error) {
       console.error('Error al verificar el cierre:', error);
@@ -147,7 +148,7 @@ form_cierre.addEventListener('submit', async (event) => {
     meta = meta_v;
     gastos = gastos_v;     
     ahorro = ahorro_v;
-    fecha =  fech;
+    fecha = fech;
     meta_cumplida = meta_cump;
   
     try {
