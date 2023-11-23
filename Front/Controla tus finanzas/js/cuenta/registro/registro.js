@@ -71,7 +71,7 @@ viewPasswordReg2.addEventListener('change', (event)=>{
     confirmPassword.type = 'text'
     click = true
   }else if(click){
-    password.type = 'password'
+    confirmPassword.type = 'password'
     click = false
   }
 })
