@@ -757,19 +757,21 @@ td {
 
 .mostrar_contraseña{
   display: flex;
-  border: 1px solid red;
-  width: 90%;
+  border: 1px solid rgb(174, 255, 0);
+  width: 80%;
 }
 
-.mostrar_contraseña input{
+#mostrar_contraseña input{
   height: 19px;
   width: 19px;
+  border: 1px solid red;
+  padding: 0px;
 }
 
 .mostrar_contraseña p{
   display: flex;
   width: 100%;
-  border: 1px solid red;
+  border: 1px solid rgb(17, 0, 255);
 }
 
 /* Cuenta */
