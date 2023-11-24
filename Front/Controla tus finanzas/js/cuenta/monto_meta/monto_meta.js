@@ -7,7 +7,7 @@ const guardarCambiosBt = document.getElementById('guardarCambiosBt');
 window.addEventListener('load', () => {
     cargarYMostrarValoresDesdeAPI();
 });
-
+ 
 editarBt.addEventListener('click', () => {
     habilitarEdicionValMeta();
 });
@@ -25,13 +25,18 @@ let nuevaMeta;
 
 let modoEdit = false;
 
-//Variables para calcular meta de ahorro cumplida
+//Calcular meta de ahorro cumplida
 
 let mont_inicial = 0;
 let met_ahorro = 0;
 let total_gastos = 0;
 let total_ahorro = 0;
 let meta_cumplida = "";
+
+if(mont_inicial == 0 || met_ahorro == 0) {
+    let div_valores = document.getElementById('div_valores');
+    div_valores.style.display = 'none';
+}
 
 console.log(' id desde val meta  ' + id);
 
@@ -81,6 +86,9 @@ async function cargarYMostrarValoresDesdeAPI() {
         if(mont_inicial != 0 || met_ahorro != 0){
         formIngresoValores.style.display = 'none';
         
+        let div_valores = document.getElementById('div_valores');
+        div_valores.style.display = 'flex';
+
         montoInicialMostrado.value = entry.monto_inicial;
         metaAhorroMostrada.value =  entry.meta_ahorro; 
 
@@ -155,6 +163,41 @@ async function eliminarMontMeta() {
       alert('Ocurrió un error al eliminar los datos.');
     }
   }
+
+  async function sumarTotalGastos() {
+    try {
+      const response = await fetch('http://localhost:4000/valances_ingreso');
+      if (!response.ok) {
+        throw new Error('Error al obtener los datos.');
+      }
+  
+      const data = await response.json();
+  
+      const fechaActual = new Date();
+      const mesActual = fechaActual.getMonth() + 1;
+  
+      const resultadosFiltrados = data.filter(entry => {
+        const fechaParts = entry.fecha.split('/');
+        if (fechaParts.length === 3) {
+          const mes = parseInt(fechaParts[1], 10);
+          return mes === mesActual;
+        }
+        return false;
+      });
+  
+      let sumaTotal = 0;
+  
+      resultadosFiltrados.forEach((entry) => {
+        sumaTotal += entry.valor;
+      });
+
+      console.log('La suma total del valor de los elementos del mes actual es:', sumaTotal);
+
+    } catch (error) {
+      console.error('Ocurrió un error:', error);
+    }
+  }
+  
 
 function calcular_gastos(mont, met, tot_gas){
   

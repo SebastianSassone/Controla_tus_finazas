@@ -30,7 +30,7 @@ let id = 0;
 
 async function cargarDatosDesdeAPI() {
     try {
-        const response = await fetch('http://localhost:4000/datos_cuenta'); // Ruta de lectura de cuenta
+        const response = await fetch('http://localhost:4000/datos_cuenta');
         const data = await response.json();
         
             data.forEach((entry) => {
