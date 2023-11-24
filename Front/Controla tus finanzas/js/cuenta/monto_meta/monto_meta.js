@@ -218,7 +218,7 @@ function calcular_gastos(mont, met){
   
         };
 
-        
+export { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida};        
 
 // agregar lo del grfico tutorial internet
 

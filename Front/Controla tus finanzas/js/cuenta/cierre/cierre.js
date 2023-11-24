@@ -6,6 +6,8 @@ let section_form_cierre = document.getElementById('section_form_cierre');
 
 section_form_cierre.style.display = 'none';
 
+import { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida } from "./cuenta/monto_meta/monto_meta.js"
+
 monto_v = mont_inicial; 
 meta_v = met_ahorro; 
 gastos_v = total_gastos; 
