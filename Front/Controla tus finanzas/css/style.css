@@ -99,7 +99,8 @@ body {
 }
 
 .menu__link:hover{
-    background-color: #5e7094;
+  transform: scale(1.03);
+  color: #024807;
 }
 
 .menu__arrow{
@@ -123,10 +124,6 @@ body {
 
 .menu__link--inside{
     padding: 30px 100px 30px 20px;
-}
-
-.menu__link--inside:hover{
-    background-color: #798499;
 }
 
 .menu__hamburguer{
@@ -231,6 +228,7 @@ body {
     height: 198px;
     animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
     transform: translate3d(0, 0, 0);
+    box-shadow: 0px 40px 0px 0px  #1fbc04;
   }
   
   .wave:nth-of-type(2) {
@@ -536,10 +534,8 @@ td {
 
 .save-btn {
   cursor: pointer;
-	/* background: #dce7eb; */
 	width: 30px;
 	height: 30px;
-  /* border: 1px solid red; */
 	display: flex;
 	align-items: center;
   background-image: url('../img/save_icon.png');
@@ -564,11 +560,9 @@ td {
 
 .edit-btn {
   cursor: pointer;
-	/* background: #dce7eb; */
 	width: 35px;
 	height: 35px;
   margin-right: 10px;
-  /* border: 1px solid red; */
 	display: flex;
 	align-items: center;
   background-image: url('../img/icon-edit.png');
@@ -637,7 +631,6 @@ td {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
 }
 
 .section_registro form{
@@ -708,12 +701,15 @@ td {
 .section_ini_sec form{
   color: black;
   display: flex;
+  padding: 40px;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   font-size: 19px;
-  height: 35vh;
+  height: 50vh;
   width: 400px;
+  border: 1px solid rgb(99, 91, 91);
+  box-shadow: 10px 10px 15px 0px #302f31;
 }
 
 .section_ini_sec form input{
@@ -722,7 +718,7 @@ td {
 	display: block;
 	font-family: inherit;
 	font-size: 19px;
-	padding: 20px;
+	padding: 19px;
 	width: 100%;
 }
 
@@ -757,21 +753,19 @@ td {
 
 .mostrar_contraseña{
   display: flex;
-  border: 1px solid rgb(174, 255, 0);
-  width: 80%;
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 5px;
 }
 
 #mostrar_contraseña input{
   height: 19px;
   width: 19px;
-  border: 1px solid red;
-  padding: 0px;
 }
 
 .mostrar_contraseña p{
   display: flex;
-  width: 100%;
-  border: 1px solid rgb(17, 0, 255);
+  width: 90%;
 }
 
 /* Cuenta */
@@ -784,7 +778,7 @@ td {
 }
 
 .section_cuenta{
-background-image: url('../img/fondo_cuenta.png');
+    background-image: url('../img/fondo_cuenta.png');
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -797,14 +791,28 @@ background-image: url('../img/fondo_cuenta.png');
   width: 100%;
   height: 230px;
   display: flex;
-  flex-direction: column;
-  border: 1px solid red;
-  justify-content: space-evenly;
+  /* border: 1px solid red; */
+  justify-content: center;
   align-items: center;
 }
 
 .div_datos_cuenta input{
   font-size: 19px;
+  text-align: center;
+}
+
+.input_dat_cuen{
+  height: 20vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+
+}
+
+.btns_edit_dat_cuen{
+   display: flex;
+   flex-direction: column;
+
 }
 
 .nombre{
@@ -820,7 +828,7 @@ background-image: url('../img/fondo_cuenta.png');
 }
 
 .email{
-  outline: none;
+  outline: none; 
 	border-color: #0000;
   border: none;
 }
@@ -830,7 +838,6 @@ background-image: url('../img/fondo_cuenta.png');
 .form_ingreso_valores{
   height: 220px; 
   width: 50%;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -875,7 +882,7 @@ background-image: url('../img/fondo_cuenta.png');
   height: 230px;
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   justify-content: space-evenly;
   align-items: center;
 }
@@ -968,18 +975,11 @@ background-image: url('../img/fondo_cuenta.png');
 /* Footer */
 
 footer {
-  /* position: sticky; */
   bottom: 0;
-}
-
-.pag_logo_f{
-  text-align: center;
-  border: 1px solid red;
 }
 
 .pag_logo_f p{
   font-size: 18px;
-  border: 1px solid red;
 }
 
 .p_verde_f{
@@ -987,6 +987,7 @@ footer {
 }
 .p_negro_f{
   color: black;
+  margin-left: 30px;
 }
 
 @media (max-height:800px) {
