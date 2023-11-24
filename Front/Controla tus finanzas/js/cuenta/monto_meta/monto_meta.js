@@ -92,7 +92,8 @@ async function cargarYMostrarValoresDesdeAPI() {
         montoInicialMostrado.value = entry.monto_inicial;
         metaAhorroMostrada.value =  entry.meta_ahorro; 
 
-        calcular_gastos(entry.monto_inicial, entry.meta_ahorro, total_gastos);
+        sumarTotalGastos();
+        calcular_gastos(entry.monto_inicial, entry.meta_ahorro);
     }
         });
     } catch (error) {
@@ -185,10 +186,8 @@ async function eliminarMontMeta() {
         return false;
       });
   
-      let sumaTotal = 0;
-  
       resultadosFiltrados.forEach((entry) => {
-        sumaTotal += entry.valor;
+        total_gastos += entry.valor;
       });
 
       console.log('La suma total del valor de los elementos del mes actual es:', sumaTotal);
@@ -199,11 +198,11 @@ async function eliminarMontMeta() {
   }
   
 
-function calcular_gastos(mont, met, tot_gas){
+function calcular_gastos(mont, met){
   
         mont_inicial = mont;
         met_ahorro = met;
-        total_gastos = tot_gas;
+        total_gastos;
 
        if(total_gastos <= met_ahorro ){
         console.log('Meta de ahorro cumplida');
@@ -221,6 +220,6 @@ function calcular_gastos(mont, met, tot_gas){
 
         
 
-
+// agregar lo del grfico tutorial internet
 
 
