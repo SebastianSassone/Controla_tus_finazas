@@ -6,7 +6,7 @@ let section_form_cierre = document.getElementById('section_form_cierre');
 
 section_form_cierre.style.display = 'none';
 
-import { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida } from "./cuenta/monto_meta/monto_meta.js"
+import { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida } from "../cuenta/monto_meta/monto_meta.js";
 
 monto_v = mont_inicial; 
 meta_v = met_ahorro; 
@@ -14,6 +14,7 @@ gastos_v = total_gastos;
 ahorro_v = total_ahorro; 
 meta_cumplida = meta_cumplida; 
 let fech = "fecha"; 
+
 //  let monto_v = 340000; 
 //  let meta_v = 200000; 
 //  let gastos_v = 130000; 
