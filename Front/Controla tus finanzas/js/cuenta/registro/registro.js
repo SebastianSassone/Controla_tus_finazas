@@ -1,7 +1,7 @@
 //Registrase
 const form_registro = document.getElementById('form_registro');
 
-let registro_realizado = 0;
+let ac_in = falce;
 
 form_registro.addEventListener('submit', async (event) => {
      event.preventDefault();
@@ -31,13 +31,13 @@ form_registro.addEventListener('submit', async (event) => {
        });
    
        if (!response.ok) {
-         throw new Error('Error al agregar la nota.');
+         throw new Error('Error al registrarse');
        }
-      //  window.location.href = "/seccion"
-      // window.location.replace("http://127.0.0.1:5500/html/cuenta.html");
+  
+      // window.location.replace("http://127.0.0.1:5500/index.html");
         alert('Registro realizado exitosamente.');
         
-        registro_realizado = 1;
+        ac_in = true;
       
      console.log(name);
      console.log(lastname);
@@ -76,3 +76,4 @@ viewPasswordReg2.addEventListener('change', (event)=>{
   }
 })
 
+export {ac_in};

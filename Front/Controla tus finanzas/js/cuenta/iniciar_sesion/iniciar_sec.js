@@ -1,3 +1,5 @@
+import {ac_in} from '../registro/registro';
+
 // Iniciar sesion
 
 let sesion_en_curso = 0;
@@ -28,7 +30,7 @@ form_in_sec.addEventListener('submit', async (event) => {
     }
 
     //window.location.replace("http://127.0.0.1:5500/html/cuenta.html");
-    sesion_en_curso = 1;
+    ac_in = true;
     
     alert('Sesion iniciada');
   } catch (error) {}
