@@ -28,15 +28,11 @@ window.addEventListener('load', () => {
 
 function mosGrafic(){
 anychart.onDocumentReady(function () {
-    // create pie chart with passed data
-    
+  
     let chart = anychart.pie(chartdata);
 
-    // set chart title text settings
     chart.title('Grafico de valances consumo diario');
-    // set chart labels position to outside
     chart.labels().position('outside');
-    // set legend title settings
     chart
       .legend()
       .title()
@@ -44,21 +40,17 @@ anychart.onDocumentReady(function () {
       .text('Categorias')
       .padding([0, 0, 10, 0]);
 
-    // set legend position and items layout
     chart
       .legend()
       .position('center-bottom')
       .itemsLayout('horizontal')
       .align('center');
 
-    // set container id for the chart
     chart.container('container');
-    // initiate chart drawing
     chart.draw();
   })};
 
 //Filtrar datos
-
 
 function sumarValoresPorFecha(data) {
   const fechaActual = new Date();
@@ -96,7 +88,6 @@ async function valorAlim() {
     console.log("Alimentacion", resultadosFiltrados);
     
     chartdata.push(["Alimentacion", resultadosFiltrados]);
-      // Sumar los valores filtrados
       total_gastos += resultadosFiltrados;
     
       longCharData++;
@@ -138,7 +129,7 @@ async function valorAlim() {
   
       const higieneData = await response.json();
 
-       const resultadosFiltrados = sumarValoresPorFecha(higieneData)
+      const resultadosFiltrados = sumarValoresPorFecha(higieneData)
 
       chartdata.push(["Higiene", resultadosFiltrados]);
 

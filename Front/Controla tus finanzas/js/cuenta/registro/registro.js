@@ -1,7 +1,7 @@
 //Registrase
 const form_registro = document.getElementById('form_registro');
 
-let ac_in = falce;
+let ac_in = false;
 
 form_registro.addEventListener('submit', async (event) => {
      event.preventDefault();

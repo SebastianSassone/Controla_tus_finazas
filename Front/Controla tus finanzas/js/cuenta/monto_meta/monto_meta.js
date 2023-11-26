@@ -1,7 +1,6 @@
 const montoInicialMostrado = document.getElementById('montoInicialMostrado');
 const metaAhorroMostrada = document.getElementById('metaAhorroMostrada');
 const editarBt = document.getElementById('editarBt');
-const eliminarBt = document.getElementById('eliminarBt');
 const guardarCambiosBt = document.getElementById('guardarCambiosBt');
 
 window.addEventListener('load', () => {
@@ -11,19 +10,19 @@ window.addEventListener('load', () => {
 editarBt.addEventListener('click', () => {
     habilitarEdicionValMeta();
 });
-
+   
 guardarCambiosBt.addEventListener('click', () => {
     guardarCambiosValMeta();
 });
-
-eliminarBt.addEventListener('click',  () => {
-    eliminarMontMeta();
-})
 
 let nuevoMonto;
 let nuevaMeta;
 
 let modoEdit = false;
+
+// Data garfico
+
+let data = [];
 
 //Calcular meta de ahorro cumplida
 
@@ -38,7 +37,7 @@ if(mont_inicial == 0 || met_ahorro == 0) {
     div_valores.style.display = 'none';
 }
 
-console.log(' id desde val meta  ' + id);
+// console.log(' id desde val meta  ' + id);
 
 const formIngresoValores = document.getElementById('form_ingreso_valores');
 
@@ -93,7 +92,9 @@ async function cargarYMostrarValoresDesdeAPI() {
         metaAhorroMostrada.value =  entry.meta_ahorro; 
 
         sumarTotalGastos();
-        calcular_gastos(entry.monto_inicial, entry.meta_ahorro);
+
+        mont_inicial = entry.monto_inicial;
+        met_ahorro = entry.meta_ahorro; 
     }
         });
     } catch (error) {
@@ -190,7 +191,9 @@ async function eliminarMontMeta() {
         total_gastos += entry.valor;
       });
 
-      console.log('La suma total del valor de los elementos del mes actual es:', sumaTotal);
+      console.log('La suma total del valor de los elementos del mes actual es:', total_gastos);
+      if(total_gastos > 0){
+      calcular_gastos()}
 
     } catch (error) {
       console.error('Ocurrió un error:', error);
@@ -198,10 +201,10 @@ async function eliminarMontMeta() {
   }
   
 
-function calcular_gastos(mont, met){
+function calcular_gastos(){
   
-        mont_inicial = mont;
-        met_ahorro = met;
+        mont_inicial 
+        met_ahorro 
         total_gastos;
 
        if(total_gastos <= met_ahorro ){
@@ -214,24 +217,31 @@ function calcular_gastos(mont, met){
           meta_cumplida = "No";
         };  
                   
+        
+        
+        data.push(total_gastos, total_ahorro);
+
+        mostarGraficoCuenta();
+
           console.log('El total de los gasto asta la actuidad es de ', total_gastos);
   
         };
 
 //Grafico
 
+function mostarGraficoCuenta(){
 const DATA_COUNT = 2;
 const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
 
-const data = {
-    labels: ['Green', 'Whithe'],
+const datos = {
+    labels: ['Gasto', 'Ahorro'],
     datasets: [
         {
             label: 'Dataset 1',
-            data: [25, 35], 
+            data , 
             backgroundColor: [
-                'Green',
-                'Whithe'
+              'Black',
+              'Green'
             ],
         }
     ]
@@ -239,7 +249,7 @@ const data = {
 
 const config = {
     type: 'doughnut',
-    data: data,
+    data: datos,
     options: {
         responsive: true,
         plugins: {
@@ -257,7 +267,7 @@ const config = {
 window.onload = function() {
     var ctx = document.getElementById('myChart').getContext('2d');
     new Chart(ctx, config);
-};
+};}
 
 // export { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida};        
 

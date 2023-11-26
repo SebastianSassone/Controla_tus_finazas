@@ -31,15 +31,11 @@ select.addEventListener('change', () => {
 
 function mosGrafic(){
 anychart.onDocumentReady(function () {
-    // create pie chart with passed data
     
     let chart = anychart.pie(chartdata);
 
-    // set chart title text settings
     chart.title('Grafico de valances consumo diario');
-    // set chart labels position to outside
     chart.labels().position('outside');
-    // set legend title settings
     chart
       .legend()
       .title()
@@ -47,21 +43,18 @@ anychart.onDocumentReady(function () {
       .text('Categorias')
       .padding([0, 0, 10, 0]);
 
-    // set legend position and items layout
     chart
       .legend()
       .position('center-bottom')
       .itemsLayout('horizontal')
       .align('center');
 
-    // set container id for the chart
     chart.container('container');
-    // initiate chart drawing
+
     chart.draw();
   })};
 
 //Filtrar datos
-
 
 function sumarValoresPorFecha(data, mesSeleccionado) {
   const mesNumero = parseInt(mesSeleccionado, 10);
