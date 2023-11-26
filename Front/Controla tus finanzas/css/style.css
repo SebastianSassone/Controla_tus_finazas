@@ -972,6 +972,12 @@ td {
   cursor: pointer;
 }
 
+/* Grafico cuenta */
+
+.grafic_cuenta{
+  height: 100px;
+}
+
 /* Footer */
 
 footer {

@@ -7,9 +7,10 @@
     <title>Controla tus finanzas</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC&family=Exo:wght@100&family=Gothic+A1:wght@100&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/7e5b2d153f.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC&family=Exo:wght@100&family=Gothic+A1:wght@100&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7e5b2d153f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <nav class="menu">
       <section class="menu__container">
           <div class="pag_logo">
@@ -88,6 +89,10 @@
             <button id="guardarCambiosBt" style="display: none;" class="save-btn">Guardar Cambios</button>
         </div>
     
+        <div class="grafic_cuenta">
+           <canvas id="myChart"></canvas>
+        </div>
+
         <section class="section_form_cierre" id="section_form_cierre">
              <form action="/cierre" method="POST" id="form_cierre" class="form_cierre">
                 <label for="monto_in">Monto inicial:</label>

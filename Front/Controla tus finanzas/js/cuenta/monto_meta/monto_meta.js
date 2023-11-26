@@ -218,8 +218,49 @@ function calcular_gastos(mont, met){
   
         };
 
+//Grafico
+
+const DATA_COUNT = 2;
+const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
+
+const data = {
+    labels: ['Green', 'Whithe'],
+    datasets: [
+        {
+            label: 'Dataset 1',
+            data: [25, 35], 
+            backgroundColor: [
+                'Green',
+                'Whithe'
+            ],
+        }
+    ]
+};
+
+const config = {
+    type: 'doughnut',
+    data: data,
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Chart.js Doughnut Chart'
+            }
+        }
+    },
+};
+
+window.onload = function() {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    new Chart(ctx, config);
+};
+
 export { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida};        
 
-// agregar lo del grfico tutorial internet
+
 
 
