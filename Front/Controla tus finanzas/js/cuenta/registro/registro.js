@@ -76,4 +76,4 @@ viewPasswordReg2.addEventListener('change', (event)=>{
   }
 })
 
-export {ac_in};
+// export {ac_in};

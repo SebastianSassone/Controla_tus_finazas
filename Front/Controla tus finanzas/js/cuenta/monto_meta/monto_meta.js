@@ -259,7 +259,7 @@ window.onload = function() {
     new Chart(ctx, config);
 };
 
-export { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida};        
+// export { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida};        
 
 
 
