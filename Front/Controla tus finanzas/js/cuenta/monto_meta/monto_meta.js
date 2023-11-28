@@ -192,9 +192,11 @@ async function eliminarMontMeta() {
       });
 
       console.log('La suma total del valor de los elementos del mes actual es:', total_gastos);
-      // if(total_gastos > 0){
-      // calcular_gastos()}
-
+      
+      data.push(total_gastos);
+      data.push(total_ahorro);
+      
+      mostarGraficoCuenta(data);
     } catch (error) {
       console.error('Ocurrió un error:', error);
     }
@@ -208,7 +210,7 @@ function calcular_gastos(){
         total_gastos;
 
        if(total_gastos <= met_ahorro ){
-        console.log('Meta de ahorro cumplida');
+          console.log('Meta de ahorro cumplida');
           total_ahorro = mont_inicial - total_gastos;
           meta_cumplida = "Si";
           }else{
@@ -217,16 +219,13 @@ function calcular_gastos(){
           meta_cumplida = "No";
         };  
                   
-        data.push(total_gastos);
-        data.push(total_ahorro);
-
-          console.log('El total de los gasto asta la actuidad es de ', total_gastos);
-  
         };
 
 //Grafico
 
-function mostarGraficoCuenta(){
+function mostarGraficoCuenta(data){
+
+console.log('ejecutada')
 const DATA_COUNT = 2;
 const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
 
@@ -235,7 +234,7 @@ const datos = {
     datasets: [
         {
             label: 'Dataset 1',
-            data , 
+            data, 
             backgroundColor: [
               'Black',
               'Green'
@@ -264,17 +263,19 @@ const config = {
 window.onload = function() {
     var ctx = document.getElementById('myChart').getContext('2d');
     new Chart(ctx, config);
-};}
+};
+
+}
 
 // promesa hgastos
-async function esperarTotalGastos() {
+// async function esperarTotalGastos() {
 
-  while (total_gastos <= 0) {
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
-  }
-    calcular_gastos(); 
-    mostarGraficoCuenta();
-  }
+//   while (total_gastos <= 0) {
+//     await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
+//   }
+//     calcular_gastos(); 
+//     mostarGraficoCuenta();
+//   }
 
 // export { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida};        
 
