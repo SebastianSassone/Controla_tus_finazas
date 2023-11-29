@@ -267,7 +267,7 @@ window.onload = function() {
 };}
 
 // promesa hgastos
-async function waitForCounterToReach() {
+async function esperarTotalGastos() {
 
   while (total_gastos <= 0) {
     await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
