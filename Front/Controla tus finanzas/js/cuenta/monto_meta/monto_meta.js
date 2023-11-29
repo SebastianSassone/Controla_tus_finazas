@@ -192,8 +192,8 @@ async function eliminarMontMeta() {
       });
 
       console.log('La suma total del valor de los elementos del mes actual es:', total_gastos);
-      if(total_gastos > 0){
-      calcular_gastos()}
+      // if(total_gastos > 0){
+      // calcular_gastos()}
 
     } catch (error) {
       console.error('Ocurrió un error:', error);
@@ -217,11 +217,8 @@ function calcular_gastos(){
           meta_cumplida = "No";
         };  
                   
-        
-        
-        data.push(total_gastos, total_ahorro);
-
-        mostarGraficoCuenta();
+        data.push(total_gastos);
+        data.push(total_ahorro);
 
           console.log('El total de los gasto asta la actuidad es de ', total_gastos);
   
@@ -268,6 +265,16 @@ window.onload = function() {
     var ctx = document.getElementById('myChart').getContext('2d');
     new Chart(ctx, config);
 };}
+
+// promesa hgastos
+async function waitForCounterToReach() {
+
+  while (total_gastos <= 0) {
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
+  }
+    calcular_gastos(); 
+    mostarGraficoCuenta();
+  }
 
 // export { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida};        
 
