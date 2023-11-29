@@ -1328,6 +1328,15 @@ body{
   display: flex;
   /* border: 1px solid red; */
   
+  /* Form cierre */
+  
+.form_cierre{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
 }
 }
 
