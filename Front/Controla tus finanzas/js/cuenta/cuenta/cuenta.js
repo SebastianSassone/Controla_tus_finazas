@@ -4,7 +4,7 @@ const emailElement = document.getElementById('email');
 const editarBtn = document.getElementById('editarBtn');
 const guardarBtn = document.getElementById('guardarBtn');
 const eliminarBtn = document.getElementById('eliminarBtn');
-const eliminarCuentaBtn = document.getElementById('eliminarCuenta');
+const btn_eliminar_cuenta = document.getElementById("btn_eliminar_cuenta");
 
 let modoEdicion = false;
 
@@ -20,7 +20,7 @@ guardarBtn.addEventListener('click', () => {
     guardarCambios();
 } )
 
-eliminarCuentaBtn.addEventListener('click', () => {
+btn_eliminar_cuenta.addEventListener('click', () => {
     if (window.confirm("Esta seguro de eliminar su cuenta?")) {
         eliminarcuenta();
       }}
@@ -99,23 +99,7 @@ async function guardarCambios() {
         console.error('Error al guardar los cambios:', error);
     }
 }
-
-async function eliminarcuenta() {
-    try {
-      const response = await fetch(`http://localhost:4000/eliminar_cuenta/${id}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) {
-        throw new Error('Error al eliminar los datos.');
-      }
-      alert('Datos eliminados exitosamente.');
-      tbody.removeChild(row);
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Ocurrió un error al eliminar los datos.');
-    }
-  }
-       
+ 
 // Cerrar sesion
 
 document.getElementById('cerrarSesionBtn').addEventListener('click', function() {
@@ -143,3 +127,28 @@ document.getElementById('cerrarSesionBtn').addEventListener('click', function() 
         console.error('Error al realizar la solicitud:', error);
     });
 });  
+
+// Eliminar cuenta
+
+let button_mas_cuen = document.getElementById("button_mas_cuen");
+
+button_mas_cuen.addEventListener('click', () => {
+    btn_eliminar_cuenta.style.display = 'flex';
+});
+
+async function eliminarcuenta() {
+    try {
+      const response = await fetch(`http://localhost:4000/eliminar_cuenta/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Error al eliminar los datos.');
+      }
+      alert('Datos eliminados exitosamente.');
+      tbody.removeChild(row);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Ocurrió un error al eliminar los datos.');
+    }
+  }
+      

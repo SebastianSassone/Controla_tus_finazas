@@ -926,6 +926,31 @@ td {
   cursor: pointer;
 }
 
+
+/* Eliminar cuenta */
+
+.button_mas_cuen{
+  color: blue;
+  border-bottom-color: blue;
+  cursor: pointer;
+}
+
+.btn_eliminar_cuenta{
+  background-color: rgb(180, 172, 172);
+	border: 1px solid black;
+	border-radius: 4px;
+	color: black;
+	display: block;
+	font-family: inherit;
+	font-size: 15px;
+	padding: 4px;
+	width: 15%;
+  align-items: center;
+  cursor: pointer;
+  display: none;     
+}
+
+
 ::-webkit-scrollbar {
     width: 0 !important
 }
