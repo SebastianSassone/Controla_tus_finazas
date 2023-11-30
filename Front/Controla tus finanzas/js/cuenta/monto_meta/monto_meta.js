@@ -2,6 +2,7 @@ const montoInicialMostrado = document.getElementById('montoInicialMostrado');
 const metaAhorroMostrada = document.getElementById('metaAhorroMostrada');
 const editarBt = document.getElementById('editarBt');
 const guardarCambiosBt = document.getElementById('guardarCambiosBt');
+let meta_cum_ac = document.getElementById('meta_cum_ac'); 
 
 window.addEventListener('load', () => {
     cargarYMostrarValoresDesdeAPI();
@@ -204,10 +205,6 @@ async function eliminarMontMeta() {
   
 
 function calcular_gastos(){
-  
-        mont_inicial 
-        met_ahorro 
-        total_gastos;
 
        if(total_gastos <= met_ahorro ){
           console.log('Meta de ahorro cumplida');

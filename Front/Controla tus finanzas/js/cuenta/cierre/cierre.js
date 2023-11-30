@@ -8,9 +8,8 @@ section_form_cierre.style.display = 'none';
   
 let monto_v = 0; 
 let meta_v = 0; 
-let gastos_v = 0; 
-let ahorro_v = 0; 
 let tot_gas = 0;
+let tot_ahorro = 0; 
 let meta_cump = "Si"; 
 let fech = "fecha"; 
 
@@ -64,6 +63,8 @@ let fech = "fecha";
   
       if (cierreEncontrado) {
         console.log(`Se encontró un cierre para la fecha ${fecha}.`);
+        sumarTotalGastos(mesActual); 
+        traerMontoMeta();
         let section_form_cierre = document.getElementById('section_form_cierre'); 
         section_form_cierre.style.display = 'flex';
         let monto = document.getElementById('monto_in'); 
@@ -73,8 +74,8 @@ let fech = "fecha";
      
         monto.value = monto_v;
         meta.value = meta_v;
-        gastos.value = gastos_v;
-        ahorro.value = ahorro_v;
+        gastos.value = tot_gas;
+        ahorro.value = tot_ahorro;
       } else {
         console.log(`No se encontró un cierre para la fecha ${fecha}.`);
       }
@@ -115,27 +116,40 @@ let fech = "fecha";
       console.error('Ocurrió un error:', error);
     }
   }
-  
 
+  // Traer monto meta
+
+  async function traerMontoMeta() {
+    try {
+        const response = await fetch('http://localhost:4000/traer_valor_meta'); // Ruta de lectura de montos
+        const data = await response.json();
+
+        console.log(data);
+       
+        data.forEach((entry) => {
+        monto_v = entry.monto_inicial;
+        meta_v = entry.meta_ahorro;
+      })
+  
+    }catch (error) {
+        console.error('Error al cargar los valores:', error);
+    }
+}
+  
   // Calcular cierre
 
   function calcular_gastos(){
   
-    mont_inicial;
-    met_ahorro; 
-    total_gastos;
-
-   if(total_gastos <= met_ahorro ){
+   if(tot_gas <= meta_v ){
       console.log('Meta de ahorro cumplida');
-      total_ahorro = mont_inicial - total_gastos;
-      meta_cumplida = "Si";
+      tot_ahorro = monto_v - tot_gas;
+      meta_cump = "Si";
       }else{
       console.log('Meta de ahorro no cumplida');
-      total_ahorro = mont_inicial - total_gastos;
-      meta_cumplida = "No";
+      tot_ahorro = monto_v - tot_gas;
+      meta_cump = "No";
     };  
-              
-    };
+  };
 
 // Guardar cierre
 
@@ -146,8 +160,8 @@ form_cierre.addEventListener('submit', async (event) => {
     
     monto = monto_v;
     meta = meta_v;
-    gastos = gastos_v;     
-    ahorro = ahorro_v;
+    gastos = tot_gas;     
+    ahorro = tot_ahorro;
     fecha = fech;
     meta_cumplida = meta_cump;
   
