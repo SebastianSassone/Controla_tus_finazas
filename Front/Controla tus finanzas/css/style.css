@@ -1009,6 +1009,7 @@ td {
 .div_grafic_cuenta{
   height: 310px;
   padding: 10px;
+  display: none;
 }
 
 .grafic_c{

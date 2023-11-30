@@ -86,6 +86,9 @@ async function cargarYMostrarValoresDesdeAPI() {
         if(mont_inicial != 0 || met_ahorro != 0){
         formIngresoValores.style.display = 'none';
         
+        let div_grafic_cuenta = document.getElementById('div_grafic_cuenta');
+        div_grafic_cuenta.style.display = 'flex';
+
         let div_valores = document.getElementById('div_valores');
         div_valores.style.display = 'flex';
 
@@ -274,7 +277,7 @@ async function esperarTotalGastos() {
   
   }
 
-  esperarTotalGastos()
+  esperarTotalGastos();
 
 
 
