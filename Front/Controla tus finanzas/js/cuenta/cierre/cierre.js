@@ -14,7 +14,6 @@ let meta_cump = "Si";
 let fech = "fecha"; 
 
 // Consultar cierre
-
   async function consultarCierre() {
     try {
       const response = await fetch('http://localhost:4000/valances_ingreso');
@@ -86,23 +85,23 @@ let fech = "fecha";
     
       console.log('Datos obtenidos:', data);
   
-      const mesNumero = parseInt(fechaVerificada, 10);
+      const mesNumero = parseInt(fechaVerificada.split('/')[1], 10);
       console.log('Mes verificado:', mesNumero);
-  
+
       const resultadosFiltrados = data.filter(entry => {
-        const fechaParts = entry.fecha.split('/');
-        if (fechaParts.length === 3) {
-          const mes = parseInt(fechaParts[1], 10);
-          return mes === mesNumero;
-        }
-        return false;
+      const fechaParts = entry.fecha.split('/');
+      if (fechaParts.length === 3) {
+        const mes = parseInt(fechaParts[1], 10);
+        return mes === mesNumero;
+      }
+       return false;
       });
-  
+
       console.log('Resultados filtrados:', resultadosFiltrados);
-  
+
       resultadosFiltrados.forEach((entry) => {
-        console.log('Valor de ingreso:', entry.valor);
-        tot_gas += entry.valor; // Sumando el valor de los ingresos para el mes verificado
+      console.log('Valor de ingreso:', entry.valor);
+      tot_gas += entry.valor;
       });
   
       console.log('La suma total del valor de los elementos del mes verificado es:', tot_gas);

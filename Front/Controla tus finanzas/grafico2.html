@@ -46,5 +46,43 @@
                 new Chart(ctx, config);
             };
         </script>
+        <script>
+           let data = [
+  { "fecha": "11/10/2023", "valor": 2000 },
+  { "fecha": "11/10/2023", "valor": 2000 },
+  { "fecha": "11/10/2023", "valor": 2000 },
+  { "fecha": "11/10/2023", "valor": 2000 }
+];
+
+let fecha = '26/10/2023';
+let tot_gas = 0; // Agregar esta variable para almacenar la suma total de los valores
+
+sumarTotalGastos(fecha);
+
+function sumarTotalGastos(fechaVerificada) {
+
+  const mesNumero = parseInt(fechaVerificada.split('/')[1], 10);
+  console.log('Mes verificado:', mesNumero);
+
+  const resultadosFiltrados = data.filter(entry => {
+    const fechaParts = entry.fecha.split('/');
+    if (fechaParts.length === 3) {
+      const mes = parseInt(fechaParts[1], 10);
+      return mes === mesNumero;
+    }
+    return false;
+  });
+
+  console.log('Resultados filtrados:', resultadosFiltrados);
+
+  resultadosFiltrados.forEach((entry) => {
+    console.log('Valor de ingreso:', entry.valor);
+    tot_gas += entry.valor;
+  });
+
+  alert('La suma total del valor de los elementos del mes verificado es: ' + tot_gas);
+}
+
+        </script>
     </body>
 </html>
