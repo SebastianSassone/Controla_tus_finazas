@@ -21,9 +21,9 @@ let nuevaMeta;
 
 let modoEdit = false;
 
-// Data garfico
+// Data grafico
 
-let data = [];
+
 
 //Calcular meta de ahorro cumplida
 
@@ -193,18 +193,19 @@ async function eliminarMontMeta() {
       });
 
       console.log('La suma total del valor de los elementos del mes actual es:', total_gastos);
-      
-      data.push(total_gastos);
-      data.push(total_ahorro);
-      
-      mostarGraficoCuenta(data);
     } catch (error) {
       console.error('Ocurrió un error:', error);
     }
   }
   
 
-function calcular_gastos(){
+function calcularGastos(){
+
+          mont_inicial;
+          met_ahorro;
+          total_gastos;
+
+          console.log('Ejecutada');
 
        if(total_gastos <= met_ahorro ){
           console.log('Meta de ahorro cumplida');
@@ -214,14 +215,14 @@ function calcular_gastos(){
           console.log('Meta de ahorro no cumplida');
           total_ahorro = mont_inicial - total_gastos;
           meta_cumplida = "No";
-          };          
+          };    
+          
+          meta_cum_ac.innerHTML = meta_cumplida;
         };
 
 //Grafico
 
-function mostarGraficoCuenta(data){
 
-console.log('ejecutada')
 const DATA_COUNT = 2;
 const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
 
@@ -230,7 +231,7 @@ const datos = {
     datasets: [
         {
             label: 'Dataset 1',
-            data, 
+            data : [12000, 10000],
             backgroundColor: [
               'Black',
               'Green'
@@ -260,17 +261,20 @@ window.onload = function() {
     var ctx = document.getElementById('myChart').getContext('2d');
     new Chart(ctx, config);
 };
-}
 
-// promesa hgastos
-// async function esperarTotalGastos() {
 
-//   while (total_gastos <= 0) {
-//     await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
-//   }
-//     calcular_gastos(); 
-//     mostarGraficoCuenta();
-//   }
+
+// promesa gastos
+async function esperarTotalGastos() {
+
+  while (total_gastos <= 0) {
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
+  }
+    calcularGastos(); 
+  
+  }
+
+  esperarTotalGastos()
 
 
 

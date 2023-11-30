@@ -804,6 +804,10 @@ td {
   justify-content: space-evenly;
 }
 
+.input_dat_cuen input{
+  font-size: 19px;
+}
+
 .btns_edit_dat_cuen{
    display: flex;
    flex-direction: column;
@@ -876,18 +880,20 @@ td {
   width: 100%;
   height: 200px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-evenly;
   padding: 10px;
+  display: flex;
+  height: 20vh;
+}
+
+.div_valores p{
+  font-size: 19px;
 }
 
 .div_mos_val input{
   font-size: 19px;
   text-align: center;
-  height: 20vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
 }
 
 .btns_edit_val{
@@ -1000,12 +1006,19 @@ td {
 
 /* Grafico cuenta */
 
-.grafic_cuenta{
-  height: 300px;
+.div_grafic_cuenta{
+  height: 310px;
   padding: 10px;
-  border: 1px solid red;
 }
 
+.grafic_c{
+  height: 90%;
+}
+
+.grafic_cuenta p{
+  height: 10%;
+  font-size: 19px;
+}
 /* Botones cuenta */
 
 .container_btns{

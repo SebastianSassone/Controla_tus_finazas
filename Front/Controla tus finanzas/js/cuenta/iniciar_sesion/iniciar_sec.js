@@ -29,7 +29,7 @@ form_in_sec.addEventListener('submit', async (event) => {
       throw new Error('Error al iniciar sesion.');
     }
 
-    //window.location.replace("http://127.0.0.1:5500/html/cuenta.html");
+    window.location.replace("http://localhost:5500/html/cuenta.html");
     ac_in = true;
     
     alert('Sesion iniciada');
