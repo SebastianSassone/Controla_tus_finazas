@@ -217,8 +217,7 @@ function calcular_gastos(){
           console.log('Meta de ahorro no cumplida');
           total_ahorro = mont_inicial - total_gastos;
           meta_cumplida = "No";
-        };  
-                  
+          };          
         };
 
 //Grafico
@@ -264,7 +263,6 @@ window.onload = function() {
     var ctx = document.getElementById('myChart').getContext('2d');
     new Chart(ctx, config);
 };
-
 }
 
 // promesa hgastos
@@ -276,8 +274,6 @@ window.onload = function() {
 //     calcular_gastos(); 
 //     mostarGraficoCuenta();
 //   }
-
-// export { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida};        
 
 
 

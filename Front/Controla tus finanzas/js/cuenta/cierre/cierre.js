@@ -5,22 +5,14 @@ window.addEventListener('load', () => {
 let section_form_cierre = document.getElementById('section_form_cierre'); 
 
 section_form_cierre.style.display = 'none';
-
-// import { mont_inicial, met_ahorro, total_gastos, total_ahorro, meta_cumplida } from '../monto_meta/monto_meta';
-
-monto_v = mont_inicial; 
-meta_v = met_ahorro; 
-gastos_v = total_gastos; 
-ahorro_v = total_ahorro; 
-meta_cumplida = meta_cumplida; 
+  
+let monto_v = 0; 
+let meta_v = 0; 
+let gastos_v = 0; 
+let ahorro_v = 0; 
+let tot_gas = 0;
+let meta_cump = "Si"; 
 let fech = "fecha"; 
-
-//  let monto_v = 340000; 
-//  let meta_v = 200000; 
-//  let gastos_v = 130000; 
-//  let ahorro_v = 210000;
-//  let fech = "algo"; 
-// let meta_cump =   "Si"; 
 
 // Consultar cierre
 
@@ -72,26 +64,78 @@ let fech = "fecha";
   
       if (cierreEncontrado) {
         console.log(`Se encontró un cierre para la fecha ${fecha}.`);
-      
-      } else {
-        console.log(`No se encontró un cierre para la fecha ${fecha}.`);
         let section_form_cierre = document.getElementById('section_form_cierre'); 
         section_form_cierre.style.display = 'flex';
         let monto = document.getElementById('monto_in'); 
         let meta = document.getElementById('met_aho'); 
         let gastos = document.getElementById('total_gas'); 
         let ahorro = document.getElementById('total_aho'); 
-
+     
         monto.value = monto_v;
         meta.value = meta_v;
         gastos.value = gastos_v;
         ahorro.value = ahorro_v;
+      } else {
+        console.log(`No se encontró un cierre para la fecha ${fecha}.`);
       }
     } catch (error) {
       console.error('Error al verificar el cierre:', error);
     }
   }
   
+  //Calcular total gastos
+
+  async function sumarTotalGastos(fechaVerificada) {
+    try {
+      const response = await fetch('http://localhost:4000/valances_ingreso');
+      if (!response.ok) {
+        throw new Error('Error al obtener los datos.');
+      }
+  
+      const data = await response.json();
+  
+      const mesNumero = parseInt(fechaVerificada, 10);
+  
+      const resultadosFiltrados = data.filter(entry => {
+        const fechaParts = entry.fecha.split('/');
+        if (fechaParts.length === 3) {
+          const mes = parseInt(fechaParts[1], 10);
+          return mes === mesNumero;
+        }
+        return false;
+      });
+  
+      resultadosFiltrados.forEach((entry) => {
+        tot_gas += entry.valor; // Sumando el valor de los ingresos para el mes verificado
+      });
+  
+      console.log('La suma total del valor de los elementos del mes verificado es:', tot_gas);
+  
+    } catch (error) {
+      console.error('Ocurrió un error:', error);
+    }
+  }
+  
+
+  // Calcular cierre
+
+  function calcular_gastos(){
+  
+    mont_inicial;
+    met_ahorro; 
+    total_gastos;
+
+   if(total_gastos <= met_ahorro ){
+      console.log('Meta de ahorro cumplida');
+      total_ahorro = mont_inicial - total_gastos;
+      meta_cumplida = "Si";
+      }else{
+      console.log('Meta de ahorro no cumplida');
+      total_ahorro = mont_inicial - total_gastos;
+      meta_cumplida = "No";
+    };  
+              
+    };
 
 // Guardar cierre
 
