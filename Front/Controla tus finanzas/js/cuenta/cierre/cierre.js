@@ -33,15 +33,10 @@ let fech = "fecha";
           if (mesValance !== mesActual) {
             fechaMenorAmesActualEncontrada = true;
             const fechaMenorAmesActual = entry.fecha;
-            fech = entry.fecha;
+            fech = fechaMenorAmesActual;
             await verificarCierre(fechaMenorAmesActual);
           }
         }
-      }
-  
-      if (!fechaMenorAmesActualEncontrada) {
-    
-        console.log('No hay ingresos con fecha anterior al mes actual.');
       }
     } catch (error) {
       console.error('Error:', error.message);
@@ -111,7 +106,7 @@ let fech = "fecha";
     }
   }
   
-
+    
   // Traer monto meta
 
   async function traerMontoMeta() {

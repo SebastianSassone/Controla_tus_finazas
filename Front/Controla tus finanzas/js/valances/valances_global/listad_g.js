@@ -9,7 +9,7 @@ function filtrarMes(data, mesSeleccionado) {
     return;
   }
 
-  const resultadosFiltrados = data.filter(entry => {
+    const resultadosFiltrados = data.filter(entry => {
     const fechaParts = entry.fecha.split('/');
     if (fechaParts.length === 3) {
       const mes = parseInt(fechaParts[1], 10);

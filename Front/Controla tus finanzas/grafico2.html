@@ -84,6 +84,43 @@ function sumarTotalGastos(fechaVerificada) {
 }
 
         </script>
+<script>
+        let data = [
+        { "fecha": "11/06/2023", "valor": 2000 },
+        { "fecha": "11/12/2023", "valor": 2000 },
+        { "fecha": "11/10/2023", "valor": 2000 },
+        { "fecha": "11/09/2023", "valor": 2000 }
+         ];
+
+    let fechacierre = '11/09/2023'
+
+    verificarCierre(fechacierre)
+
+    function verificarCierre(fecha) {
+
+        const mesNumero = parseInt(fecha, 10);
+ 
+       const cierreEncontrado = data.filter(entry => {
+       const fechaParts = entry.fecha.split('/');
+        if (fechaParts.length === 3) {
+        const mes = parseInt(fechaParts[1], 10);
+        return mes === mesNumero;
+        }
+       return false;
+});
+
+      if (cierreEncontrado) {
+          console.log(`Se encontró un cierre para la fecha ${fecha}.`);
+        console.log(`No se encontró un cierre para la fecha ${fecha}.`);
+        
+      } else {
+        traerMontoMeta();
+        sumarTotalGastos(fecha);
+      }
+ 
+  }
+</script>
+
         <p>Publicacion: Buenod dias red
             Hace unos meses atras me propuse realizar un apagina web que nos permita controlar nuestras finanazas personales de una manera sencilla 
             y presisa, luego de mucho trabajo logre finalizar el proyecto, que consta de una api de back en realizada con con java sprng boot que se conecta a una bas de datso remota 
