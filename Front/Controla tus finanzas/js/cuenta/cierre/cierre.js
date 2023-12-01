@@ -44,28 +44,26 @@ let fech = "fecha";
   }
   
   async function verificarCierre(fecha) {
-    try {
-      const response = await fetch('http://localhost:4000/traer_cierre');
-      const data = await response.json();
-  
-      const mesActual = new Date().toLocaleString('es-ES', { month: 'numeric' });
-  
-      const cierreEncontrado = data.find((entry) => {
-        const fechaParts = entry.fecha.split('/');
-        return fechaParts.length === 3 && fechaParts[1] === mesActual;
+      const fechaParts = fecha.split('/');
+      const mesNumero = parseInt(fechaParts[1], 10);
+    
+      const cierreEncontrado = data.filter(entry => {
+      const entryFechaParts = entry.fecha.split('/');
+      if (entryFechaParts.length === 3) {
+        const mes = parseInt(entryFechaParts[1], 10);
+        return mes === mesNumero;
+      }
+      return false;
       });
   
-      if (cierreEncontrado) {
-        console.log(`No se encontró un cierre para la fecha ${fecha}.`);
-        traerMontoMeta();
-        sumarTotalGastos(fecha);
+      if (cierreEncontrado.length > 0) {
+          alert(`Se encontró al menos un cierre para el mes ${fecha}.`);
       } else {
-        console.log(`Se encontró un cierre para la fecha ${fecha}.`);
-      }
-    } catch (error) {
-      console.error('Error al verificar el cierre:', error);
+          alert(`No se encontró ningún cierre para el mes ${fecha}.`);
+          traerMontoMeta();
+          sumarTotalGastos(fecha);
+        }
     }
-  }
   
   //Calcular total gastos
 
@@ -126,7 +124,6 @@ let fech = "fecha";
     }
 }
   
-
 // Guardar cierre
 
 let form_cierre = document.getElementById('form_cierre'); 
