@@ -22,22 +22,25 @@ let fech = "fecha";
       }
   
       const data = await response.json();
-      console.log('Datos obtenidos:', data);
-      const mesActual = new Date().toLocaleString('es-ES', { month: 'numeric' });
-  
-      let fechaMenorAmesActualEncontrada = false;
-  
-      for (const entry of data) {
-        const fechaParts = entry.fecha.split('/');
-        if (fechaParts.length === 3) {
-          const mesValance = fechaParts[1];
-          if (mesValance !== mesActual) {
-            fechaMenorAmesActualEncontrada = true;
-            const fechaMenorAmesActual = entry.fecha;
-            fech = entry.fecha;
-            await verificarCierre(fechaMenorAmesActual);
-          }
-        }
+
+      const fechaActual = new Date();
+      const mesActual = fechaActual.getMonth() + 1;            
+
+       const fechaMesAnterior = data.filter(entry => {
+       const fechaParts = entry.fecha.split('/');
+       if (fechaParts.length === 3) {
+       const mes = parseInt(fechaParts[1], 10);
+
+       return mes === (mesActual - 1);
+       }
+       return false;
+       });
+
+      if (fechaMesAnterior.length > 0) {
+        alert('Se encontro fecha');
+        verificarCierre(fechaMesAnterior);
+      } else {
+        alert('No se encontro');
       }
     } catch (error) {
       console.error('Error:', error.message);
@@ -58,7 +61,7 @@ let fech = "fecha";
       });
   
       if (cierreEncontrado.length > 0) {
-          alert(`Se encontró al menos un cierre para el mes ${fecha}.`);
+          alert(`Se encontró un cierre para el mes ${fecha}.`);
       } else {
           alert(`No se encontró ningún cierre para el mes ${fecha}.`);
           traerMontoMeta();
