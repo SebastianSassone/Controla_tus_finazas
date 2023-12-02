@@ -122,32 +122,32 @@ function sumarTotalGastos(fechaVerificada) {
 </script>
 <script>
      async function consultarCierre() {
+        function consultarCierre() {
+  const fechaActual = new Date();
+  const mesActual = fechaActual.getMonth() + 1; // Obtener el mes actual
 
-      let data = [
-        { "fecha": "11/06/2023", "valor": 2000 },
-        { "fecha": "11/12/2023", "valor": 2000 },
-        { "fecha": "11/11/2023", "valor": 2000 },
-        { "fecha": "11/09/2023", "valor": 2000 }
-         ];
-
-         const fechaActual = new Date();
-  const mesActual = fechaActual.getMonth() + 1;
-
-  const resultadosFiltrados = data.filter(entry => {
+  // Filtrar las fechas que sean del mes anterior al mes actual
+  const fechaMesAnterior = data.filter(entry => {
     const fechaParts = entry.fecha.split('/');
     if (fechaParts.length === 3) {
       const mes = parseInt(fechaParts[1], 10);
-      return mes < mesActual;
+
+      // Comprobar si el mes es el mes anterior al actual
+      return mes === (mesActual - 1);
     }
     return false;
   });
 
-  if (resultadosFiltrados.length > 0) {
-    alert('Se encontraron meses menores al mes actual');
+  if (fechaMesAnterior.length > 0) {
+    alert('Se encontraron fechas del mes anterior al mes actual');
+    verificarCierre(fechaMesAnterior);
   } else {
-    alert('No se encontraron meses menores al mes actual');
+    alert('No se encontraron fechas del mes anterior al mes actual');
   }
- }
+}
+
+consultarCierre();
+
 </script>
 
         <p>
