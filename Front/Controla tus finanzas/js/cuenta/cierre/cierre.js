@@ -8,7 +8,7 @@ section_form_cierre.style.display = 'none';
   
 let monto_v = 0; 
 let meta_v = 0; 
-let tot_gas = 10;
+let tot_gas = 0;
 let tot_ahorro = 0; 
 let meta_cump = "Si"; 
 let fech = "fecha"; 
@@ -22,6 +22,7 @@ let fech = "fecha";
       }
   
       const data = await response.json();
+      console.log('Datos obtenidos:', data);
       const mesActual = new Date().toLocaleString('es-ES', { month: 'numeric' });
   
       let fechaMenorAmesActualEncontrada = false;
@@ -33,7 +34,7 @@ let fech = "fecha";
           if (mesValance !== mesActual) {
             fechaMenorAmesActualEncontrada = true;
             const fechaMenorAmesActual = entry.fecha;
-            fech = fechaMenorAmesActual;
+            fech = entry.fecha;
             await verificarCierre(fechaMenorAmesActual);
           }
         }
