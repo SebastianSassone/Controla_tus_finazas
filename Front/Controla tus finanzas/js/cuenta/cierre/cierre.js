@@ -11,7 +11,7 @@ let meta_v = 0;
 let tot_gas = 0;
 let tot_ahorro = 0; 
 let meta_cump = "Si"; 
-let fech = "fecha"; 
+let fech = "11/12/2023"; 
 
 // Consultar cierre
   async function consultarCierre() {
@@ -24,30 +24,38 @@ let fech = "fecha";
       const data = await response.json();
 
       const fechaActual = new Date();
-      const mesActual = fechaActual.getMonth() + 1;            
+      const mesActual = fechaActual.getMonth() + 1; // Obtener el mes actual
 
-       const fechaMesAnterior = data.filter(entry => {
-       const fechaParts = entry.fecha.split('/');
-       if (fechaParts.length === 3) {
-       const mes = parseInt(fechaParts[1], 10);
+      const fechaMesAnterior = data.filter(entry => {
+      const fechaParts = entry.fecha.split('/');
+      if (fechaParts.length === 3) {
+        const mes = parseInt(fechaParts[1], 10);
 
-       return mes === (mesActual - 1);
-       }
-       return false;
-       });
+        return mes === (mesActual - 1);
+      }
+        return false;
+      });
 
       if (fechaMesAnterior.length > 0) {
-        alert('Se encontro fecha');
-        verificarCierre(fechaMesAnterior);
+      console.log('Se encontraron fechas del mes anterior al mes actual');
+      
       } else {
-        alert('No se encontro');
+      console.log('No se encontraron fechas del mes anterior al mes actual');
       }
-    } catch (error) {
-      console.error('Error:', error.message);
-    }
+      } catch (error) {
+       console.error('Error:', error.message);
+     }
   }
-  
+
   async function verificarCierre(fecha) {
+    try {
+      const response = await fetch('http://localhost:4000/traer_cierre');
+      if (!response.ok) {
+        throw new Error('Error al obtener los datos.');
+      }
+  
+      const data = await response.json();  
+      
       const fechaParts = fecha.split('/');
       const mesNumero = parseInt(fechaParts[1], 10);
     
@@ -61,52 +69,55 @@ let fech = "fecha";
       });
   
       if (cierreEncontrado.length > 0) {
-          alert(`Se encontró un cierre para el mes ${fecha}.`);
+          console.log(`Se encontró un cierre para el mes ${fecha}.`);
       } else {
-          alert(`No se encontró ningún cierre para el mes ${fecha}.`);
+          console.log(`No se encontró ningún cierre para el mes ${fecha}.`);
           traerMontoMeta();
           sumarTotalGastos(fecha);
         }
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
     }
   
   //Calcular total gastos
 
-  async function sumarTotalGastos(fechaVerificada) {
-    try {
-      const response = await fetch('http://localhost:4000/valances_ingreso');
-      if (!response.ok) {
-        throw new Error('Error al obtener los datos.');
-      }
+  // async function sumarTotalGastos(fechaVerificada) {
+  //   try {
+  //     const response = await fetch('http://localhost:4000/valances_ingreso');
+  //     if (!response.ok) {
+  //       throw new Error('Error al obtener los datos.');
+  //     }
   
-      const data = await response.json();
+  //     const data = await response.json();
     
-      console.log('Datos obtenidos:', data);
+  //     console.log('Datos obtenidos:', data);
   
-      const mesNumero = parseInt(fechaVerificada.split('/')[1], 10);
-      console.log('Mes verificado:', mesNumero);
+  //     const mesNumero = parseInt(fechaVerificada.split('/')[1], 10);
+  //     console.log('Mes verificado:', mesNumero);
 
-      const resultadosFiltrados = data.filter(entry => {
-      const fechaParts = entry.fecha.split('/');
-      if (fechaParts.length === 3) {
-        const mes = parseInt(fechaParts[1], 10);
-        return mes === mesNumero;
-      }
-       return false;
-      });
+  //     const resultadosFiltrados = data.filter(entry => {
+  //     const fechaParts = entry.fecha.split('/');
+  //     if (fechaParts.length === 3) {
+  //       const mes = parseInt(fechaParts[1], 10);
+  //       return mes === mesNumero;
+  //     }
+  //      return false;
+  //     });
 
-      console.log('Resultados filtrados:', resultadosFiltrados);
+  //     console.log('Resultados filtrados:', resultadosFiltrados);
 
-      resultadosFiltrados.forEach((entry) => {
-      console.log('Valor de ingreso:', entry.valor);
-      tot_gas += entry.valor;
-      });
+  //     resultadosFiltrados.forEach((entry) => {
+  //     console.log('Valor de ingreso:', entry.valor);
+  //     tot_gas += entry.valor;
+  //     });
   
-      console.log('La suma total del valor de los elementos del mes verificado es:', tot_gas);
+  //     console.log('La suma total del valor de los elementos del mes verificado es:', tot_gas);
   
-    } catch (error) {
-      console.error('Ocurrió un error:', error);
-    }
-  }
+  //   } catch (error) {
+  //     console.error('Ocurrió un error:', error);
+  //   }
+  // }
   
     
   // Traer monto meta
@@ -162,10 +173,10 @@ form_cierre.addEventListener('submit', async (event) => {
     }
 }); 
 
-        // Calcular cierre
+// Calcular cierre
         
  function calcularGastosCierre(){
-     
+
   monto_v;
   meta_v;
   tot_gas;

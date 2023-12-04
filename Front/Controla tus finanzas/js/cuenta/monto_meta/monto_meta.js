@@ -6,6 +6,7 @@ let meta_cum_ac = document.getElementById('meta_cum_ac');
 
 window.addEventListener('load', () => {
     cargarYMostrarValoresDesdeAPI();
+    sumarTotalGastos();
 });
  
 editarBt.addEventListener('click', () => {
@@ -22,8 +23,6 @@ let nuevaMeta;
 let modoEdit = false;
 
 // Data grafico
-
-
 
 //Calcular meta de ahorro cumplida
 
@@ -95,8 +94,6 @@ async function cargarYMostrarValoresDesdeAPI() {
         montoInicialMostrado.value = entry.monto_inicial;
         metaAhorroMostrada.value =  entry.meta_ahorro; 
 
-        sumarTotalGastos();
-
         mont_inicial = entry.monto_inicial;
         met_ahorro = entry.meta_ahorro; 
     }
@@ -135,8 +132,7 @@ async function guardarCambiosValMeta() {
     const nuevoMontoInicial = montoInicialMostrado.value;
     const nuevaMetaAhorro   = metaAhorroMostrada.value;
 
-    try {
-        
+    try {        
         await fetch(`http://localhost:4000/actualizar_valor_meta/${id}`, {
             method: 'PUT', 
             headers: {
@@ -219,7 +215,6 @@ function calcularGastos(){
           total_ahorro = mont_inicial - total_gastos;
           meta_cumplida = "No";
           };    
-          
           meta_cum_ac.innerHTML = meta_cumplida;
         };
 
@@ -229,12 +224,12 @@ function calcularGastos(){
 const DATA_COUNT = 2;
 const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
 
-const datos = {
-    labels: ['Gasto', 'Ahorro'],
+const data = {
+    labels: [ 'Black', 'Green'],
     datasets: [
         {
             label: 'Dataset 1',
-            data : [12000, 10000],
+            data: [25000, 35000], // Sample data, you can replace this with your data
             backgroundColor: [
               'Black',
               'Green'
@@ -245,7 +240,7 @@ const datos = {
 
 const config = {
     type: 'doughnut',
-    data: datos,
+    data: data,
     options: {
         responsive: true,
         plugins: {
@@ -274,7 +269,6 @@ async function esperarTotalGastos() {
     await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
   }
     calcularGastos(); 
-  
   }
 
   esperarTotalGastos();

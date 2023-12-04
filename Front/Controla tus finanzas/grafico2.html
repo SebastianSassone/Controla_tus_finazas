@@ -121,18 +121,18 @@ function sumarTotalGastos(fechaVerificada) {
   }
 </script>
 <script>
-     async function consultarCierre() {
+     
         function consultarCierre() {
   const fechaActual = new Date();
   const mesActual = fechaActual.getMonth() + 1; // Obtener el mes actual
 
-  // Filtrar las fechas que sean del mes anterior al mes actual
+
   const fechaMesAnterior = data.filter(entry => {
     const fechaParts = entry.fecha.split('/');
     if (fechaParts.length === 3) {
       const mes = parseInt(fechaParts[1], 10);
 
-      // Comprobar si el mes es el mes anterior al actual
+     
       return mes === (mesActual - 1);
     }
     return false;
