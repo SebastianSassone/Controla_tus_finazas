@@ -209,7 +209,7 @@ const data = {
     datasets: [
         {
             label: 'Dataset 1',
-            dta, // Sample data, you can replace this with your data
+            data : [2000, 90], // Sample data, you can replace this with your data
             backgroundColor: [
               'Black',
               'Green'
@@ -220,7 +220,7 @@ const data = {
 
 const config = {
     type: 'doughnut',
-    data: dta,
+    data: data,
     options: {
         responsive: true,
         plugins: {
@@ -235,12 +235,12 @@ const config = {
     },
 };
 
-function cargarGrafic(){
-// window.onload = function() {
+
+window.onload = function() {
     var ctx = document.getElementById('myChart').getContext('2d');
     new Chart(ctx, config);
-// };
-}
+};
+
 
 
 function calcularGastos(){
