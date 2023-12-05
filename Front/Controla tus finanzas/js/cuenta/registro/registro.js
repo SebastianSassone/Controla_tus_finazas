@@ -34,7 +34,7 @@ form_registro.addEventListener('submit', async (event) => {
          throw new Error('Error al registrarse');
        }
   
-      // window.location.replace("http://127.0.0.1:5500/index.html");
+      window.location.replace("http://localhost:5500/html/cuenta.html");
         alert('Registro realizado exitosamente.');
         
         ac_in = true;

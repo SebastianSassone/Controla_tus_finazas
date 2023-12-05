@@ -24,6 +24,8 @@ let modoEdit = false;
 
 // Data grafico
 
+let dta = [0, 0];
+
 //Calcular meta de ahorro cumplida
 
 let mont_inicial = 0;
@@ -197,29 +199,7 @@ async function eliminarMontMeta() {
     }
   }
   
-
-function calcularGastos(){
-
-          mont_inicial;
-          met_ahorro;
-          total_gastos;
-
-          console.log('Ejecutada');
-
-       if(total_gastos <= met_ahorro ){
-          console.log('Meta de ahorro cumplida');
-          total_ahorro = mont_inicial - total_gastos;
-          meta_cumplida = "Si";
-          }else{
-          console.log('Meta de ahorro no cumplida');
-          total_ahorro = mont_inicial - total_gastos;
-          meta_cumplida = "No";
-          };    
-          meta_cum_ac.innerHTML = meta_cumplida;
-        };
-
 //Grafico
-
 
 const DATA_COUNT = 2;
 const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
@@ -229,7 +209,7 @@ const data = {
     datasets: [
         {
             label: 'Dataset 1',
-            data: [25000, 35000], // Sample data, you can replace this with your data
+            dta, // Sample data, you can replace this with your data
             backgroundColor: [
               'Black',
               'Green'
@@ -240,7 +220,7 @@ const data = {
 
 const config = {
     type: 'doughnut',
-    data: data,
+    data: dta,
     options: {
         responsive: true,
         plugins: {
@@ -255,14 +235,39 @@ const config = {
     },
 };
 
-window.onload = function() {
+function cargarGrafic(){
+// window.onload = function() {
     var ctx = document.getElementById('myChart').getContext('2d');
     new Chart(ctx, config);
+// };
+}
+
+
+function calcularGastos(){
+
+  mont_inicial;
+  met_ahorro;
+  total_gastos;
+
+  console.log('Ejecutada');
+
+if(total_gastos <= met_ahorro ){
+  console.log('Meta de ahorro cumplida');
+  total_ahorro = mont_inicial - total_gastos;
+  meta_cumplida = "Si";
+  }else{
+  console.log('Meta de ahorro no cumplida');
+  total_ahorro = mont_inicial - total_gastos;
+  meta_cumplida = "No";
+  };    
+  meta_cum_ac.innerHTML = meta_cumplida;
+  dta.push(mont_inicial, total_ahorro);
+  cargarGrafic();
 };
 
 
+// Promesa gastos
 
-// promesa gastos
 async function esperarTotalGastos() {
 
   while (total_gastos <= 0) {

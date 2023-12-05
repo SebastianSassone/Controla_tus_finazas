@@ -208,7 +208,7 @@ public class Controller {
        @GetMapping(value= "/traer_cierre")
        public List<Model_mont_alm> traerCierre(){
            if (id_user != 0) {         
-             return repository_mont_alm.findAll();
+             return repository_mont_alm.findModelsCierreByUserId(id_user);
            } else {     
               return Collections.emptyList();
          }
