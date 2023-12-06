@@ -7,7 +7,6 @@
     <title>Controla tus finanzas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC&family=Exo:wght@100&family=Gothic+A1:wght@100&display=swap" rel="stylesheet">
     <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
     <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
@@ -22,7 +21,7 @@
     </head>
     <nav class="menu">
       <section class="menu__container">
-          <div class="pag_logo" href="../index.html">
+          <div class="pag_logo">
               <p class="p_verde">CONTROLA</p>
               <p class="p_negro">TUS</p>
               <p class="p_verde">FINANZAS</p>
@@ -51,11 +50,11 @@
                 </li>
     
                 <li class="menu__item  menu__item--show">
-                    <a href="valan_actu.html" class="menu__link">VALANCES</a>
+                    <a href="balan_actu.html" class="menu__link">BALANCES</a>
     
                     <ul class="menu__nesting">
                         <li class="menu__inside">
-                            <a href="valan_glob.html" class="menu__link menu__link--inside">GLOBAL</a>
+                            <a href="balan_glob.html" class="menu__link menu__link--inside">GLOBAL</a>
                         </li>
                     </ul>
                 </li>
@@ -73,22 +72,6 @@
       <div class="tit-grafic"></div>
       <div id="container"></div>
     </section>
-        <select id="select_mes" class="select_mes">
-             <option value="0">Mes</option>
-             <option value="1">Enero</option>
-             <option value="2">Febrero</option>
-             <option value="3">Marzo</option>
-             <option value="4">Abril</option>
-             <option value="5">Mayo</option>
-             <option value="6">Junio</option>
-             <option value="7">Julio</option>
-             <option value="8">Agosto</option>
-             <option value="9">Septiembre</option>
-             <option value="10">Octubre</option>
-             <option value="11">Noviembre</option>
-             <option value="12">Diciembre</option>
-        </select>
-
     <div class="list-container">
       <table id="category-list">
           <thead class="thead">
@@ -103,28 +86,20 @@
               </tr>
           </thead>
           <tbody>
-              
+             
           </tbody>
       </table>
-	    <div class="list_valor_meta">
-		    <p>Monto inicial: <p id="val_ini"></p></p>
-		    <p>Meta de ahorro:<p id="met_ahorr"></p></p>
-		    <p>Total gastos:  <p id="tot_gas"></p></p>
-		    <p>Total ahorro:  <p id="tot_ahorr"></p></p>
-            <p>Meta cumplida:  <p id="meta_cumplida"></p></p>
-	    </div>
   </div>
     
     </section>
     <footer class="footer-distributed">
 
         <div class="footer-left">
-            <div class="footer-left">
-                <div class="pag_logo_f">
-                    <p class="p_verde_f">CONTROLA</p>
-                    <p class="p_negro_f">TUS</p>
-                    <p class="p_verde_f">FINANZAS</p>
-                </div>     
+            <div class="pag_logo_f">
+                <p class="p_verde_f">CONTROLA</p>
+                <p class="p_negro_f">TUS</p>
+                <p class="p_verde_f">FINANZAS</p>
+            </div>    
 
             <p class="footer-links">
                 <a href="index.html">Inicio</a>
@@ -173,7 +148,7 @@
     </footer>
   </body>
   <script src="../js/funcionalidades/script.js"></script>
-  <script src="../js/valances/valances_global/grafic_g.js"></script>
-  <script src="../js/valances/valances_global/listad_g.js"></script>
+  <script src="../js/valances/valances_actual/grafic_ac.js"></script>
+  <script src="../js/valances/valances_actual/listad_ac.js"></script>
 </html>
                     
