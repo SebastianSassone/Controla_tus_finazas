@@ -29,3 +29,43 @@ Instrucciones para desplegar Controla tus finanzas:
             Abre tu navegador web preferido.
             Ingresa la dirección del servidor local donde se encuentra desplegado el frontend.
             ¡La aplicación "Controla tus finanzas" estara funcionando correctamente!
+CREATE TABLE ingresotabla (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  producto VARCHAR(40),
+  categoria VARCHAR(40),
+  subcategoria VARCHAR(30),
+  valor INTEGER,
+  fecha VARCHAR(8),
+  hora VARCHAR(20),
+  user_id INTEGER 
+);
+
+CREATE TABLE usertable (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+    NAME VARCHAR(40),
+    lastname VARCHAR(40),
+	 email VARCHAR(40),
+    PASSWORD VARCHAR(40),
+    confirmPassword VARCHAR(40)
+);
+mostrar tablas en la base de datos
+
+SHOW FULL TABLES FROM blltdzsjukalt1liky4y;
+
+CREATE TABLE montoinicialtable (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  monto_inicial INTEGER,
+  meta_ahorro INTEGER,
+  user_id INTEGER
+);
+ 
+CREATE TABLE montoalmacenadotable (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+   monto INTEGER, 
+   meta INTEGER,
+   gastos INTEGER,
+   ahorro INTEGER,
+   fecha VARCHAR(40),
+   meta_cumplida VARCHAR(40),
+   user_id INTEGER
+);
