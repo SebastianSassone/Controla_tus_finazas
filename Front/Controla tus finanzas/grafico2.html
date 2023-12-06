@@ -154,15 +154,46 @@ consultarCierre();
             Publicacion:
              Buenod dias red
             Hace unos meses atras me propuse realizar un apagina web que nos permita controlar nuestras finanazas personales de una manera sencilla 
-            y presisa, luego de mucho trabajo logre finalizar el proyecto, que consta de una api de back en realizada con con java sprng boot que se conecta a una bas de datso remota 
-            de my sql, y un fron en javaScript vanilla, la funciones que lleva a cabo son, mediante el registro de usurio, a traves de una seccon cuenta imgresamos un monto inicial,
-            que son nustros ingresos mensuales y la meta de ahorro que tenemos planteada, luego en la seccion nuevo ingreso cargamos los gastos que llevamos a cabo,
-            en la seccion valace podemos revisar los valaces del mes actual asi como los de los meses anteriores
-            , al momento de finalizar el mes automaticamnete la pagina producida el cierre y nosotros solo debemos confirmarlo,
-            la pagina web esta suvida a git hub y en el repositorio podemos encontrar lo que neseitamos para hacer el deploy 
-            en nuestra maquina local  
+            y presisa, luego de mucho trabajo logre finalizar el proyecto, Controla Tus Finanzas es una aplicación web que permite administrar gastos 
+            personales de manera eficiente. Consta de un backend en Java Spring Boot conectado a una base de datos MySQL remota y un frontend en JavaScript Vanilla.
+             Tras el registro, en la sección 'Cuenta', ingresamos nuestro ingreso mensual y la meta de ahorro.
+              En 'Nuevo Ingreso', registramos nuestros gastos. La sección 'Balance' muestra los balances
+               mensuales y anteriores. Al finalizar el mes, la página genera automáticamente el cierre,
+                solo requiriendo nuestra confirmación. El código está disponible en GitHub para despliegue
+                 local.
         </p>
         <pl>https://nicepage.com/es/st/3408965/soluciones-perfectas-plantilla-web</p>
+
+          <p>
+            Instrucciones para desplegar "Controla tus finanzas":
+
+            1. Clonar el Repositorio:
+            
+            Clona el repositorio que contiene la API y el frontend en tus directorios locales utilizando Git.
+            
+            2. Configurar la Base de Datos Local:
+            
+            Utiliza sentencias SQL para crear las 4 tablas necesarias con la estructura mencionada anteriormente en tu base de datos local.
+            
+            3. Dirigirse a la API:
+            
+            Abre el proyecto de la API en tu IDE (por ejemplo, IntelliJ IDEA o Eclipse).
+            Configura la conexión a la base de datos en el archivo application.properties de la API, estableciendo los parámetros de conexión a tu base de datos local.
+            Compilar y Ejecutar la API:
+            
+            Utiliza Maven o Gradle para compilar el proyecto desde tu IDE.
+            Ejecuta mvn clean package o ./gradlew build en la terminal dentro del directorio de la API.
+            Luego, ejecuta el archivo JAR generado con java -jar nombre_proyecto.jar desde la terminal o desde el entorno de ejecución del IDE para iniciar la API.
+            Dirigirse al Frontend en JavaScript:
+            
+            4. Abre el proyecto del frontend en tu editor de código preferido.
+            Activa un servidor local para el frontend desde tu editor o utilizando herramientas como Live Server en Visual Studio Code.
+            Finalizar y Verificar:
+            
+            Abre tu navegador web preferido.
+            Ingresa la dirección del servidor local donde se encuentra desplegado el frontend.
+            ¡La aplicación "Controla tus finanzas" estara funcionando correctamente!
+          </p>
     </body>
 </html>
 
