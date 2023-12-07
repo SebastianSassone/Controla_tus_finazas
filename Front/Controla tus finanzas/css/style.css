@@ -1078,14 +1078,15 @@ td {
   height: 310px;
   padding: 10px;
   display: none;
+  flex-direction: column;
 }
 
 .grafic_c{
-  height: 90%;
+  height: 80%;
 }
 
 .grafic_cuenta p{
-  height: 10%;
+  height: 20%;
   font-size: 19px;
 }
 /* Botones cuenta */
