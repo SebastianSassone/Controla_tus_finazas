@@ -113,9 +113,8 @@ document.getElementById('cerrarSesionBtn').addEventListener('click', function() 
         if (response.status === 200) {
          
         console.log('Sesión cerrada exitosamente');
-
-        registro_realizado = 0; 
-        sesion_en_curso    = 0;
+ 
+        window.location.replace("http://localhost:5500/index.html");
 
         } else if (response.status === 401) {
             console.log('No hay sesión activa para cerrar');
@@ -145,6 +144,7 @@ async function eliminarcuenta() {
         throw new Error('Error al eliminar los datos.');
       }
       alert('Datos eliminados exitosamente.');
+      window.location.replace("http://localhost:5500/index.html");
       tbody.removeChild(row);
     } catch (error) {
       console.error('Error:', error);
