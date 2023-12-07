@@ -86,7 +86,10 @@ Instrucciones para desplegar "Controla tus finanzas":
     Ingresa la dirección del servidor local donde se encuentra desplegado el frontend.
     ¡La aplicación "Controla tus finanzas" estara funcionando correctamente!
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-abc123..." crossorigin="anonymous" />
-- Frontend en JavaScript Vanilla <i class="fab fa-js"></i> 
-- Backend en Java Spring Boot <i class="fab fa-java"></i> 
-- Base de datos remota MySQL <i class="fab fa-mysql"></i>
+Tecnologías utilizadas:
+  
+  <img src="https://example.com/js-icon.png" alt="JavaScript" width="20" height="20"/> JavaScript Vanilla
+  
+  <img src="https://example.com/java-icon.png" alt="Java" width="20" height="20"/> Java Spring Boot
+  
+  <img src="https://example.com/mysql-icon.png" alt="MySQL" width="20" height="20"/> MySQL
