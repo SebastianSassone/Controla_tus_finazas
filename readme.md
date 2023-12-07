@@ -1,4 +1,5 @@
-Controla tus finanzas es una aplicación web destinada al control nuestros gastos personales para lograr 
+<h2><strong>Controla tus finanzas</strong></h2>
+Se trata de una aplicación web destinada al control nuestros gastos personales para lograr 
 una mejor administración de nuestro dinero, cumplir las metas de ahorro que nos proponemos para cada mes
 y cada año y llevar un mejor control de nuestro consumo. consta un frontend en JavaScript Vanilla respaldado
 por un backend desarrollado en Java Spring Boot que se conecta a una base de datos remota MySQL remota.
