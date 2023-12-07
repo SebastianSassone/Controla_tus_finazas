@@ -87,6 +87,8 @@ Instrucciones para desplegar "Controla tus finanzas":
     ¡La aplicación "Controla tus finanzas" estara funcionando correctamente!
 
 Tecnologías utilizadas:
+consta un frontend en JavaScript Vanilla respaldado
+por un backend desarrollado en Java Spring Boot que se conecta a una base de datos remota MySQL remota.
   
   <img src="https://example.com/js-icon.png" alt="JavaScript" width="20" height="20"/> JavaScript Vanilla
   
