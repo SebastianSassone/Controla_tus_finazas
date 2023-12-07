@@ -69,7 +69,9 @@ public class Model_ingre extends Model_mont_alm {
         this.valor = valor;
     }
 
-    public String getFecha() { return fecha; }
+    public String getFecha() {
+         return fecha; 
+    }
 
     public void setFecha(String fecha) {
         this.fecha = fecha;

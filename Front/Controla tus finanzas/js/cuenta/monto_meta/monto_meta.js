@@ -24,7 +24,7 @@ let modoEdit = false;
 
 // Data grafico
 
-let dta = [0, 0];
+// let data = [];
 
 //Calcular meta de ahorro cumplida
 
@@ -201,6 +201,7 @@ async function eliminarMontMeta() {
   
 //Grafico
 
+// function cargarGraficCuenta(){}
 const DATA_COUNT = 2;
 const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
 
@@ -209,7 +210,7 @@ const data = {
     datasets: [
         {
             label: 'Dataset 1',
-            data : [2000, 90], // Sample data, you can replace this with your data
+            data : [2000, 90], 
             backgroundColor: [
               'Black',
               'Green'
@@ -261,8 +262,8 @@ if(total_gastos <= met_ahorro ){
   meta_cumplida = "No";
   };    
   meta_cum_ac.innerHTML = meta_cumplida;
-  dta.push(mont_inicial, total_ahorro);
-  cargarGrafic();
+  // data.push(mont_inicial, total_ahorro);
+  // cargarGraficCuent();
 };
 
 
@@ -271,7 +272,7 @@ if(total_gastos <= met_ahorro ){
 async function esperarTotalGastos() {
 
   while (total_gastos <= 0) {
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
+    await new Promise(resolve => setTimeout(resolve, 1000)); 
   }
     calcularGastos(); 
   }

@@ -1,8 +1,4 @@
-// import {ac_in} from '../registro/registro';
-
 // Iniciar sesion
-
-let sesion_en_curso = 0;
 
 const form_in_sec = document.getElementById('form_in_sec');
 
@@ -30,7 +26,6 @@ form_in_sec.addEventListener('submit', async (event) => {
     }
 
     window.location.replace("http://localhost:5500/html/cuenta.html");
-    ac_in = true;
     
     alert('Sesion iniciada');
   } catch (error) {}

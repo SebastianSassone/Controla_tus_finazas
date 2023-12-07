@@ -1,7 +1,6 @@
 //Registrase
-const form_registro = document.getElementById('form_registro');
 
-let ac_in = false;
+const form_registro = document.getElementById('form_registro');
 
 form_registro.addEventListener('submit', async (event) => {
      event.preventDefault();
@@ -36,9 +35,7 @@ form_registro.addEventListener('submit', async (event) => {
   
       window.location.replace("http://localhost:5500/html/cuenta.html");
         alert('Registro realizado exitosamente.');
-        
-        ac_in = true;
-      
+            
      console.log(name);
      console.log(lastname);
      console.log(email);
@@ -75,5 +72,3 @@ viewPasswordReg2.addEventListener('change', (event)=>{
     click = false
   }
 })
-
-// export {ac_in};

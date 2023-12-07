@@ -213,6 +213,7 @@ public class Controller {
               return Collections.emptyList();
          }
        }
+       
        @DeleteMapping(value="/borrar_cierre/{id}")
         public ResponseEntity<Object> eliminarCierre(@PathVariable long id){
         Model_mont_alm deletedModel_mont_alm = repository_mont_alm.findById((int) id).orElse(null);
