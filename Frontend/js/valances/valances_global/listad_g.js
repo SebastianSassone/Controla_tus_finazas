@@ -5,7 +5,6 @@ function filtrarMes(data, mesSeleccionado) {
   const mesNumero = parseInt(mesSeleccionado, 10);
 
   if (mesNumero < 1 || mesNumero > 12) {
-    console.log('Mes no seleccionado');
     return;
   }
 
@@ -18,7 +17,6 @@ function filtrarMes(data, mesSeleccionado) {
     return false;
   });
 
-  // Borra las filas actuales antes de mostrar las nuevas.
   while (tbody.firstChild) {
     tbody.removeChild(tbody.firstChild);
   }
@@ -62,7 +60,6 @@ async function agregarDetalle() {
   }
 }
 
-// Agregar un event listener para el cambio en el select.
 const selection = document.getElementById('select_mes');
 selection.addEventListener('change', () => {
 agregarDetalle();
@@ -70,14 +67,12 @@ cargarYTraerCierre();
 console.log(select.value);
 });
 
-// También puedes llamar a agregarDetalle() cuando se carga la página.
 window.addEventListener('load', () => {
   agregarDetalle();
 });
 
 
 //Mostrar cierre 
-
 let mont_ini = document.getElementById('val_ini');
 let met_ahorr = document.getElementById('met_ahorr');
 let tot_gas = document.getElementById('tot_gas');

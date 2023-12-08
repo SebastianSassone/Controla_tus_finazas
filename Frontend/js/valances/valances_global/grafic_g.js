@@ -9,11 +9,8 @@ async function waitForCounterToReach(targetCount) {
   while (longCharData < targetCount) {
     await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
   }
-
-  console.log(total_gastos);
   
   mosGrafic();
-  console.log(`El contador ha alcanzado ${targetCount}.`);
 }
 
 waitForCounterToReach(6);
@@ -26,7 +23,6 @@ select.addEventListener('change', () => {
   valorSalud();
   valorTransp();
   valorOtros();
-  console.log(select.value);
 });
 
 function mosGrafic(){
@@ -61,7 +57,7 @@ function sumarValoresPorFecha(data, mesSeleccionado) {
 
   if (mesNumero < 1 || mesNumero > 12) {
     alert('Mes no seleccionado');
-    return 0; // Devolvemos 0 si el mes no es válido
+    return 0; 
   }
 
   let total = 0;
@@ -76,9 +72,7 @@ function sumarValoresPorFecha(data, mesSeleccionado) {
   });
 
   resultadosFiltrados.forEach(entry => {
-      total += entry.valor;
-      console.log(entry.valor);
-    
+      total += entry.valor;    
   });
 
   return total;
@@ -94,23 +88,17 @@ async function valorAlim() {
 
     const alimentacionData = await response.json();
 
-    console.log(alimentacionData);
-
     const select = document.getElementById('select_mes');
     const mesSeleccionado = select.value;
 
     const resultadosFiltrados = sumarValoresPorFecha(alimentacionData, mesSeleccionado);
 
-    
-      chartdata.push(["Alimentacion", resultadosFiltrados]);
-        console.log("Alimentacion", resultadosFiltrados);
-    
+      chartdata.push(["Alimentacion", resultadosFiltrados]);    
    
       total_gastos += resultadosFiltrados;
     
       longCharData++;
     
-
   } catch (error) {
     console.error('Error:', error);
   }
@@ -242,17 +230,10 @@ async function valorAlim() {
       chartdata.push(["Otros", resultadosFiltrados]);
 
       total_gastos += resultadosFiltrados;
-      
-      console.log(chartdata)
-      
-      longCharData++;;
-      console.log(total_gastos);
-    } catch (error) {
+            
+      longCharData++;;    } catch (error) {
       console.error('Error:', error);
       
     }
   }
-
-  console.log(chartdata.length);
-  console.log(total_gastos);
 

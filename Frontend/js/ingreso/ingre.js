@@ -5,7 +5,7 @@ function updateDateTime() {
 
     const campoFecha = document.getElementById('fecha');
     campoFecha.value = now.toLocaleDateString();
-    //no toma value
+
     const campoHora = document.getElementById('hora');
     campoHora.value = now.toLocaleTimeString();
 }        
@@ -60,11 +60,9 @@ const section_detalle = document.getElementById('section_detalle');
 
        section_detalle.style.display = 'flex';
          
-       alert('Ingreso realizado exitosamente.');
        form.reset();
      } catch (error) {
        console.error('Error:', error);
-       alert('Ocurrió un error con el ingreso.');
        section_form_ingreso.style.display = 'none';
 
        product.innerHTML = producto;
@@ -78,7 +76,7 @@ const section_detalle = document.getElementById('section_detalle');
      }
    });
 
-const but_acep = document.getElementById('but_acep')
+const but_acep = document.getElementById('but_acep');
 
 but_acep.addEventListener('click', () => {
   section_form_ingreso.style.display = 'flex';

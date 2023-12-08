@@ -36,11 +36,6 @@ form_registro.addEventListener('submit', async (event) => {
       window.location.replace("http://localhost:5500/html/cuenta.html");
         alert('Registro realizado exitosamente.');
             
-     console.log(name);
-     console.log(lastname);
-     console.log(email);
-     console.log(password);
-     console.log(confirmPassword);
      } catch (error) {}
    });
 

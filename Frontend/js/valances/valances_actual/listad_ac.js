@@ -117,11 +117,8 @@ async function guardarEdicion(btn) {
     if (!response.ok) {
       throw new Error('Error al guardar los cambios.');
     }
-
-    alert('Cambios guardados exitosamente.');
   } catch (error) {
     console.error('Error:', error);
-    alert('Ocurrió un error al guardar los cambios.');
   }
 }
 
@@ -138,11 +135,9 @@ async function eliminarDetalle(btn) {
       throw new Error('Error al eliminar los datos.');
     }
 
-    alert('Datos eliminados exitosamente.');
     tbody.removeChild(row);
   } catch (error) {
     console.error('Error:', error);
-    alert('Ocurrió un error al eliminar los datos.');
   }
 }
 

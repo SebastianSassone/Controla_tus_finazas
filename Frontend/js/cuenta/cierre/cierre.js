@@ -38,14 +38,10 @@ let fech = "11/12/2023";
 
 
       if (fechaMesAnterior.length > 0) {
-      console.log('Se encontraron fechas del mes anterior al mes actual');
       fechaMesAnterior.forEach(item => {
-        console.log('Fecha:', item.fecha);
-        // Aquí podrías llamar a la función 'verificarCierre' pasando 'item.fecha' como argumento
         verificarCierre(item.fecha);
       });
       } else {
-      console.log('No se encontraron fechas del mes anterior al mes actual');
       }
       } catch (error) {
        console.error('Error:', error.message);
@@ -60,7 +56,6 @@ let fech = "11/12/2023";
       }
   
       const data = await response.json();  
-      console.log('data_encontarda', data);
 
       const fechaParts = fecha.split('/');
       const mesNumero = parseInt(fechaParts[1], 10);
@@ -97,10 +92,7 @@ let fech = "11/12/2023";
   
       const data = await response.json();
     
-      console.log('Datos obtenidos:', data);
-  
       const mesNumero = parseInt(fechaVerificada.split('/')[1], 10);
-      console.log('Mes verificado:', mesNumero);
 
       const resultadosFiltrados = data.filter(entry => {
       const fechaParts = entry.fecha.split('/');
@@ -111,26 +103,22 @@ let fech = "11/12/2023";
        return false;
       });
 
-      console.log('Resultados filtrados:', resultadosFiltrados);
 
       resultadosFiltrados.forEach((entry) => {
-      console.log('Valor de ingreso:', entry.valor);
       tot_gas += entry.valor;
       });
   
-      console.log('La suma total del valor de los elementos del mes verificado es:', tot_gas);
   
     } catch (error) {
       console.error('Ocurrió un error:', error);
     }
   }
   
-    
   // Traer monto meta
 
   async function traerMontoMeta() {
     try {
-        const response = await fetch('http://localhost:4000/traer_valor_meta'); // Ruta de lectura de montos
+        const response = await fetch('http://localhost:4000/traer_valor_meta');
         const data = await response.json();
 
         console.log(data);
@@ -189,11 +177,9 @@ form_cierre.addEventListener('submit', async (event) => {
   tot_gas;
 
  if(tot_gas <= meta_v ){
-    console.log('Meta de ahorro cumplida');
     tot_ahorro = monto_v - tot_gas;
     meta_cump = "Si";
     }else{
-    console.log('Meta de ahorro no cumplida');
     tot_ahorro = monto_v - tot_gas;
     meta_cump = "No";
   }
@@ -211,9 +197,9 @@ form_cierre.addEventListener('submit', async (event) => {
 
   async function esperarTotalGastosCierre() {
     while (tot_gas <= 0) {
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
+      await new Promise(resolve => setTimeout(resolve, 1000)); 
     }
     calcularGastosCierre(); 
-    }
+  }
   
     esperarTotalGastosCierre();        

@@ -10,10 +10,7 @@ async function waitForCounterToReach(targetCount) {
     await new Promise(resolve => setTimeout(resolve, 1000)); // Esperar 1 segundo
   }
 
-  console.log(total_gastos);
-  
   mosGrafic();
-  console.log(`El contador ha alcanzado ${targetCount}.`);
 }
 
 waitForCounterToReach(6)
@@ -81,16 +78,12 @@ async function valorAlim() {
 
     const alimentacionData = await response.json();
 
-    console.log(alimentacionData);
-
     const resultadosFiltrados = sumarValoresPorFecha(alimentacionData)
-
-    console.log("Alimentacion", resultadosFiltrados);
     
     chartdata.push(["Alimentacion", resultadosFiltrados]);
-      total_gastos += resultadosFiltrados;
+    total_gastos += resultadosFiltrados;
     
-      longCharData++;
+    longCharData++;
 
   } catch (error) {
     console.error('Error:', error);
@@ -203,16 +196,9 @@ async function valorAlim() {
       chartdata.push(["Otros", resultadosFiltrados]);
 
       total_gastos += resultadosFiltrados;
-      
-      console.log(chartdata)
-      
-      longCharData++;;
-      console.log(total_gastos);
-    } catch (error) {
+            
+      longCharData++;;    } catch (error) {
       console.error('Error:', error);
       
     }
   }
-
-  console.log(chartdata.length);
-  console.log(total_gastos);

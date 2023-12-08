@@ -39,14 +39,9 @@ async function cargarDatosDesdeAPI() {
                 apellidoElement.value = entry.lastname;
                 emailElement.value    = entry.email; 
 
-           id = entry.id;
-           console.log(id);
-        
+           id = entry.id;        
           });
-        
-            console.log(data);
-            console.log(data.id);
-        
+                
         } catch (error) {
 
         console.error('Error al cargar los datos:', error);
@@ -111,14 +106,10 @@ document.getElementById('cerrarSesionBtn').addEventListener('click', function() 
     })
     .then(response => {
         if (response.status === 200) {
-         
-        console.log('Sesión cerrada exitosamente');
- 
+          
         window.location.replace("http://localhost:5500/index.html");
 
-        } else if (response.status === 401) {
-            console.log('No hay sesión activa para cerrar');
-        } else {
+        } else if (response.status === 401) {        } else {
             console.error('Error al cerrar sesión');
         }
     })

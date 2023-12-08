@@ -30,10 +30,8 @@
                 element.children[1].removeAttribute('style');
                 element.classList.remove('menu__item--active');
             }
-
         });
     }
-
 
     window.addEventListener('resize', ()=>{
         if(window.innerWidth > 800){
@@ -51,7 +49,5 @@
     }
 
     menu.addEventListener('click', ()=> list.classList.toggle('menu__links--show'));
-
-
 
 })();

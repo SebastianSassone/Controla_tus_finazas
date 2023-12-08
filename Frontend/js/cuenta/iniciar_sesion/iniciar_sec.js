@@ -27,7 +27,6 @@ form_in_sec.addEventListener('submit', async (event) => {
 
     window.location.replace("http://localhost:5500/html/cuenta.html");
     
-    alert('Sesion iniciada');
   } catch (error) {}
 });
 
