@@ -15,7 +15,4 @@ public interface Repository_ingre extends JpaRepository<Model_ingre, Integer> {
     @Query("SELECT m FROM Model_ingre m WHERE m.user_id = :user_id")
     List<Model_ingre> findModelsByUserId(@Param("user_id") int user_id);
 
-
-
-
 }

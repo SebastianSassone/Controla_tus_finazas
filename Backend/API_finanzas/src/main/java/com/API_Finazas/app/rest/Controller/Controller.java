@@ -50,13 +50,7 @@ public class Controller {
                 repository_user.save(modelUser);
                 id_user = modelUser.getId();
                 email_user = modelUser.getEmail();
-                user_name = modelUser.getName();
-                System.out.println("Ide: " + id_user);
-                System.out.println(modelUser.getName());
-                System.out.println(modelUser.getLastname());
-                System.out.println(email_user);
-                System.out.println(modelUser.getPassword());
-                System.out.println(modelUser.getConfirmPassword());
+                user_name = modelUser.getName();               
                 return ResponseEntity.ok("Usuario registrado");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -72,29 +66,21 @@ public class Controller {
     public ResponseEntity<Object> login(@RequestBody Model_user modelUser) {
         String email = modelUser.getEmail();
         String password = modelUser.getPassword();
-        System.out.println("Email recibido: " + email);
-        System.out.println("Contraseña recibida: " + password);
-
+    
         List<Model_user> users = repository_user.findByEmail(email);
 
-        System.out.println("Usuarios encontrados en la base de datos: " + users.size());
-
         if (users.isEmpty()) {
-            System.out.println("No se encontraron usuarios con el correo electrónico proporcionado.");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
 
         for (Model_user user : users) {
-            System.out.println("Contraseña en la base de datos para " + user.getEmail() + ": " + user.getPassword());
             if (user.getPassword().equals(password) && id_user == 0) {
                 id_user = user.getId();
                 email_user = user.getEmail();
-                System.out.println("Inicio de sesión exitoso para el usuario: " + user.getEmail());
                 return ResponseEntity.ok("Inicio de sesión exitoso");
             }
         }
 
-        System.out.println("No se encontró una coincidencia de contraseña válida en la base de datos.");
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
     }
     
@@ -102,8 +88,6 @@ public class Controller {
     public ResponseEntity<String> cerrarSesion() {
         if (id_user != 0) {
             id_user = 0;
-            System.out.println("Ide: " + id_user);
-
             return ResponseEntity.ok("Sesión cerrada exitosamente");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No hay sesión activa para cerrar");
@@ -152,7 +136,6 @@ public class Controller {
         if (id_user != 0) {
             model_mont_in.setUser_id(id_user);
             repository_mont_ini.save(model_mont_in);
-            System.out.print(model_mont_in.getMonto_inicial());
             return ResponseEntity.ok("Guardado");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
@@ -235,9 +218,6 @@ public class Controller {
             String fecha = modelIngre.getFecha() != null ? modelIngre.getFecha().toString() : "N/A";
             String hora = modelIngre.getHora() != null ? modelIngre.getHora().toString() : "N/A";
 
-            System.out.println("Categoría: " + categoria);
-            System.out.println("Fecha: " + fecha);
-            System.out.println("Hora: " + hora);
             modelIngre.setUser_id(id_user);
             repositoryIngre.save(modelIngre);
             return ResponseEntity.ok("Guardado");
@@ -276,13 +256,13 @@ public class Controller {
 
     @GetMapping(value= "/valances_ingreso")
     public List<Model_ingre> traerValan(){
-    if (id_user != 0) {
-        System.out.println("ID de usuario: " + id_user);
-        return repositoryIngre.findModelsByUserId(id_user);
-    } else {
+         if (id_user != 0) {
+      
+           return repositoryIngre.findModelsByUserId(id_user);
+        } else {
         return Collections.emptyList();
+        }
     }
-}
 
     @GetMapping("/total_alimentos")
     public ResponseEntity<List<Model_ingre>> obtenerTotalAlimen() {
@@ -294,6 +274,7 @@ public class Controller {
             return ResponseEntity.notFound().build();
         }
     }
+    
     @GetMapping("/total_servicios")
     public ResponseEntity<List<Model_ingre>> TotalServi() {
         if (id_user != 0) {
