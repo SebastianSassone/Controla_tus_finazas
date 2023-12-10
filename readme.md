@@ -9,11 +9,13 @@ una vez ingresados se muestran siempre en la pestaña de cuenta y no cambiaran a
 decidamos asi nosotros, usado el monto inicial y la meta de ahorro, mas la suma total de los gastos automáticamente
 se calcularan los gastos y se indicara si la meta se está cumpliendo o no, por defecto la meta de ahorro estará 
 cumplida, asi mismo estos valores mostrados servirán para hacer el cierre mensual automaticamente.
-Para comenzar a registrar nuestros gastos debemos realizar un ingreso del gasto realizado, para esto nos dirigimos
+</p>
+<p>Al comenzar a registrar nuestros gastos debemos realizar el ingreso del gasto en la plataforma,  nos dirigimos
 a la pestaña de "Nuevo Ingreso" donde nos aparece aun formulario en el debemos ingresar el nombre del producto, 
 seleccionar la categoría a la que corresponde(las cuales están predefinidas), luego ingresar la subcategoría 
 si asi lo deseamos, finalmente ingresamos el valor del producto grabamos el nuevo ingreso,  la fecha y la hora local se
-registraran automáticamente.</p> 
+registraran automáticamente.
+</p> 
 <p>Para llevar un control de los balances obtenidos nos dirigimos a la pestaña de balances, donde podemos observar el 
 total de gastos de todo el mes en un gráfico y en listado donde podemos editar y eliminar los diferentes ingresos 
 registrados, cuando el mes haya finalizado la aplicación detectara automáticamente este cambio y ya no se podrán 
@@ -22,7 +24,7 @@ encontrar que ahora aparece formulario con todos los datos antes necesarios para
 mostraran el monto inicial, la meta de ahorro, el total de gastos realizados y si la meta fue cumplida o no, 
 con estos datos presionamos en confirmar cierre, luego podemos comenzar a registrar gastos del nuevo mes en 
 la pestaña ingresos, el monto y la meta seguirá igual como fue antes mencionado.</p> 
-<p>Para acceder a los registros de los gastos acumulados de cada mes deberemos dirigirnos a la pestaña de balances sección global, 
+<p>Luego podemos acceder a los registros de los gastos acumulados de cada mes, deberemos dirigirnos a la pestaña de balances sección global, 
 donde podremos seleccionar uno de los 12 meses del año y allí se mostraran los registros acumulados de cada mes e un listado y 
 gráfico además se mostrara el cierre, monto inicial meta de ahorro y si esta cumplió o si no lo hizo.</p>
 
@@ -90,6 +92,7 @@ Tecnologías utilizadas:
 Consta de un frontend creado con HTML y CSS en JavaScript Vanilla, respaldado por un backend desarrollado en 
 Java Spring Boot que se conecta a una base de datos remota MySQL.
 <div display = "flex" justify-content = "space-evenly" width = "90%">
+  <div     background-color = "rgba(0, 0, 0, 0.507)"></div>
   <img src="/img_readme/logohtml.png" width="47" height="50"/> 
 
   <img src="/img_readme/logocss.png" width="47" height="50"/> 
