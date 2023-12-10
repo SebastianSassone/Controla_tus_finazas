@@ -89,13 +89,15 @@ Instrucciones para desplegar "Controla tus finanzas":
 Tecnologías utilizadas:
 Consta de un frontend creado con HTML y CSS en JavaScript Vanilla, respaldado por un backend desarrollado en 
 Java Spring Boot que se conecta a una base de datos remota MySQL.
+<div display = "flex">
+  <img src="/img_readme/logohtml.png" width="50" height="50"/> 
 
-  <img src="/img_readme/logohtml.png" alt="JavaScript" width="20" height="20"/> HML5
-
-  <img src="/img_readme/logocss.png" alt="JavaScript" width="20" height="20"/> CSS3
+  <img src="/img_readme/logocss.png" width="50" height="50"/> 
  
-  <img src="/img_readme/logojs.png" alt="JavaScript" width="20" height="20"/> JavaScript Vanilla
+  <img src="/img_readme/logojs.png" width="50" height="50"/>
   
-  <img src="/img_readme/logojava.png" alt="Java" width="20" height="20"/> Java Spring Boot
+  <img src="/img_readme/logojava.png" width="50" height="50"/>
   
-  <img src="/img_readme/logomysql.png" alt="MySQL" width="20" height="20"/> MySQL
+  <img src="/img_readme/logomysql.png" width="50" height="50"/> 
+
+</div>
