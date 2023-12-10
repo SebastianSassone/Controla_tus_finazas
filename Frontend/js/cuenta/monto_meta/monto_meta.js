@@ -3,6 +3,7 @@ const metaAhorroMostrada = document.getElementById('metaAhorroMostrada');
 const editarBt = document.getElementById('editarBt');
 const guardarCambiosBt = document.getElementById('guardarCambiosBt');
 let meta_cum_ac = document.getElementById('meta_cum_ac'); 
+let tot_gas_ac = document.getElementById('tot_gas_ac');
 
 window.addEventListener('load', () => {
     cargarYMostrarValoresDesdeAPI();
@@ -31,8 +32,8 @@ let data = [];
 let mont_inicial = 0;
 let met_ahorro = 0;
 let total_gastos = 0;
-let total_ahorro = 0;
-let meta_cumplida = "";
+let total_ahorro = 1;
+let meta_cumplida = "Si";
 
 if(mont_inicial == 0 || met_ahorro == 0) {
     let div_valores = document.getElementById('div_valores');
@@ -242,6 +243,7 @@ if(total_gastos <= met_ahorro ){  total_ahorro = mont_inicial - total_gastos;
   meta_cumplida = "No";
   };    
   meta_cum_ac.innerHTML = meta_cumplida;
+  tot_gas_ac.innerHTML = total_gastos;
   data.push(mont_inicial, total_ahorro);
   cargarGraficCuent();
 };
