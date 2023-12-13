@@ -33,6 +33,7 @@ public class Controller {
     }
 
     //Cuenta
+    
     private Integer id_user = 0;
 
     private String email_user;
@@ -136,7 +137,7 @@ public class Controller {
         if (id_user != 0) {
             model_mont_in.setUser_id(id_user);
             repository_mont_ini.save(model_mont_in);
-            return ResponseEntity.ok("Guardado");
+            return ResponseEntity.ok("Monto y meta guardados");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
         }
@@ -151,7 +152,7 @@ public class Controller {
             repository_mont_ini.save(updatedModel_mont_in);
             return ResponseEntity.ok(updatedModel_mont_in);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No actualizado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monto y meta no actualizados");
         }
     }
 
@@ -160,9 +161,9 @@ public class Controller {
         Model_mont_in deletedModel_mont_in = repository_mont_ini.findById((int) id).orElse(null);
         if (deletedModel_mont_in != null) {
             repository_mont_ini.delete(deletedModel_mont_in);
-            return ResponseEntity.ok("Borrado");
+            return ResponseEntity.ok("Monto y meta borrados");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Monto y meta no borrados");
         }
     }
     @GetMapping(value = "/traer_valor_meta") 
@@ -175,14 +176,14 @@ public class Controller {
     }
 
 //Cierre
+
     @PostMapping(value="/guardar_cierre")
     public ResponseEntity<Object> guardarIngre(@RequestBody Model_mont_alm model_mont_alm) {
 
         if (id_user != 0) {
-            
             model_mont_alm.setUser_id(id_user);
             repository_mont_alm.save(model_mont_alm);
-            return ResponseEntity.ok("Guardado");
+            return ResponseEntity.ok("Cierre guardado");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
         }
@@ -204,7 +205,7 @@ public class Controller {
             repository_mont_alm.delete(deletedModel_mont_alm);
             return ResponseEntity.ok("Borrado");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cierre no borrado");
         }
     }
 
@@ -220,7 +221,7 @@ public class Controller {
 
             modelIngre.setUser_id(id_user);
             repositoryIngre.save(modelIngre);
-            return ResponseEntity.ok("Guardado");
+            return ResponseEntity.ok("Ingreso guardado");
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No se ha iniciado sesión");
         }
@@ -239,7 +240,7 @@ public class Controller {
             repositoryIngre.save(updatedModelIngre);
             return ResponseEntity.ok(updatedModelIngre);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No actualizado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ingreso no actualizado");
         }
     }
 
@@ -250,14 +251,13 @@ public class Controller {
             repositoryIngre.delete(deletedModelIngre);
             return ResponseEntity.ok("Borrado");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No borrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ingreso no borrado");
         }
     }
 
     @GetMapping(value= "/valances_ingreso")
     public List<Model_ingre> traerValan(){
-         if (id_user != 0) {
-      
+         if (id_user != 0) {     
            return repositoryIngre.findModelsByUserId(id_user);
         } else {
         return Collections.emptyList();
