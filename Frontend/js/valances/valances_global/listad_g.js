@@ -75,41 +75,41 @@ window.addEventListener('load', () => {
 //Mostrar cierre 
 
 async function cargarYTraerCierre(mesSeleccionado) {
-    try {
-            const response = await fetch('http://localhost:4000/traer_cierre'); 
-            const data = await response.json();
+  try {
+    const response = await fetch('http://localhost:4000/traer_cierre'); 
+    const data = await response.json();
 
-            const mesNumero = parseInt(mesSeleccionado, 10);
+    const mesNumero = parseInt(mesSeleccionado, 10);
 
-            if (mesNumero < 1 || mesNumero > 12) {
-              return;
-            }
+    if (mesNumero < 1 || mesNumero > 12) {
+      return;
+    }
            
-              const resultadosFiltrados = data.filter(entry => {
-              const fechaParts = entry.fecha.split('/');
-              if (fechaParts.length === 3) {
-                const mes = parseInt(fechaParts[1], 10);
-                return mes === mesNumero;
-              }
-              return false;
-            });
+    const resultadosFiltrados = data.filter(entry => {
+    const fechaParts = entry.fecha.split('/');
+    if (fechaParts.length === 3) {
+      const mes = parseInt(fechaParts[1], 10);
+      return mes === mesNumero;
+    }
+      return false;
+    });
 
-            let mont_ini = document.getElementById('val_ini');
-            let met_ahorr = document.getElementById('met_ahorr');
-            let tot_gas = document.getElementById('tot_gas');
-            let tot_ahorr = document.getElementById('tot_ahorr');
-            let meta_cumplida = document.getElementById('meta_cumplida');
+    let mont_ini = document.getElementById('val_ini');
+    let met_ahorr = document.getElementById('met_ahorr');
+    let tot_gas = document.getElementById('tot_gas');
+    let tot_ahorr = document.getElementById('tot_ahorr');
+    let meta_cumplida = document.getElementById('meta_cumplida');
 
-            resultadosFiltrados .forEach((entry) => {
-              mont_ini.innerHTML = entry.monto; 
-              met_ahorr.innerHTML = entry.meta;
-              tot_gas.innerHTML = entry.gastos;
-              tot_ahorr.innerHTML = entry.ahorro;
-              meta_cumplida.innerHTML = entry.meta_cumplida;                              
+    resultadosFiltrados .forEach((entry) => {
+    mont_ini.innerHTML = entry.monto; 
+    met_ahorr.innerHTML = entry.meta;
+    tot_gas.innerHTML = entry.gastos;
+    tot_ahorr.innerHTML = entry.ahorro;
+    meta_cumplida.innerHTML = entry.meta_cumplida;                              
       
         })
       
   } catch (error) {
-                  console.error('Error al cargar los valores:', error);
+    console.error('Error al cargar los valores:', error);
     }
-            }
+}

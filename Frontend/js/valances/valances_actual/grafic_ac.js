@@ -65,7 +65,7 @@ function sumarValoresPorFecha(data) {
     }
   });
 
-  return total; // Retorna el valor total calculado
+  return total; 
 }
 
 
