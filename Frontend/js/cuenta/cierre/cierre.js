@@ -5,13 +5,13 @@ window.addEventListener('load', () => {
 let section_form_cierre = document.getElementById('section_form_cierre'); 
 
 section_form_cierre.style.display = 'none';
-  
+
 let monto_v = 0; 
 let meta_v = 0; 
 let tot_gas = 0;
 let tot_ahorro = 0; 
 let meta_cump = "Si"; 
-let fech = "11/12/2023"; 
+let fech = ""; 
 
 // Consultar cierre
   async function consultarCierre() {
@@ -24,7 +24,7 @@ let fech = "11/12/2023";
       const data = await response.json();
 
       const fechaActual = new Date();
-      const mesActual = fechaActual.getMonth() + 1; // Obtener el mes actual
+      const mesActual = fechaActual.getMonth() + 1; 
 
       const fechaMesAnterior = data.filter(entry => {
       const fechaParts = entry.fecha.split('/');
@@ -35,7 +35,6 @@ let fech = "11/12/2023";
       }
         return false;
       });
-
 
       if (fechaMesAnterior.length > 0) {
       fechaMesAnterior.forEach(item => {
@@ -57,6 +56,8 @@ let fech = "11/12/2023";
   
       const data = await response.json();  
 
+      console.log(data)
+
       const fechaParts = fecha.split('/');
       const mesNumero = parseInt(fechaParts[1], 10);
     
@@ -70,11 +71,13 @@ let fech = "11/12/2023";
       });
   
       if (cierreEncontrado.length > 0) {
-          console.log(`Se encontró un cierre para el mes ${fecha}.`);
-          traerMontoMeta();
-          sumarTotalGastosCierre(fecha);
+          console.log(`Se encontró un cierre para el mes ${fecha}.`);         
       } else {
           console.log(`No se encontró ningún cierre para el mes ${fecha}.`);
+          traerMontoMeta();
+          sumarTotalGastosCierre(fecha);
+          fech = fecha;          
+
         }
       } catch (error) {
         console.error('Error:', error.message);
@@ -161,7 +164,7 @@ form_cierre.addEventListener('submit', async (event) => {
         
         section_form_cierre.style.display = 'none';  
         
-        alert('Cierre realizado exito');
+        alert('Cierre exitoso');
 
     } catch (error) {
         console.error('Error al guardar los datos:', error);

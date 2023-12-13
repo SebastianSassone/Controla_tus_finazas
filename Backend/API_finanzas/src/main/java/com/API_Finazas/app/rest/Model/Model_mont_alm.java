@@ -22,6 +22,7 @@ public class Model_mont_alm {
     @Column
     private Integer ahorro;
 
+    
     @Column
     private String fecha;
 

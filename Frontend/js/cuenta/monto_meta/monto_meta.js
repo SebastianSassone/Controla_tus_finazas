@@ -25,7 +25,7 @@ let modoEdit = false;
 
 // Data grafico
 
-let data = [];
+let dat = [0, 1];
 
 //Calcular meta de ahorro cumplida
 
@@ -192,11 +192,11 @@ const DATA_COUNT = 2;
 const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
 
 const data = {
-    labels: [ 'Black', 'Green'],
+    labels: [ 'Gastos', 'Ahorro'],
     datasets: [
         {
             label: 'Dataset 1',
-            data : [2000, 90], 
+            data : dat, 
             backgroundColor: [
               'Black',
               'Green'
@@ -207,7 +207,7 @@ const data = {
 
 const config = {
     type: 'doughnut',
-    data: data,
+    data: dat,
     options: {
         responsive: true,
         plugins: {
@@ -221,15 +221,13 @@ const config = {
         }
     },
 };
-}
 
 
 window.onload = function() {
     var ctx = document.getElementById('myChart').getContext('2d');
     new Chart(ctx, config);
 };
-
-
+}
 
 function calcularGastos(){
 
@@ -244,10 +242,9 @@ if(total_gastos <= met_ahorro ){  total_ahorro = mont_inicial - total_gastos;
   };    
   meta_cum_ac.innerHTML = meta_cumplida;
   tot_gas_ac.innerHTML = total_gastos;
-  data.push(mont_inicial, total_ahorro);
+  data.push(total_gastos, total_ahorro);
   cargarGraficCuent();
 };
-
 
 // Promesa gastos
 

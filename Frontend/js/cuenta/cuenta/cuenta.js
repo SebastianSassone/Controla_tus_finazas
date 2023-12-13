@@ -134,12 +134,10 @@ async function eliminarcuenta() {
       if (!response.ok) {
         throw new Error('Error al eliminar los datos.');
       }
-      alert('Datos eliminados exitosamente.');
       window.location.replace("http://localhost:5500/index.html");
       tbody.removeChild(row);
     } catch (error) {
       console.error('Error:', error);
-      alert('Ocurrió un error al eliminar los datos.');
     }
   }
       
