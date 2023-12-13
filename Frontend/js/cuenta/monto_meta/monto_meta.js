@@ -187,7 +187,6 @@ async function eliminarMontMeta() {
   
 //Grafico
 
-function cargarGraficCuenta(){
 const DATA_COUNT = 2;
 const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
 
@@ -223,11 +222,11 @@ const config = {
 };
 
 
-window.onload = function() {
+function cargarGraficCuenta(){
     var ctx = document.getElementById('myChart').getContext('2d');
     new Chart(ctx, config);
 };
-}
+
 
 function calcularGastos(){
 
