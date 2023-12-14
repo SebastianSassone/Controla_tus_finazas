@@ -2,31 +2,29 @@
 <p>Se trata de una aplicación web destinada al control nuestros gastos personales para lograr 
 una mejor administración de nuestro dinero, cumplir las metas de ahorro que nos proponemos para cada mes
 y cada año y llevar un mejor control de nuestro consumo.</p>
-<p>Para poder utilizar la aplicación web una vez registrados dentro de la misma , nos dirigimos a la pestaña
-de cuenta donde se mostraran nuestros datos personales, y abajo de ellos encontraremos un formulario en 
+<p>Para poder utilizar la aplicación web una vez registrados, nos dirigimos a la pestaña
+de cuenta donde se mostraran nuestros datos personales, abajo de ellos encontraremos un formulario en 
 el cual debemos ingresar el monto inicial que sería el que disponemos para cada mes y la meta de ahorro propuesta,
 una vez ingresados se muestran siempre en la pestaña de cuenta y no cambiaran a lo largo del año en cuanto lo 
 decidamos asi nosotros, usado el monto inicial y la meta de ahorro, mas la suma total de los gastos automáticamente
-se calcularan los gastos y se indicara si la meta se está cumpliendo o no, por defecto la meta de ahorro estará 
-cumplida, asi mismo estos valores mostrados servirán para hacer el cierre mensual automaticamente.
+se calcularan los gastos y se indicara si la meta se está cumpliendo o no.
 </p>
-<p>Al comenzar a registrar nuestros gastos debemos realizar el ingreso del gasto en la plataforma,  nos dirigimos
-a la pestaña de "Nuevo Ingreso" donde nos aparece aun formulario en el debemos ingresar el nombre del producto, 
-seleccionar la categoría a la que corresponde(las cuales están predefinidas), luego ingresar la subcategoría 
-si asi lo deseamos, finalmente ingresamos el valor del producto grabamos el nuevo ingreso,  la fecha y la hora local se
+<p>Para llevar un control debemos realizar el ingreso del gasto en la plataforma,  nos dirigimos
+a la pestaña de nuevo ingreso donde nos aparece un formulario en el cual debemos ingresar el nombre del producto, 
+seleccionar la categoría a la que corresponde, luego ingresar la subcategoría, 
+finalmente ingresamos el valor del producto guardamos el nuevo ingreso, la fecha y la hora local se
 registraran automáticamente.
 </p> 
 <p>Para llevar un control de los balances obtenidos nos dirigimos a la pestaña de balances, donde podemos observar el 
 total de gastos de todo el mes en un gráfico y en listado donde podemos editar y eliminar los diferentes ingresos 
-registrados, cuando el mes haya finalizado la aplicación detectara automáticamente este cambio y ya no se podrán 
-realizar ingresos, cuando esto sucede necesario hacer un cierre del mes volviendo a la sección cuenta podemos 
-encontrar que ahora aparece formulario con todos los datos antes necesarios para hacer el cierre del mes en este
+registrados, cuando el mes haya finalizado la aplicación lo detectara automáticamente y ya no se podrán 
+realizar ingresos, en ese momento es necesario hacer un cierre, volviendo a la sección cuenta podemos 
+encontrar que ahora aparece formulario con todos los datos antes necesarios para cerrar el mes en este
 mostraran el monto inicial, la meta de ahorro, el total de gastos realizados y si la meta fue cumplida o no, 
-con estos datos presionamos en confirmar cierre, luego podemos comenzar a registrar gastos del nuevo mes en 
-la pestaña ingresos, el monto y la meta seguirá igual como fue antes mencionado.</p> 
+con estos datos presionamos en confirmar cierre, luego podemos comenzar a registrar gastos del nuevo mes.</p> 
 <p>Luego podemos acceder a los registros de los gastos acumulados de cada mes, deberemos dirigirnos a la pestaña de balances sección global, 
-donde podremos seleccionar uno de los 12 meses del año y allí se mostraran los registros acumulados de cada mes e un listado y 
-gráfico además se mostrara el cierre, monto inicial meta de ahorro y si esta cumplió o si no lo hizo.</p>
+donde podremos seleccionar uno de los 12 meses del año y allí se mostraran los registros acumulados de cada mes en un listado y 
+gráfico además se mostrara el cierre, monto inicial meta de ahorro</p>
 
 
 Instrucciones para desplegar "Controla tus finanzas":
