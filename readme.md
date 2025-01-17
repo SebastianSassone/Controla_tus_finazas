@@ -58,7 +58,7 @@ Instrucciones para desplegar "Controla tus finanzas":
     meta_ahorro INTEGER, 
     user_id INTEGER);
 
-    montoalmacenadotable ( id INT PRIMARY KEY AUTO_INCREMENT, 
+    cierremestable ( id INT PRIMARY KEY AUTO_INCREMENT, 
     monto INTEGER, 
     meta INTEGER, 
     gastos INTEGER, 
